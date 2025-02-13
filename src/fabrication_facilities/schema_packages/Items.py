@@ -85,7 +85,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
-    select_quantity(measure)
+    value=select_quantity(measure)
 
 
 #    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
