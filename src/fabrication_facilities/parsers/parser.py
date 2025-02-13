@@ -3,23 +3,18 @@ from typing import (
 )
 
 if TYPE_CHECKING:
-    from nomad.datamodel.datamodel import (
-        EntryArchive,
-    )
-    from structlog.stdlib import (
-        BoundLogger,
-    )
+    pass
 
-#from nomad.config import config
-#from nomad.datamodel.metainfo.workflow import Workflow
-#from nomad.parsing.parser import MatchingParser
+# from nomad.config import config
+# from nomad.datamodel.metainfo.workflow import Workflow
+# from nomad.parsing.parser import MatchingParser
 
-#configuration = config.get_plugin_entry_point(
+# configuration = config.get_plugin_entry_point(
 #    'fabrication_facilities.parsers:parser_entry_point'
-#)
+# )
 
 
-#class NewParser(MatchingParser):
+# class NewParser(MatchingParser):
 #    def parse(
 #        self,
 #        mainfile: str,

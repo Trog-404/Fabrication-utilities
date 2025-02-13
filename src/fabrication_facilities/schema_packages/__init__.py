@@ -16,6 +16,7 @@ schema_package_entry_point = NewSchemaPackageEntryPoint(
     description='New schema package entry point configuration.',
 )
 
+
 class ItemsEntryPoint(SchemaPackageEntryPoint):
     def load(self):
         from fabrication_facilities.schema_packages.Items import m_package

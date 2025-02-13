@@ -68,7 +68,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
-# Vedere se nel json dei dati da fablims si può inserire un flag per evitare la presenza di questo attributo
+#   Vedere se nel json dei dati da fablims si può inserire un flag per evitare la presenza di questo attributo
     unit_of_measure = Quantity(
         type=str,
         a_eln={
@@ -77,15 +77,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
     )
     value= None
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        '''
-        The normalizer for the `ItemPropertyDefinition` class.
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        '''
-       logger.debug(f"Normalizing ItemPropertyDefinition: {self.id}, {self.unit_of_measure}")
-
+        logger.debug(f"Normalizing ItemPropertyDefinition: {self.id}, {self.unit_of_measure}")
         measure = self.unit_of_measure
         if not self.unit_of_measure:  # Check for empty or None
             logger.debug("Unit of measure is empty, setting value to StringEditQuantity")
@@ -104,6 +96,69 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
                 },
                 unit=measure,
             )
+
+        super().normalize(archive, logger)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        '''
+        The normalizer for the `ItemPropertyDefinition` class.
+        Args:
+            archive (EntryArchive): The archive containing the section that is being
+            normalized.
+            logger (BoundLogger): A structlog logger.
+        '''
+            logger.debug(f"Normalizing ItemPropertyDefinition: {self.id}, {self.unit_of_measure}")
+
+    measure = self.unit_of_measure
+    if not self.unit_of_measure:  # Check for empty or None
+        logger.debug("Unit of measure is empty, setting value to StringEditQuantity")
+        self.value = Quantity(
+            type=str,
+            a_eln={"component": "StringEditQuantity"}
+        )
+    else:
+        logger.debug(f"Unit of measure is: {self.unit_of_measure}, setting value to NumberEditQuantity")
+        self.unit_of_measure = measure
+        self.value = Quantity(
+            type=np.float64,  # Ensure np.float64 is the correct type
+            a_eln={
+                'component': 'NumberEditQuantity',
+                'defaultDisplayUnit': measure
+            },
+            unit=measure,
+        )
+        measure = self.unit_of_measure
+        if self.unit_of_measure == "":
+            self.value = Quantity(
+                type=str,
+                a_eln={
+                    "component": "StringEditQuantity"
+                },
+            )
+        elif self.unit_of_measure != "":
+            self.unit_of_measure = measure
+            self.value = Quantity(
+                type=np.float64,
+                a_eln={
+                    'component': 'NumberEditQuantity', 'defaultDisplayUnit': measure},
+                    unit=measure,
+            )
+
+
         super().normalize(archive, logger)
 
 
