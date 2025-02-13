@@ -83,6 +83,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             normalized.
             logger (BoundLogger): A structlog logger.
         '''
+        measure = self.unit_of_measure
         if self.unit_of_measure == "":
             self.value = Quantity(
                 type=str,
@@ -92,12 +93,12 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             )
             del self.unit_of_measure
         elif self.unit_of_measure != "":
-            self.unit_of_measure = unit_of_measure
+            self.unit_of_measure = measure
             self.value = Quantity(
                 type=np.float64,
                 a_eln={
-                    'component': 'NumberEditQuantity', 'defaultDisplayUnit': unit_of_measure},
-                    unit=unit_of_measure,
+                    'component': 'NumberEditQuantity', 'defaultDisplayUnit': measure},
+                    unit=measure,
             )
             del self.unit_of_measure
 
