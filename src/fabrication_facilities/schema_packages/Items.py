@@ -79,7 +79,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
         measure=self.unit_of_measure
         if measure and value:  # Aggiungi 'eta' solo se 'nome' non è vuoto
             self.value = Quantity(
-                type= np.float64
+                type= np.float64,
                 a_eln={
                     "component": "NumberEditQuantity", "defaultDisplayUnit": measure
                 },
@@ -87,7 +87,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             )
         else:
             self.value = Quantity(
-                type= str
+                type= str,
                 a_eln={
                     "component": "StringEditQuantity"
                 }
