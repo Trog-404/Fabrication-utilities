@@ -1,0 +1,145 @@
+definitions:
+  name: "Items plugin"
+  sections:
+    ItemPropertyDefinition:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        unit:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        value:
+          type: np.float64
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+    ItemShapeType:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+    ListOfItemPropertyDefinition:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      quantities:
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+      sub_sections:
+        list_of_possible_properties:
+          repeats: True
+          section: "#/ItemPropertyDefinition"
+        list_of_items_shape_type:
+          repeats: True
+          section: "#/ItemShapeType"
+    StartingMaterial:
+      base_sections:
+        - nomad.datamodel.metainfo.basesections.Entity
+      quantities:
+        wafer_material:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        manufacturer_name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        wafer_doping:
+          type: bool
+          m_annotations:
+            eln:
+              component: BoolEditQuantity
+      sub_sections:
+        properties:
+          repeats: True
+          section: "#/ItemPropertyDefinition"
+    Sample_parenting:
+      base_sections:
+        - nomad.datamodel.metainfo.basesections.Entity
+      quantities:
+        date:
+          type: datetime
+          m_annotations:
+            eln:
+              component: DateTimeEditQuantity
+      sub_sections:
+        inputs:
+          repeats: True
+          section: "#/StartingMaterial"
+        outputs:
+          repeats: True
+          section: "#/Item"
+    Item:
+      base_sections:
+        - nomad.datamodel.metainfo.basesections.Entity
+      quantities:
+        id_wafer_parent:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        itemShapeType:
+          type:
+            type_kind: Enum
+            type_data:
+              - "Wafer with flat standard"
+              - "Wafer with flat JEIDA"
+              - "Rectangle shape"
+              - "1/2 wafer"
+              - "1/4 wafer"
+              - "Fragment"
+              - "Square shape"
+              - "Powder"
+              - "Wafer with Notch standard"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+      sub_sections:
+        properties:
+          repeats: True
+          section: "#/ItemPropertyDefinition"
