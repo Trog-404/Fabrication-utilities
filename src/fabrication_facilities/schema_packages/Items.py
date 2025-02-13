@@ -68,6 +68,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
+# Vedere se nel json dei dati da fablims si può inserire un flag per evitare la presenza di questo attributo
     unit_of_measure = Quantity(
         type=str,
         a_eln={
@@ -91,7 +92,6 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
                     "component": "StringEditQuantity"
                 },
             )
-            del self.unit_of_measure
         elif self.unit_of_measure != "":
             self.unit_of_measure = measure
             self.value = Quantity(
@@ -100,7 +100,6 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
                     'component': 'NumberEditQuantity', 'defaultDisplayUnit': measure},
                     unit=measure,
             )
-            del self.unit_of_measure
 
 
         super().normalize(archive, logger)
@@ -130,16 +129,17 @@ class ItemShapeType(EntryData, ArchiveSection):
         },
     )
 
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        '''
-        The normalizer for the `ItemShapeType` class.
-
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        '''
-        super().normalize(archive, logger)
+#    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+#        '''
+#        The normalizer for the `ItemShapeType` class.
+#
+#
+#        Args:
+#            archive (EntryArchive): The archive containing the section that is being
+#            normalized.
+#            logger (BoundLogger): A structlog logger.
+#        '''
+#        super().normalize(archive, logger)
 
 
 class ListOfItemPropertyDefinition(EntryData, ArchiveSection):
@@ -174,16 +174,16 @@ class ListOfItemPropertyDefinition(EntryData, ArchiveSection):
         repeats=True,
     )
 
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        '''
-        The normalizer for the `ListOfItemPropertyDefinition` class.
-
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        '''
-        super().normalize(archive, logger)
+#    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+#        '''
+#        The normalizer for the `ListOfItemPropertyDefinition` class.
+#
+#        Args:
+#            archive (EntryArchive): The archive containing the section that is being
+#            normalized.
+#            logger (BoundLogger): A structlog logger.
+#        '''
+#        super().normalize(archive, logger)
 
 
 class StartingMaterial(Entity, ArchiveSection):
@@ -214,16 +214,16 @@ class StartingMaterial(Entity, ArchiveSection):
         repeats=True,
     )
 
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        '''
-        The normalizer for the `StartingMaterial` class.
-
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        '''
-        super().normalize(archive, logger)
+#    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+#        '''
+#        The normalizer for the `StartingMaterial` class.
+#
+#        Args:
+#            archive (EntryArchive): The archive containing the section that is being
+#            normalized.
+#            logger (BoundLogger): A structlog logger.
+#        '''
+#        super().normalize(archive, logger)
 
 class Item(Entity, ArchiveSection):
     '''
@@ -256,16 +256,16 @@ class Item(Entity, ArchiveSection):
         repeats=True,
     )
 
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        '''
-        The normalizer for the `Item` class.
-
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        '''
-        super().normalize(archive, logger)
+#    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+#        '''
+#        The normalizer for the `Item` class.
+#
+#        Args:
+#            archive (EntryArchive): The archive containing the section that is being
+#            normalized.
+#            logger (BoundLogger): A structlog logger.
+#        '''
+#        super().normalize(archive, logger)
 
 class Sample_parenting(Entity, ArchiveSection):
     '''
@@ -287,16 +287,16 @@ class Sample_parenting(Entity, ArchiveSection):
         repeats=True,
     )
 
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        '''
-        The normalizer for the `Sample_parenting` class.
-
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        '''
-        super().normalize(archive, logger)
+#    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+#        '''
+#        The normalizer for the `Sample_parenting` class.
+#
+#        Args:
+#            archive (EntryArchive): The archive containing the section that is being
+#            normalized.
+#            logger (BoundLogger): A structlog logger.
+#        '''
+#        super().normalize(archive, logger)
 
 
 
