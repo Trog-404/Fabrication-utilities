@@ -67,19 +67,13 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
-    unit = Quantity(
+    unit_of_measure = Quantity(
         type=str,
         a_eln={
             "component": "StringEditQuantity"
         },
     )
-    value = Quantity(
-        type=np.float64,
-        a_eln={
-            "component": "NumberEditQuantity"
-        },
-    )
-
+    value= None
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         '''
         The normalizer for the `ItemPropertyDefinition` class.
@@ -88,8 +82,25 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             normalized.
             logger (BoundLogger): A structlog logger.
         '''
-        if self.unit == "":
-            self.append()
+        if self.unit_of_measure == "":
+            self.value = Quantity(
+                type=str,
+                a_eln={
+                    "component": "StringEditQuantity"
+                },
+            )
+            del self.unit_of_measure
+        elif self.unit_of_measure != "":
+            self.unit_of_measure = unit_of_measure
+            self.value = Quantity(
+                type=np.float64,
+                a_eln={
+                    'component': 'NumberEditQuantity', 'defaultDisplayUnit': unit_of_measure},
+                    unit=unit_of_measure,
+            )
+            del self.unit_of_measure
+
+
         super().normalize(archive, logger)
 
 

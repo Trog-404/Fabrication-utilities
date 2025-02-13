@@ -77,7 +77,7 @@ select = [
     "UP",
     # isort
     "I",
-    # pylint 
+    # pylint
     "PL",
 ]
 
@@ -111,10 +111,11 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [project.entry-points.'nomad.plugin']
-parser_entry_point = "fabrication_facilities.parsers:parser_entry_point"
+# parser_entry_point = "fabrication_facilities.parsers:parser_entry_point"
 schema_package_entry_point = "fabrication_facilities.schema_packages:schema_package_entry_point"
 normalizer_entry_point = "fabrication_facilities.normalizers:normalizer_entry_point"
 app_entry_point = "fabrication_facilities.apps:app_entry_point"
+Items_entry_point = "fabrication_facilities.schema_packages:Items_entry_point"
 
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues
