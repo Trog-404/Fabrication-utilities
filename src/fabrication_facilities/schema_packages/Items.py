@@ -75,29 +75,47 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             "component": "StringEditQuantity"
         },
     )
-    value= None
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        logger.debug(f"Normalizing ItemPropertyDefinition: {self.id}, {self.unit_of_measure}")
-        measure = self.unit_of_measure
-        if not self.unit_of_measure:  # Check for empty or None
-            logger.debug("Unit of measure is empty, setting value to StringEditQuantity")
+    def __init__(self, value=None):
+        measure=self.unit_of_measure
+        if measure and value:  # Aggiungi 'eta' solo se 'nome' non è vuoto
             self.value = Quantity(
-                type=str,
-                a_eln={"component": "StringEditQuantity"}
+                type= np.float64
+                a_eln={
+                    "component": "NumberEditQuantity", "defaultDisplayUnit": measure
+                },
+                unit = measure
             )
         else:
-            logger.debug(f"Unit of measure is: {self.unit_of_measure}, setting value to NumberEditQuantity")
-            self.unit_of_measure = measure
             self.value = Quantity(
-                type=np.float64,  # Ensure np.float64 is the correct type
+                type= str
                 a_eln={
-                    'component': 'NumberEditQuantity',
-                    'defaultDisplayUnit': measure
-                },
-                unit=measure,
+                    "component": "StringEditQuantity"
+                }
             )
 
-        super().normalize(archive, logger)
+
+#    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+#        logger.debug(f"Normalizing ItemPropertyDefinition: {self.id}, {self.unit_of_measure}")
+#        measure = self.unit_of_measure
+#        if not self.unit_of_measure:  # Check for empty or None
+#            logger.debug("Unit of measure is empty, setting value to StringEditQuantity")
+#            self.value = Quantity(
+#                type=str,
+#                a_eln={"component": "StringEditQuantity"}
+#            )
+#        else:
+#            logger.debug(f"Unit of measure is: {self.unit_of_measure}, setting value to NumberEditQuantity")
+#            self.unit_of_measure = measure
+#            self.value = Quantity(
+#                type=np.float64,  # Ensure np.float64 is the correct type
+#                a_eln={
+#                    'component': 'NumberEditQuantity',
+#                    'defaultDisplayUnit': measure
+#                },
+#                unit=measure,
+#            )
+#
+#        super().normalize(archive, logger)
 
 
 class ItemShapeType(EntryData, ArchiveSection):
