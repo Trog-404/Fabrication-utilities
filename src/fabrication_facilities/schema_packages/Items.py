@@ -43,7 +43,24 @@ if TYPE_CHECKING:
     )
 
 m_package = Package(name='Items plugin')
-
+measure= "watt"
+def select_quantity(unit_of_measure):
+    if unit_of_measure == "" or unit_of_measure == None:
+        value= Quantity(
+            type= str,
+            a_eln={
+                "component": "StringEditQuantity"
+            }
+        )
+    else:
+        value = Quantity(
+            type=np.float64,
+            a_eln={
+                "component": "NumberEditQuantity", "defaultDisplayUnit": self.unit_of_measure
+            },
+            unit = self.unit_of_measure
+        )
+    return value
 
 class ItemPropertyDefinition(EntryData, ArchiveSection):
     '''
@@ -68,30 +85,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
-#   Vedere se nel json dei dati da fablims si può inserire un flag per evitare la presenza di questo attributo
-    unit_of_measure = Quantity(
-        type=str,
-        a_eln={
-            "component": "StringEditQuantity"
-        },
-    )
-    def __init__(self, value=None):
-        measure=self.unit_of_measure
-        if measure and value:  # Aggiungi 'eta' solo se 'nome' non è vuoto
-            self.value = Quantity(
-                type= np.float64,
-                a_eln={
-                    "component": "NumberEditQuantity", "defaultDisplayUnit": measure
-                },
-                unit = measure
-            )
-        else:
-            self.value = Quantity(
-                type= str,
-                a_eln={
-                    "component": "StringEditQuantity"
-                }
-            )
+    select_quantity(measure)
 
 
 #    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
