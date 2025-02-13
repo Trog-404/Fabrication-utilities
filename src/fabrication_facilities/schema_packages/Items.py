@@ -58,7 +58,7 @@ def select_quantity(unit_of_measure):
             a_eln={
                 "component": "NumberEditQuantity", "defaultDisplayUnit": unit_of_measure
             },
-            unit = self.unit_of_measure
+            unit = unit_of_measure
         )
     return value
 
