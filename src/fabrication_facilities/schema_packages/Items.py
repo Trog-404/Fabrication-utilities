@@ -80,6 +80,8 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity'},
     )
+
+
 class StringProperties(ItemPropertyDefinition):
     m_def = Section()
     id = Quantity(
@@ -99,10 +101,9 @@ class StringProperties(ItemPropertyDefinition):
         a_eln={'component': 'NumberEditQuantity'},
     )
 
+
 class NumericProperties(ItemPropertyDefinition):
-    m_def = Section(
-        a_eln={'hide': ['unit']},
-    )
+    m_def = Section()
     id = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
@@ -124,8 +125,11 @@ class NumericProperties(ItemPropertyDefinition):
         a_eln={'component': 'NumberEditQuantity'},
     )
 
+
 class DopingProperties(ItemPropertyDefinition):
-    m_def = Section()
+    m_def = Section(
+        a_eln={'hide': ['unit']},
+    )
     id = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
@@ -134,23 +138,26 @@ class DopingProperties(ItemPropertyDefinition):
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
-    doping_type= Quantity(
-        type= MEnum(
+    doping_type = Quantity(
+        type=MEnum(
             [
-                "p",
-                "n",
-                "no_doping",
+                'p',
+                'n',
+                'no_doping',
             ]
         ),
         a_eln={'component': 'EnumEditQuantity'},
     )
-    value =Quantity(
-        type= np.float64,
-        a_eln={'component': "NumberEditQuantity",
-               'defaultDisplayUnit': 'ppm',
-               },
-        unit= "ppm"
+    value = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'ppm',
+        },
+        unit='ppm',
     )
+
+
 #
 #    def __init_metainfo__(self, unit_of_measure):
 #        super().__init_metainfo__(unit_of_measure)
@@ -166,6 +173,7 @@ class DopingProperties(ItemPropertyDefinition):
 #                unit=unit_of_measure if unit_of_measure else None,
 #            )
 #        )
+
 
 class ItemShapeType(EntryData, ArchiveSection):
     """
