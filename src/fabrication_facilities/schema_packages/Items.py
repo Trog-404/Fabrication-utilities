@@ -142,13 +142,16 @@ class DopingProperties(ItemPropertyDefinition):
         ),
         a_eln={'component': 'EnumEditQuantity'},
     )
-    unit = Quantity(
-        type=str,
-        a_eln={'component': 'StringEditQuantity'},
-    )
+#    unit = Quantity(
+#        type=str,
+#        a_eln={'component': 'StringEditQuantity'},
+#    )
     value =Quantity(
         type= np.float64,
-        a_eln={'component': "NumberEditQuantity"},
+        a_eln={'component': "NumberEditQuantity",
+               'defaultDisplayUnit': 'ppm',
+               },
+        unit= "ppm"
     )
 #
 #    def __init_metainfo__(self, unit_of_measure):
