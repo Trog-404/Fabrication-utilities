@@ -116,6 +116,7 @@ schema_package_entry_point = "fabrication_facilities.schema_packages:schema_pack
 normalizer_entry_point = "fabrication_facilities.normalizers:normalizer_entry_point"
 app_entry_point = "fabrication_facilities.apps:app_entry_point"
 Items_entry_point = "fabrication_facilities.schema_packages:Items_entry_point"
+Equipments_entry_point = "fabrication_facilities.schema_packages:Equipments_entry_point"
 
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues

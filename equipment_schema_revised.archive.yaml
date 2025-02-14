@@ -1,0 +1,405 @@
+definitions:
+  name: 'FABLIMS Equipment Schema rev3'
+  # Schema packages contain section definitions. This is where the interesting schema
+  # information begins.
+  # This schema is about cleanrooms and laboratories equipment available in the iEntrance research infrastructure
+  sections:
+    # Here we define a section called "Equipment":
+    Equipment:
+      base_sections:
+        - nomad.datamodel.metainfo.eln.Instrument
+      # Sections define quantities. Quantities allow to manage actual data. Quantities
+      # can have various types, shapes, and units.
+      quantities:
+        iventary_code:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        manufacturer:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        productModel:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        automatization:
+          type: bool
+          m_annotations:
+            eln:
+              component: BoolEditQuantity
+        is_bookable:
+          type: bool
+          m_annotations:
+            eln:
+              component: BoolEditQuantity
+      sub_sections:
+        equipmentTechniques:           
+          repeats: True
+          section: "#/EquipmentTechnique"
+        permittedItems:
+          repeats: True
+          section: "#/EquipmentHasPermittedItemPropertyData"
+        equipmentLogBook:
+          repeats: True
+          section: "#/Jobdone"
+    Jobdone:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "name"
+              - "job_progressive_id"
+              - "notes"
+              - "starting_date"
+              - "ending_date"
+              - "id_item_processed"
+              - "referenced_steps"
+      quantities:
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        job_progressive_id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        notes:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        starting_date:
+          type: datetime
+          m_annotations:
+            eln:
+              component: DateTimeEditQuantity
+        ending_date:
+          type: datetime
+          m_annotations:
+            eln:
+              component: DateTimeEditQuantity
+        id_items_processed:
+          type: int
+          shape: ['*']
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        referenced_steps:
+          type: fabrication_facilities.schema_packages.Items.ItemPropertyDefinition 
+          shape: ['*']
+          m_annotations:
+            eln:
+              component: ReferenceEditQuantity        
+    EquipmentTechnique:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "name"
+              - "id"
+              - "description"
+              - "genericEquipmentName"
+              - "techniqueMainCategory"
+              - "techniqueSubCategory"
+      quantities:
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        genericEquipmentName:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        techniqueMainCategory:
+          type:
+            type_kind: Enum
+            type_data:
+              - "Add"
+              - "Transform"
+              - "Remove"
+              - "Characterization"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        techniqueSubCategory:
+          type:
+            type_kind: Enum
+            type_data:
+              - "synthesis"
+              - "integration"
+              - "doping"
+              - "dicing"
+              - "thermal processing"
+              - "lithography"
+              - "etching"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        referencingcategorization:
+          type: TechniqueCategories
+          m_annotations:
+            eln:
+              component: ReferenceEditQuantity
+    finaltechnique:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "name"
+              - "id"
+              - "description"
+              - "comment"
+      quantities:
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+               component: StringEditQuantity
+        comment:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity         
+    techniqueSubCategory:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "name"
+              - "id"
+              - "description"
+              - "notes"
+      quantities:
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        comment:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+      sub_sections:
+        Specific_techniques:
+          repeats: True
+          section: "#/finaltechnique"
+    techniqueMainCategory:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "name"
+              - "id"
+              - "description"
+              - "comment"
+      quantities:
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+               component: StringEditQuantity
+        comment:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+      sub_sections:
+        SubCategories:
+          repeats: True
+          section: "#/techniqueSubCategory"  
+    TechniqueCategories:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "description"
+              - "comment"
+      quantities:
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        comment:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity        
+      sub_sections:
+        techniqueMainCategories:
+          repeats: True
+          section: "#/techniqueMainCategory" 
+    EquipmentHasPermittedItemPropertyData:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "id"
+              - "ItemShapeType"
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        itemShapeType:
+          type: 
+            type_kind: Enum
+            type_data: 
+              - "Wafer with flat standard"
+              - "Wafer with flat JEIDA"
+              - "Rectangle shape"
+              - "1/2 wafer"
+              - "1/4 wafer"
+              - "Fragment"
+              - "Square shape"
+              - "Powder"
+              - "Wafer with Notch standard"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+      sub_sections:
+        properties:
+          repeats: True
+          section: "#/ItemPermittedPropertyDefinition"    
+    ItemPermittedPropertyDefinition:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        unit: 
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        value_max:
+          type: np.float64
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        value_min:
+          type: np.float64
+          m_annotations:
+            eln:
+              component: NumberEditQuantity  
+    EquipmentParameterDefinition:
+     # Section definition can have base_sections. Base sections are other schema
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: RichTextEditQuantity
+        unit:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+    EquipmentParameterData:
+      base_sections:
+        - "#/EquipmentParameterDefinition"
+      quantities:
+##        # valueBoolean  
+        valueBoolean:
+          type: bool
+        # valueNumber  
+        valueNumber:
+          type: float
+        # valueText  
+        valueText:
+          type: str
+       # valueJson  
+#        valueJson:
+#          type: str
+#        # valueDatetime  
+##        valueDatetime:
+##          type: Datetime
