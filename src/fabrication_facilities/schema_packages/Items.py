@@ -46,7 +46,7 @@ if TYPE_CHECKING:
 m_package = Package(name='Items plugin')
 
 class Staging_quantity(MSection):
-    def __init__(self, txt):
+    def __init_metainfo__(self, txt):
         self.measure = txt
     def select_quantity(self):
         return Quantity(
@@ -79,8 +79,8 @@ class ItemPropertyDefinition(Staging_quantity,EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
-    def __init__(self, unit_of_measure):
-        super().__init__(unit_of_measure)
+    def __init_metainfo__(self, unit_of_measure):
+        super().__init_metainfo__(unit_of_measure)
         self.value = self.select_quantity()
 #    def __init__(self, unit_of_measure=None):
 #        super().__init__(**kwargs)  # Inizializza l'oggetto normalmente
