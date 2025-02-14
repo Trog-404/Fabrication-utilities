@@ -79,13 +79,18 @@ class Jobdone(EntryData, ArchiveSection):
         type=str,
         a_eln={'component': 'StringEditQuantity'},
     )
-    starting_date = Quantity(
+    #    starting_date = Quantity(
+    #        type=Datetime,
+    #        a_eln={'component': 'DateTimeEditQuantity'},
+    #    )
+    #    ending_date = Quantity(
+    #        type=Datetime,
+    #        a_eln={'component': 'DateTimeEditQuantity'},
+    #    )
+    datetime = Quantity(
         type=Datetime,
-        a_eln={'component': 'DateTimeEditQuantity'},
-    )
-    ending_date = Quantity(
-        type=Datetime,
-        a_eln={'component': 'DateTimeEditQuantity'},
+        description='The date and time associated with this section.',
+        a_eln=dict(component='DateTimeEditQuantity'),
     )
     id_items_processed = Quantity(
         type=int,
