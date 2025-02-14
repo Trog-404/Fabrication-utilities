@@ -84,7 +84,7 @@ class ItemPropertyDefinition(Staging_quantity,EntryData, ArchiveSection):
         a_eln={
             "component": None, "defaultDisplayUnit": None,
         }
-        unit= None
+        unit= None,
     )
     def __init_metainfo__(self, unit_of_measure):
         super().__init_metainfo__(unit_of_measure)
