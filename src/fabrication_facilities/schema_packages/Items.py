@@ -92,7 +92,7 @@ class ItemPropertyDefinition(Staging_quantity,EntryData, ArchiveSection):
 #                unit=unit_of_measure if unit_of_measure else None,
 #            )
 #        )
-    value=select_quantity(measure)
+#    value=select_quantity(measure)
 
 class ItemShapeType(EntryData, ArchiveSection):
     '''
