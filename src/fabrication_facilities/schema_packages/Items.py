@@ -34,6 +34,8 @@ from nomad.metainfo import (
     SubSection,
 )
 
+from nomad.units import ureg
+
 if TYPE_CHECKING:
     pass
 
@@ -78,8 +80,76 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity'},
     )
+class StringProperties(ItemPropertyDefinition)
+    m_def = Section()
+    id = Quantity(
+        type=int,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+    name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    description = Quantity(
+        type=str,
+        a_eln={'component': 'RichTextEditQuantity'},
+    )
+    value = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
 
+class NumericProperties(ItemPropertyDefinition):
+    m_def = Section()
+    id = Quantity(
+        type=int,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+    name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    description = Quantity(
+        type=str,
+        a_eln={'component': 'RichTextEditQuantity'},
+    )
+    unit = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    value = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
 
+class DopingProperties(ItemPropertyDefinition):
+    m_def = Section()
+    id = Quantity(
+        type=int,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+    description = Quantity(
+        type=str,
+        a_eln={'component': 'RichTextEditQuantity'},
+    )
+    doping_type= Quantity(
+        type= MEnum(
+            [
+                "p",
+                "n",
+                "no_doping",
+            ]
+        )
+    )
+    concentration = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            "defaultDisplayUnit": "ppm"
+        },
+        unit= "ppm"
+    )
+#
 #    def __init_metainfo__(self, unit_of_measure):
 #        super().__init_metainfo__(unit_of_measure)
 #        self.value = self.select_quantity()
@@ -94,7 +164,6 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
 #                unit=unit_of_measure if unit_of_measure else None,
 #            )
 #        )
-
 
 class ItemShapeType(EntryData, ArchiveSection):
     """
