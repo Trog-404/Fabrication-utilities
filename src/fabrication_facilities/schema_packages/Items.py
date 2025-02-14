@@ -80,7 +80,7 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity'},
     )
-class StringProperties(ItemPropertyDefinition)
+class StringProperties(ItemPropertyDefinition):
     m_def = Section()
     id = Quantity(
         type=int,
@@ -147,7 +147,7 @@ class DopingProperties(ItemPropertyDefinition):
             'component': 'NumberEditQuantity',
             "defaultDisplayUnit": "ppm"
         },
-        unit= "ppm"
+        unit= "ppm",
     )
 #
 #    def __init_metainfo__(self, unit_of_measure):
