@@ -26,7 +26,7 @@ from nomad.datamodel.data import (
 )
 from nomad.datamodel.metainfo.eln import Instrument
 from nomad.metainfo import (
-    Datetime
+    Datetime,
     MEnum,
     Package,
     Quantity,
