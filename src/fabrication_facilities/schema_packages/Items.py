@@ -79,6 +79,7 @@ class ItemPropertyDefinition(Staging_quantity,EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
+    value= None
     def __init_metainfo__(self, unit_of_measure):
         super().__init_metainfo__(unit_of_measure)
         self.value = self.select_quantity()
@@ -93,7 +94,6 @@ class ItemPropertyDefinition(Staging_quantity,EntryData, ArchiveSection):
 #                unit=unit_of_measure if unit_of_measure else None,
 #            )
 #        )
-#    value=select_quantity(measure)
 
 class ItemShapeType(EntryData, ArchiveSection):
     '''
