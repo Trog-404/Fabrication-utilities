@@ -28,6 +28,7 @@ from nomad.datamodel.data import (
 from nomad.datamodel.metainfo.basesections import Entity
 from nomad.metainfo import (
     MEnum,
+    MSection,
     Package,
     Quantity,
     Section,
@@ -44,7 +45,7 @@ if TYPE_CHECKING:
 
 m_package = Package(name='Items plugin')
 
-class Staging_quantity:
+class Staging_quantity(MSection):
     def __init__(self, txt):
         self.measure = txt
     def select_quantity(self):
