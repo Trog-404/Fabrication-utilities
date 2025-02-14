@@ -100,7 +100,9 @@ class StringProperties(ItemPropertyDefinition):
     )
 
 class NumericProperties(ItemPropertyDefinition):
-    m_def = Section()
+    m_def = Section(
+        a_eln={'hide': ['unit']},
+    )
     id = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
