@@ -15,7 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import datetime
 from typing import (
     TYPE_CHECKING,
 )
@@ -27,6 +26,7 @@ from nomad.datamodel.data import (
 )
 from nomad.datamodel.metainfo.eln import Instrument
 from nomad.metainfo import (
+    Datetime
     MEnum,
     Package,
     Quantity,
@@ -79,19 +79,14 @@ class Jobdone(EntryData, ArchiveSection):
         type=str,
         a_eln={'component': 'StringEditQuantity'},
     )
-    #    starting_date = Quantity(
-    #        type=Datetime,
-    #        a_eln={'component': 'DateTimeEditQuantity'},
-    #    )
-    #    ending_date = Quantity(
-    #        type=Datetime,
-    #        a_eln={'component': 'DateTimeEditQuantity'},
-    #    )
-    datetime = Quantity(
-        type=Datetime,
-        description='The date and time associated with this section.',
-        a_eln=dict(component='DateTimeEditQuantity'),
-    )
+        starting_date = Quantity(
+            type=Datetime,
+            a_eln={'component': 'DateTimeEditQuantity'},
+        )
+        ending_date = Quantity(
+            type=Datetime,
+            a_eln={'component': 'DateTimeEditQuantity'},
+        )
     id_items_processed = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
