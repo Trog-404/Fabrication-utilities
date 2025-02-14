@@ -139,7 +139,7 @@ class DopingProperties(ItemPropertyDefinition):
                 "n",
                 "no_doping",
             ]
-        )
+        ),
         a_eln={'component': 'EnumEditQuantity'},
     )
     unit = Quantity(
