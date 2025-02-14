@@ -79,7 +79,13 @@ class ItemPropertyDefinition(Staging_quantity,EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
-    value= None
+    value= Quantity(
+        type= Any,
+        a_eln={
+            "component": None, "defaultDisplayUnit": None,
+        }
+        unit= None
+    )
     def __init_metainfo__(self, unit_of_measure):
         super().__init_metainfo__(unit_of_measure)
         self.value = self.select_quantity()
