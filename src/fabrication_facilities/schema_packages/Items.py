@@ -45,21 +45,26 @@ if TYPE_CHECKING:
 m_package = Package(name='Items plugin')
 measure= "watt"
 def select_quantity(unit_of_measure):
-    if unit_of_measure == "" or unit_of_measure == None:
-        value= Quantity(
-            type= str,
-            a_eln={
-                "component": "StringEditQuantity"
-            }
-        )
-    else:
-        value = Quantity(
-            type=np.float64,
-            a_eln={
-                "component": "NumberEditQuantity", "defaultDisplayUnit": unit_of_measure
-            },
-            unit = unit_of_measure
-        )
+    value= Quantity(
+        type=np.float64 if unit_of_measure!=None or unit_of_measure != ""  else str,
+        a_eln={"component": "NumberEditQuantity" if unit_of_measure!=None or unit_of_measure != "" else "StringEditQuantity"},
+        unit=unit_of_measure if unit_of_measure!=None or unit_of_measure != ""  else None
+    )
+#    if unit_of_measure == "" or unit_of_measure == None:
+#        value= Quantity(
+#            type= str,
+#            a_eln={
+#                "component": "StringEditQuantity"
+#            }
+#        )
+#    else:
+#        value = Quantity(
+#            type=np.float64,
+#            a_eln={
+#                "component": "NumberEditQuantity", "defaultDisplayUnit": unit_of_measure
+#            },
+#            unit = unit_of_measure
+#        )
     return value
 
 class ItemPropertyDefinition(EntryData, ArchiveSection):
@@ -85,6 +90,18 @@ class ItemPropertyDefinition(EntryData, ArchiveSection):
             "component": "RichTextEditQuantity"
         },
     )
+
+#    def __init__(self, unit_of_measure=None, **kwargs):
+#        super().__init__(**kwargs)  # Inizializza l'oggetto normalmente
+#        # Creiamo `value` dinamicamente in base al flag `unit_of_measure`
+#        self.m_add_quantity(
+#            "value",
+#            Quantity(
+#                type=np.float64 if unit_of_measure else str,
+#                a_eln={"component": "NumberEditQuantity" if unit_of_measure else "StringEditQuantity"},
+#                unit=unit_of_measure if unit_of_measure else None,
+#            )
+#        )
     value=select_quantity(measure)
 
 class ItemShapeType(EntryData, ArchiveSection):
