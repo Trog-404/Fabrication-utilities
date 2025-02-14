@@ -34,8 +34,6 @@ from nomad.metainfo import (
     SubSection,
 )
 
-from nomad.units import ureg
-
 if TYPE_CHECKING:
     pass
 
