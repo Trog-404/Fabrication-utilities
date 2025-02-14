@@ -80,11 +80,11 @@ class Jobdone(EntryData, ArchiveSection):
         a_eln={'component': 'StringEditQuantity'},
     )
     starting_date = Quantity(
-        type=datetime,
+        type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
     )
     ending_date = Quantity(
-        type=datetime,
+        type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
     )
     id_items_processed = Quantity(
