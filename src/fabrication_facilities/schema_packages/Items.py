@@ -140,14 +140,15 @@ class DopingProperties(ItemPropertyDefinition):
                 "no_doping",
             ]
         )
+        a_eln={'component': 'EnumEditQuantity'},
     )
-    concentration = Quantity(
-        type=np.float64,
-        a_eln={
-            'component': 'NumberEditQuantity',
-            "defaultDisplayUnit": "ppm"
-        },
-        unit= "ppm",
+    unit = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    value =Quantity(
+        type= np.float64,
+        a_eln={'component': "NumberEditQuantity"},
     )
 #
 #    def __init_metainfo__(self, unit_of_measure):
