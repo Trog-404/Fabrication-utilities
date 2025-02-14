@@ -144,10 +144,6 @@ class DopingProperties(ItemPropertyDefinition):
         ),
         a_eln={'component': 'EnumEditQuantity'},
     )
-#    unit = Quantity(
-#        type=str,
-#        a_eln={'component': 'StringEditQuantity'},
-#    )
     value =Quantity(
         type= np.float64,
         a_eln={'component': "NumberEditQuantity",
