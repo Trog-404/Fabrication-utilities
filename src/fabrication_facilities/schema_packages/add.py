@@ -251,7 +251,7 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         },
     )
     exposure_duration = Quantity(
-        type=None,
+        type=any,
         description='The duration of the exposure',
         a_eln={
             'component': None,
@@ -276,7 +276,7 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         unit=None,
     )
     peb_temperature = Quantity(
-        type=None,
+        type=any,
         description='The duration of the exposure',
         a_eln={
             'component': None,
