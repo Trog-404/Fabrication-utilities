@@ -41,6 +41,8 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
                 'description',
                 'lab_id',
                 'datetime',
+                'comment',
+                'duration',
             ],
             'properties': {
                 'order': [
