@@ -16,34 +16,29 @@
 # limitations under the License.
 #
 
-from nomad.datamodel.data import EntryData
-import numpy as np
 from typing import (
     TYPE_CHECKING,
 )
-from nomad.metainfo import (
-    MSection,
-    Package,
-    Quantity,
-    SubSection,
-    MEnum,
-    Reference,
-    Datetime,
-    Section,
+
+from nomad.datamodel.data import (
+    ArchiveSection,
+    EntryData,
 )
 from nomad.datamodel.metainfo.basesections import (
     Process,
     ProcessStep,
 )
-from nomad.datamodel.data import (
-    EntryData,
-    ArchiveSection,
+from nomad.metainfo import (
+    Package,
+    Quantity,
+    Section,
+    SubSection,
 )
 
 from fabrication_facilities.schema_packages.equipment import (
     Equipment,
-    EquipmentTechnique,
     EquipmentReference,
+    EquipmentTechnique,
 )
 
 if TYPE_CHECKING:
