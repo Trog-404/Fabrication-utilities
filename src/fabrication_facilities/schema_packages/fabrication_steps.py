@@ -172,12 +172,12 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     m_def = Section(
         a_eln={
             'properties': {
-                'hide': ['comment', 'starting time', 'duration'],
+                'hide': {'comment', 'duration'},
                 'order': [
                     'job_progressive_id',
                     'name',
                     'description',
-                    'starting_time',
+                    'start_time',
                     'ending_date',
                     'fabricationProcessStepDefinition',
                     'fabricationEquipmentRecipeName',
@@ -198,7 +198,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
-    starting_time = Quantity(
+    start_time = Quantity(
         type=Datetime,
         a_eln={'label': 'starting date', 'component': 'DateTimeEditQuantity'},
     )
@@ -241,18 +241,19 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
             'properties': {
                 'order': [
                     'name',
+                    'id',
                     'description',
-                    'starting_Time',
-                    'ending_Time',
+                    'datetime',
+                    'end_time',
                     'fabricationProductTypeid',
                     'comment',
                 ]
             },
-            'hide': {
-                'ID',
+            'hide': [
+                'lab_id',
                 'location',
                 'method',
-            },
+            ],
         },
     )
     id = Quantity(
@@ -267,9 +268,17 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
+    datetime = Quantity(
+        type=Datetime,
+        a_eln={'component': 'DateTimeEditQuantity', 'label': 'starting date'},
+    )
+    end_time = Quantity(
+        type=Datetime,
+        a_eln={'component': 'DateTimeEditQuantity', 'label': 'ending time'},
+    )
     comment = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity', 'labe': 'notes'},
+        a_eln={'component': 'StringEditQuantity', 'label': 'notes'},
     )
     fabricationProductType = Quantity(
         type=ListofProductType,

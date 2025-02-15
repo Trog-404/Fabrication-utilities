@@ -117,5 +117,7 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
         """
         super().normalize(archive, logger)
 
+class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
+
 
 m_package.__init_metainfo__()
