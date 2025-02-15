@@ -25,6 +25,7 @@ from nomad.datamodel.data import (
     EntryData,
 )
 from nomad.datamodel.metainfo.eln import Instrument
+from nomad.datamodel.metainfo.workflow import Link
 from nomad.metainfo import (
     Datetime,
     MEnum,
@@ -493,7 +494,12 @@ class EquipmentReference(Link, ArchiveSection):
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
     )
-    notes = Quantity(type=str, a_eln={'component': 'RichTextEditQuantity'})
+    notes = Quantity(type=str, a_eln={'component': 'RichTextEditQuantity'},)
+
+    section = Quantity(
+        type= Instrument,
+        a_eln={'component': 'ReferenceEditQuantity'},
+    )
 
 
 m_package.__init_metainfo__()
