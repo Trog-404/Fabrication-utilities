@@ -250,15 +250,8 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
             'component': 'BoolEditQuantity',
         },
     )
-    exposure_duration = Quantity(
-        type=any,
-        description='The duration of the exposure',
-        a_eln={
-            'component': None,
-            'defaultDisplayUnit': None,
-        },
-        unit=None,
-    )
+    exposure_duration = None
+    # Quantity(type=any,description='The duration of the exposure',a_eln={'component': None,'defaultDisplayUnit': None,},unit=None,)
     peb_required = Quantity(
         type=bool,
         description='The recipe use exposure?',
@@ -266,24 +259,11 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
             'component': 'BoolEditQuantity',
         },
     )
-    peb_duration = Quantity(
-        type=None,
-        description='The duration of the exposure',
-        a_eln={
-            'component': None,
-            'defaultDisplayUnit': None,
-        },
-        unit=None,
-    )
-    peb_temperature = Quantity(
-        type=any,
-        description='The duration of the exposure',
-        a_eln={
-            'component': None,
-            'defaultDisplayUnit': None,
-        },
-        unit=None,
-    )
+    peb_duration = None
+    # Quantity(type=,description='The duration of the exposure',a_eln={'component': None,'defaultDisplayUnit': None,},unit=None,)
+    peb_temperature = None
+
+    # Quantity(type=any,description='The duration of the exposure',a_eln={'component': None,'defaultDisplayUnit': None,},unit=None,)
     dewetting_duration = Quantity(
         type=np.float64,
         description='The duration of the dewetting',
