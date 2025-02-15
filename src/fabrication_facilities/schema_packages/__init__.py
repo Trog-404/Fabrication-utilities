@@ -42,6 +42,7 @@ Equipment_entry_point = EquipmentEntryPoint(
     description='Schema package for describing equipments in fabrications.',
 )
 
+
 class StepsEntryPoint(SchemaPackageEntryPoint):
     def load(self):
         from fabrication_facilities.schema_packages.fabrication_steps import m_package
@@ -52,4 +53,17 @@ class StepsEntryPoint(SchemaPackageEntryPoint):
 Steps_entry_point = StepsEntryPoint(
     name='FabricationBaseSteps',
     description='Schema package for describing base steps in fabrications.',
+)
+
+
+class AddEntryPoint(SchemaPackageEntryPoint):
+    def load(self):
+        from fabrication_facilities.schema_packages.add import m_package
+
+        return m_package
+
+
+Add_entry_point = AddEntryPoint(
+    name='Add processes',
+    description='Schema package for describing add steps in fabrications.',
 )
