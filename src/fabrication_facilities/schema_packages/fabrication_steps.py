@@ -29,7 +29,7 @@ from nomad.datamodel.metainfo.basesections import (
     ProcessStep,
 )
 from nomad.metainfo import (
-    Datetime
+    Datetime,
     Package,
     Quantity,
     Section,
@@ -197,11 +197,11 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
-    starting_time=Quantity(
+    starting_time = Quantity(
         type=Datetime,
         a_eln={'label': 'starting_date', 'component': 'DateTimeEditQuantity'},
     )
-    ending_date=Quantity(
+    ending_date = Quantity(
         type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
     )
