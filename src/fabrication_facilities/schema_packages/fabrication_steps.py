@@ -29,6 +29,7 @@ from nomad.datamodel.metainfo.basesections import (
     ProcessStep,
 )
 from nomad.metainfo import (
+    Datetime
     Package,
     Quantity,
     Section,
@@ -132,7 +133,7 @@ class FabricationProcessStepDefinition(ArchiveSection):
     )
     description = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity'},
+        a_eln={'component': 'RichTextEditQuantity'},
     )
     name_equipment = Quantity(
         type=str,
@@ -172,16 +173,19 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
         a_eln={
             'properties': {
                 'order': [
-                    'id',
+                    'jopb_progressive_id',
                     'name',
                     'description',
+                    'starting_time',
+                    'ending_date',
                     'FabricationProcessStepDefinition',
                     'fabricationEquipmentRecipeName',
+                    'notes',
                 ]
             }
         },
     )
-    id = Quantity(
+    job_progressive_id = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
     )
@@ -191,7 +195,15 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     )
     description = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity'},
+        a_eln={'component': 'RichTextEditQuantity'},
+    )
+    starting_time=Quantity(
+        type=Datetime,
+        a_eln={'label': 'starting_date', 'component': 'DateTimeEditQuantity'},
+    )
+    ending_date=Quantity(
+        type=Datetime,
+        a_eln={'component': 'DateTimeEditQuantity'},
     )
     fabricationProcessStepDefinition = Quantity(
         type=FabricationProcessStepDefinition,
@@ -199,7 +211,11 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     )
     fabricationEquipmentRecipeName = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity'},
+        a_eln={'component': 'StringEditQuantity', 'label': 'recipe_name'},
+    )
+    notes = Quantity(
+        type=str,
+        a_eln={'component': 'RichTextEditQuantity'},
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
