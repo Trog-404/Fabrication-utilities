@@ -172,7 +172,10 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     m_def = Section(
         a_eln={
             'properties': {
-                'hide': ['comment', 'duration'],
+                'hide': [
+                    'comment',
+                    'duration',
+                ],
                 'order': [
                     'job_progressive_id',
                     'name',
@@ -274,7 +277,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
     )
     end_time = Quantity(
         type=Datetime,
-        a_eln={'component': 'DateTimeEditQuantity', 'label': 'ending time'},
+        a_eln={'component': 'DateTimeEditQuantity', 'label': 'ending date'},
     )
     comment = Quantity(
         type=str,

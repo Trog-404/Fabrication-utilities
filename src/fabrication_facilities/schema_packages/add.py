@@ -37,7 +37,11 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
 
     m_def = Section(
         a_eln={
-            'hide': ['description', 'lab_id', 'datetime'],
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+            ],
             'properties': {
                 'order': [
                     'name',
