@@ -200,9 +200,9 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
                     'dewetting_temperature',
                     'spin_dispensed_volume',
                     'spin_frequency',
-                    'spin_acceleration',
+                    'spin_angular_acceleration',
                     'spin_duration',
-                    'baking_duratin',
+                    'baking_duration',
                     'baking_temperature',
                     'thickness_obtained',
                     'notes',
@@ -230,7 +230,6 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
     chemical_formula = Quantity(
         type=str,
         description='Inserted only if known',
-        a_eln={'component': 'StringEditQuantity'},
     )
     thickness_target = Quantity(
         type=np.float64,
@@ -298,27 +297,27 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         description='Velocity of the spinner',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 'rpm',
+            'defaultDispalyUnit': 'revolutions_per_minute',
         },
-        unit='rpm',
+        unit='revolutions_per_minute',
     )
     spin_angular_acceleration = Quantity(
         type=np.float64,
         description='Acceleration of the spinner',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 'rpm/s',
+            'defaultDispalyUnit': 'revolutions_per_minute/second',
         },
-        unit='rpm/s',
+        unit='rpm/second',
     )
     spin_duration = Quantity(
         type=np.float64,
         description='Acceleration of the spinner',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 's',
+            'defaultDispalyUnit': 'second',
         },
-        unit='s',
+        unit='second',
     )
     baking_duration = Quantity(
         type=np.float64,
@@ -346,15 +345,17 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        """
-        The normalizer for the `Step` class.
-
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        """
         super().normalize(archive, logger)
+        if self.exposure_required:
+            self.exposure_duration = Quantity(
+                type=np.float64,
+                description='The duration of the exposure',
+                a_eln={
+                    'component': 'NumberEditQuantity',
+                    'defaultDisplayUnit': 'minute',
+                },
+                unit='minute',
+            )
 
 
 m_package.__init_metainfo__()
