@@ -172,16 +172,17 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     m_def = Section(
         a_eln={
             'properties': {
+                'hide': ['comment', 'starting time', 'duration'],
                 'order': [
-                    'jopb_progressive_id',
+                    'job_progressive_id',
                     'name',
                     'description',
                     'starting_time',
                     'ending_date',
-                    'FabricationProcessStepDefinition',
+                    'fabricationProcessStepDefinition',
                     'fabricationEquipmentRecipeName',
                     'notes',
-                ]
+                ],
             }
         },
     )
@@ -199,7 +200,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     )
     starting_time = Quantity(
         type=Datetime,
-        a_eln={'label': 'starting_date', 'component': 'DateTimeEditQuantity'},
+        a_eln={'label': 'starting date', 'component': 'DateTimeEditQuantity'},
     )
     ending_date = Quantity(
         type=Datetime,
@@ -211,7 +212,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     )
     fabricationEquipmentRecipeName = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity', 'label': 'recipe_name'},
+        a_eln={'component': 'StringEditQuantity', 'label': 'recipe name'},
     )
     notes = Quantity(
         type=str,

@@ -45,7 +45,7 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
                     'starting_date',
                     'ending_date',
                     'fabricationProcessStepDefinition',
-                    'recipe_name',
+                    'recipe name',
                     'short_name',
                     'chemical_formula',
                     'thickness_target',
