@@ -485,5 +485,17 @@ class Equipment(Instrument, ArchiveSection):
         """
         super().normalize(archive, logger)
 
+class EquipmentReference (Link, ArchiveSection)
+    m_def=Section()
+
+    id=Quantity(
+        type=int,
+        a_eln={"component": "NumberEditQuantity"},
+    )
+    notes=Quantity(
+        type=str,
+        a_eln={"component": "RichTextEditQuantity"}
+    )
+
 
 m_package.__init_metainfo__()

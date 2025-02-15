@@ -1,0 +1,179 @@
+definitions:
+  name: 'Fablims Process Schema rev4'
+  sections:
+    FabricationProcessProductType:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "name"
+              - "description"
+              - "id"
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+# che cambia tra questo processstep definition e la specific technique dell'altro file?
+    FabricationProcessStepDefinition:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "name"
+              - "description"
+              - "id"
+              - "name_equipment"
+              - "equipment_reference"
+              - "equipmentTechnique"
+              - "technique_reference"
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        name_equipment:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        equipment_reference: 
+          type: "fabrication_facilities.schema_packages.equipment.Equipment"
+          m_annotations:
+            eln:
+              component: ReferenceEditQuantity
+        equipmentTechnique:
+          type: str
+          m_annotations:
+              eln:
+                component: StringEditQuantity
+        # non basta riferirsi all'equipment e poi si trova la tecnica?
+        technique_reference: 
+          type: "fabrication_facilities.schema_packages.equipment.equipmentTechnique"
+          m_annotations:
+            eln:
+              component: ReferenceEditQuantity        
+    FabricationProcessStep:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "id"
+              - "name"
+              - "description"
+              - "FabricationProcessStepDefinition"
+              - "fabricationEquipmentRecipeName"
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        fabricationProcessStepDefinition:
+          type: FabricationProcessStepDefinition
+          m_annotations:
+            eln:
+              component: ReferenceEditQuantity
+        fabricationEquipmentRecipeName:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        # sono le capabilities quindi sono già nella definizione dell'equipment?
+#        equipmentParameterData:
+#          type: ../upload/raw/equipment_schema_revised.archive.yaml#EquipmentParameterData
+#          shape: ['*']
+#          m_annotations:
+#            eln:
+#              component: ReferenceEditQuantity          
+    FabricationProcess:
+      base_sections:
+        - nomad.datamodel.data.EntryData
+      m_annotations:
+        eln:
+          properties:
+            order:
+              - "id"
+              - "name"
+              - "description"
+              - "note"
+              - "startDate"
+              - "finishDate"
+      quantities:
+        id:
+          type: int
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        name:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        description:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity        
+        note:
+          type: str
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        startDate:
+          type: datetime
+          m:annotations:
+            eln:
+              component: DateTimeEditQuantity
+        finishDate:
+          type: datetime
+          m:annotations:
+            eln:
+              component: DateTimeEditQuantity
+        fabricationProcessProductType:
+          type: FabricationProcessProductType
+          m_annotations:
+            eln:
+              component: ReferenceEditQuantity
+      sub_sections:
+        fabrication_steps:
+          repeats: true
+          section: '#/FabricationProcessStep'
