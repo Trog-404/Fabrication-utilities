@@ -202,6 +202,8 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
                     'spin_frequency',
                     'spin_acceleration',
                     'spin_duration',
+                    'baking_duratin',
+                    'baking_temperature',
                     'thickness_obtained',
                     'notes',
                 ]
@@ -317,6 +319,24 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
             'defaultDispalyUnit': 's',
         },
         unit='s',
+    )
+    baking_duration = Quantity(
+        type=np.float64,
+        description='The duration of the dewetting',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'minute',
+        },
+        unit='minute',
+    )
+    baking_temperature = Quantity(
+        type=np.float64,
+        description='The temperaure of the dewetting',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'celsius',
+        },
+        unit='celsius',
     )
     thickness_obtained = Quantity(
         type=np.float64,
