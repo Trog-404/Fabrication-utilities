@@ -232,22 +232,6 @@ class FabricationProcess(EntryData, Process, ArchiveSection):
         type=str,
         a_eln={'component': 'StringEditQuantity'},
     )
-    #    startDate = Quantity(
-    #        type=datetime,
-    #        m: annotations={
-    #            "eln": {
-    #                "component": "DateTimeEditQuantity"
-    #            }
-    #        },
-    #    )
-    #    finishDate = Quantity(
-    #        type=datetime,
-    #        m: annotations={
-    #            "eln": {
-    #                "component": "DateTimeEditQuantity"
-    #            }
-    #        },
-    #    )
     fabricationProcessProductType = Quantity(
         type=FabricationProcessProductType,
         a_eln={'component': 'ReferenceEditQuantity'},
