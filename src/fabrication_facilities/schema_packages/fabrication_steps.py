@@ -172,7 +172,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     m_def = Section(
         a_eln={
             'properties': {
-                'hide': {'comment', 'duration'},
+                'hide': ['comment', 'duration'],
                 'order': [
                     'job_progressive_id',
                     'name',
@@ -245,7 +245,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
                     'description',
                     'datetime',
                     'end_time',
-                    'fabricationProductTypeid',
+                    'fabricationProductType',
                     'comment',
                 ]
             },
@@ -278,7 +278,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
     )
     comment = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity', 'label': 'notes'},
+        a_eln={'component': 'RichTextEditQuantity', 'label': 'notes'},
     )
     fabricationProductType = Quantity(
         type=ListofProductType,

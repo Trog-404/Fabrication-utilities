@@ -42,10 +42,13 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
                 'order': [
                     'name',
                     'job_progressive_id',
-                    'starting_date',
+                    'start_time',
                     'ending_date',
                     'fabricationProcessStepDefinition',
-                    'recipe name',
+                    'fabricationEquipmentRecipeName',
+                    'thickness_from_recipe',
+                    'duration_from_recipe',
+                    'deposition_rate_from_recipe',
                     'short_name',
                     'chemical_formula',
                     'thickness_target',
@@ -53,19 +56,40 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
                     'chuck_temperature',
                     'power',
                     'bias',
-                    'notes',
+                    'thickness_obtained',
+                    'duration_effective',
+                    'deposition_rate_obtainednotes',
                 ]
             },
         },
     )
+    thickness_from_recipe = Quantity(
+        type=np.float64,
+        description='Amount of material deposited under standard conditions described in the recipe',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
+        unit='um',
+    )
+    duration_from_recipe = Quantity(
+        type=np.float64,
+        description='Time prescribed by the recipe',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
+        unit='minute',
+    )
+    deposition_rate_from_recipe = Quantity(
+        type=np.float64,
+        description='Deposition rate provided in the recipe',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
+        unit='um/minute',
+    )
     short_name = Quantity(
         type=str,
         description='Material to be deposited',
-        a_eln={'component': 'StringEditQuantity', 'label': 'material_name'},
+        a_eln={'component': 'StringEditQuantity', 'label': 'target material'},
     )
     chemical_formula = Quantity(
         type=str,
         description='Inserted only if known',
+        a_eln={'component': 'StringEditQuantity'},
     )
     thickness_target = Quantity(
         type=np.float64,
@@ -96,6 +120,24 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
         description='Bias voltage in the chamber',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'volt'},
         unit='volt',
+    )
+    thickness_obtained = Quantity(
+        type=np.float64,
+        description='Amount of material deposited under standard conditions described in the recipe',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
+        unit='um',
+    )
+    duration_effective = Quantity(
+        type=np.float64,
+        description='Time prescribed by the recipe',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
+        unit='minute',
+    )
+    deposition_rate_obtained = Quantity(
+        type=np.float64,
+        description='Deposition rate provided in the recipe',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
+        unit='um/minute',
     )
     fluximeters = SubSection(
         section_def=Massflow_controller,
