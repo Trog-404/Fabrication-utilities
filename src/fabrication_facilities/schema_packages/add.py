@@ -230,6 +230,9 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
     chemical_formula = Quantity(
         type=str,
         description='Inserted only if known',
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
     )
     thickness_target = Quantity(
         type=np.float64,
