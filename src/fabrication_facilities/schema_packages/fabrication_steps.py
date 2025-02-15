@@ -171,11 +171,11 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
 
     m_def = Section(
         a_eln={
+            'hide': [
+                'comment',
+                'duration',
+            ],
             'properties': {
-                'hide': [
-                    'comment',
-                    'duration',
-                ],
                 'order': [
                     'job_progressive_id',
                     'name',
@@ -186,7 +186,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
                     'fabricationEquipmentRecipeName',
                     'notes',
                 ],
-            }
+            },
         },
     )
     job_progressive_id = Quantity(
