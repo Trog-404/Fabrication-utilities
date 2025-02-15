@@ -64,7 +64,8 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
                     'bias',
                     'thickness_obtained',
                     'duration_effective',
-                    'deposition_rate_obtainednotes',
+                    'deposition_rate_obtained',
+                    'notes',
                 ]
             },
         },
