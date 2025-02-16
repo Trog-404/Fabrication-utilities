@@ -187,6 +187,35 @@ class EtchingRIE(FabricationProcessStep, Chemical, ArchiveSection):
 
 
 class WetCleaning(DevelopingStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+            ],
+            'properties': {
+                'order': [
+                    'name',
+                    'job_progressive_id',
+                    'start_time',
+                    'ending_date',
+                    'fabricationProcessStepDefinition',
+                    'fabricationEquipmentRecipeName',
+                    'developing_solution',
+                    'devoloping_solution_proportions',
+                    'developing_duration',
+                    'cleaning_solution',
+                    'cleaning_solution_proportions',
+                    'cleaning_duration',
+                    'notes',
+                ]
+            },
+        },
+    )
+
     developing_solution = Quantity(
         type=str,
         a_eln={'component': 'StringEditQuantity', 'label': 'removing_solution'},

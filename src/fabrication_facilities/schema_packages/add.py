@@ -309,18 +309,18 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         description='Acceleration of the spinner',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 'revolutions_per_minute/second',
+            'defaultDispalyUnit': 'revolutions_per_minute/sec',
         },
-        unit='rpm/second',
+        unit='revolutions_per_minute/sec',
     )
     spin_duration = Quantity(
         type=np.float64,
         description='Acceleration of the spinner',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 'second',
+            'defaultDispalyUnit': 'sec',
         },
-        unit='second',
+        unit='sec',
     )
     baking_duration = Quantity(
         type=np.float64,
