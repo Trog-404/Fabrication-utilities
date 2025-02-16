@@ -212,7 +212,7 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
     )
     thickness_from_recipe = Quantity(
         type=np.float64,
-        description='Amount of material deposited under standard conditions described in the recipe',
+        description='Amount of material deposited as described in the recipe',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
         unit='um',
     )
@@ -342,7 +342,7 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
     )
     thickness_obtained = Quantity(
         type=np.float64,
-        description='Amount of material deposited under standard conditions described in the recipe',
+        description='Amount of material deposited as described in the recipe',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
         unit='um',
     )

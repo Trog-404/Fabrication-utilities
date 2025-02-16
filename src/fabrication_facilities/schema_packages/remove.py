@@ -21,26 +21,22 @@ from typing import (
 )
 
 import numpy as np
-import pandas as pd
 from nomad.datamodel.data import (
     ArchiveSection,
-    EntryData,
 )
-from nomad.datamodel.metainfo.basesections import Process, ProcessStep
-from nomad.datamodel.metainfo.eln import Chemical, Instrument
+from nomad.datamodel.metainfo.eln import Chemical
 from nomad.metainfo import (
     Package,
     Quantity,
     Section,
     SubSection,
 )
-from nomad.units import ureg
 
-from fabrication_facilities.schema_packages.utils import Massflow_controller
 from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
 )
 from fabrication_facilities.schema_packages.transform import DevelopingStep
+from fabrication_facilities.schema_packages.utils import Massflow_controller
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
@@ -95,7 +91,7 @@ class EtchingRIE(FabricationProcessStep, Chemical, ArchiveSection):
     )
     depth_from_recipe = Quantity(
         type=np.float64,
-        description='Amount of material etched under conditions described in the recipe',
+        description='Amount of material etched as described in the recipe',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
         unit='um',
     )

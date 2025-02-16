@@ -6,18 +6,15 @@ import numpy as np
 from nomad.datamodel.data import (
     ArchiveSection,
 )
-from nomad.datamodel.metainfo.eln import Chemical
 from nomad.metainfo import (
     Package,
     Quantity,
     Section,
-    SubSection,
 )
 
 from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
 )
-from fabrication_facilities.schema_packages.utils import Massflow_controller
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
