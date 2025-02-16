@@ -80,9 +80,9 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
         description='Dose used in the process',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDisplayUnit': 'uC/centimeter**2',
+            'defaultDisplayUnit': 'uC/centimeter^2',
         },
-        unit='uc/centimeter*2',
+        unit='uC/centimeter^2',
     )
     writing_field_dimension = Quantity(
         type=np.float64,
@@ -197,9 +197,9 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
         description='Dose used in the process',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDisplayUnit': 'uC/centimeter**2',
+            'defaultDisplayUnit': 'uC/centimeter^2',
         },
-        unit='uc/centimeter*2',
+        unit='uC/centimeter^2',
     )
     writing_field_dimension = Quantity(
         type=np.float64,
