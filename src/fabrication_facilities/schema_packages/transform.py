@@ -105,8 +105,8 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
     current = Quantity(
         type=np.float64,
         description='Current provided',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'pAmpere'},
-        unit='pAmpere',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'pampere'},
+        unit='pampere',
     )
     chamber_pressure = Quantity(
         type=np.float64,
@@ -222,8 +222,8 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
     current = Quantity(
         type=np.float64,
         description='Current provided',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'pAmpere'},
-        unit='pAmpere',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'pampere'},
+        unit='pampere',
     )
     chamber_pressure = Quantity(
         type=np.float64,
