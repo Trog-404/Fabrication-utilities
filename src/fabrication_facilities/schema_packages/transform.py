@@ -69,7 +69,7 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
     )
     fabricationEquipmentRecipeName = Quantity(
         type=str,
-        description = 'Name of the file that contains the geometry to impress, the recipe'
+        description='Name of the file that contains the geometry to impress, the recipe',
         a_eln={
             'label': 'file CAD name',
             'component': 'StringEditQuantity',
@@ -91,8 +91,8 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
         unit='um*um',
     )
     address_size = Quantity(
-        type= np.float64,
-        description = 'The minimum distance covered per step in the process',
+        type=np.float64,
+        description='The minimum distance covered per step in the process',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
         unit='nm',
     )
@@ -123,7 +123,9 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
     alignment_required = Quantity(
         type=bool,
         description='Amount of material deposited under standard conditions described in the recipe',
-        a_eln={'component': 'BoolEditQuantity',},
+        a_eln={
+            'component': 'BoolEditQuantity',
+        },
     )
     alignment_max_error = Quantity(
         type=np.float64,
@@ -142,6 +144,7 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
             logger (BoundLogger): A structlog logger.
         """
         super().normalize(archive, logger)
+
 
 class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
     """
@@ -183,7 +186,7 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
     )
     fabricationEquipmentRecipeName = Quantity(
         type=str,
-        description = 'Name of the file that contains the geometry to impress, the recipe'
+        description='Name of the file that contains the geometry to impress, the recipe',
         a_eln={
             'label': 'file CAD name',
             'component': 'StringEditQuantity',
@@ -205,8 +208,8 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
         unit='um*um',
     )
     address_size = Quantity(
-        type= np.float64,
-        description = 'The minimum distance covered per step in the process',
+        type=np.float64,
+        description='The minimum distance covered per step in the process',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
         unit='nm',
     )
@@ -237,7 +240,9 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
     alignment_required = Quantity(
         type=bool,
         description='Amount of material deposited under standard conditions described in the recipe',
-        a_eln={'component': 'BoolEditQuantity',},
+        a_eln={
+            'component': 'BoolEditQuantity',
+        },
     )
     alignment_max_error = Quantity(
         type=np.float64,
@@ -261,6 +266,7 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
             logger (BoundLogger): A structlog logger.
         """
         super().normalize(archive, logger)
+
 
 class DevelopingStep(FabricationProcessStep, ArchiveSection):
     """
@@ -296,32 +302,41 @@ class DevelopingStep(FabricationProcessStep, ArchiveSection):
         },
     )
 
-    developing_solution= Quantity(
+    developing_solution = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity',},
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
     )
-    developing_solution_proportions= Quantity(
+    developing_solution_proportions = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity',},
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
     )
-    developing_duration= Quantity(
+    developing_duration = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'sec'},
-        unit= 'sec'
+        unit='sec',
     )
-    cleaning_solution= Quantity(
+    cleaning_solution = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity',},
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
     )
-    cleaning_solution_proportions= Quantity(
+    cleaning_solution_proportions = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity',},
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
     )
-    cleaning_duration= Quantity(
+    cleaning_duration = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'sec'},
-        unit= 'sec'
+        unit='sec',
     )
+
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         """
         The normalizer for the `Step` class.
