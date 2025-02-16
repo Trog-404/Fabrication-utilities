@@ -72,7 +72,7 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
     )
     thickness_from_recipe = Quantity(
         type=np.float64,
-        description='Amount of material deposited under standard conditions described in the recipe',
+        description='Total material deposited under conditions described in the recipe',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
         unit='um',
     )
@@ -130,19 +130,19 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
     )
     thickness_obtained = Quantity(
         type=np.float64,
-        description='Amount of material deposited under standard conditions described in the recipe',
+        description='Amount of material deposited efefctively in the process',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
         unit='um',
     )
     duration_effective = Quantity(
         type=np.float64,
-        description='Time prescribed by the recipe',
+        description='Real time employed',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
         unit='minute',
     )
     deposition_rate_obtained = Quantity(
         type=np.float64,
-        description='Deposition rate provided in the recipe',
+        description='Deposition rate as output',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
         unit='um/minute',
     )
