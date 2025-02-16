@@ -67,3 +67,27 @@ Add_entry_point = AddEntryPoint(
     name='Add processes',
     description='Schema package for describing add steps in fabrications.',
 )
+
+class TransformEntryPoint(SchemaPackageEntryPoint):
+    def load(self):
+        from fabrication_facilities.schema_packages.transform import m_package
+
+        return m_package
+
+
+Transform_entry_point = TransformEntryPoint(
+    name='Transoform processes',
+    description='Schema package for describing transform steps in fabrications.',
+)
+
+class RemoveEntryPoint(SchemaPackageEntryPoint):
+    def load(self):
+        from fabrication_facilities.schema_packages.remove import m_package
+
+        return m_package
+
+
+Remove_entry_point = RemoveEntryPoint(
+    name='Add processes',
+    description='Schema package for describing add steps in fabrications.',
+)
