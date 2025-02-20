@@ -106,8 +106,8 @@ class Massflow_controller(Chemical, EntryData, ArchiveSection):
             if total != 0:
                 elemental_fraction = np.array(counts) / total
                 elementality = []
+                i = 0
                 for entry in elements:
-                    i = 0
                     elemental_try = ElementalComposition()
                     elemental_try.element = entry
                     elemental_try.atomic_fraction = elemental_fraction[i]
