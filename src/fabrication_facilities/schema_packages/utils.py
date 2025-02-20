@@ -103,16 +103,18 @@ class Massflow_controller(Chemical, EntryData, ArchiveSection):
             total = 0
             for token in counts:
                 total += int(token)
-            elemental_fraction = counts / total
-            elementality = []
-            for entry in elements:
-                i = 0
-                elemental_try = ElementalComposition()
-                elemental_try.element.append(entry)
-                elemental_try.atomic_fraction.append(elemental_fraction[i])
-                i += 1
-                elementality.append(elemental_try)
-
+            if total != 0:
+                elemental_fraction = np.array(counts) / total
+                elementality = []
+                for entry in elements:
+                    i = 0
+                    elemental_try = ElementalComposition()
+                    elemental_try.element.append(entry)
+                    elemental_try.atomic_fraction.append(elemental_fraction[i])
+                    i += 1
+                    elementality.append(elemental_try)
+            else:
+                print('No elements provided')
             self.elemental_composition.elementality
 
 
