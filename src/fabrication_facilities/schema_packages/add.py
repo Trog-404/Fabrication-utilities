@@ -284,9 +284,9 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         description='The temperature of the peb',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDisplayUnit': 'Celsius',
+            'defaultDisplayUnit': 'celsius',
         },
-        unit='Celsius',
+        unit='celsius',
     )
 
     dewetting_duration = Quantity(
