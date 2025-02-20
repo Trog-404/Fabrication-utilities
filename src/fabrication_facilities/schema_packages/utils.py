@@ -109,13 +109,13 @@ class Massflow_controller(Chemical, EntryData, ArchiveSection):
                 for entry in elements:
                     i = 0
                     elemental_try = ElementalComposition()
-                    elemental_try.element.append(entry)
-                    elemental_try.atomic_fraction.append(elemental_fraction[i])
+                    elemental_try.element = entry
+                    elemental_try.atomic_fraction = elemental_fraction[i]
                     i += 1
                     elementality.append(elemental_try)
             else:
                 print('No elements provided')
-            self.elemental_composition.elementality
+            self.elemental_composition = elementality
 
 
 m_package.__init_metainfo__()
