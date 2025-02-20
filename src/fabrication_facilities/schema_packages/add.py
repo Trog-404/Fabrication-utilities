@@ -6,6 +6,7 @@ import numpy as np
 from nomad.datamodel.data import (
     ArchiveSection,
 )
+from nomad.datamodel.metainfo.basesections import ElementalComposition
 from nomad.datamodel.metainfo.eln import Chemical
 from nomad.metainfo import (
     Package,
@@ -17,7 +18,10 @@ from nomad.metainfo import (
 from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
 )
-from fabrication_facilities.schema_packages.utils import Massflow_controller
+from fabrication_facilities.schema_packages.utils import (
+    Massflow_controller,
+    parse_chemical_formula,
+)
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
@@ -150,21 +154,35 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
         section_def=Massflow_controller,
         repeats=True,
     )
+    material_elemental_compositon = SubSection(
+        section_def=ElementalComposition, repeats=True
+    )
+
     #    output_measures= SubSection(
     #        section_def= Link,
     #        repeats= False,
     #    )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        """
-        The normalizer for the `Step` class.
-
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        """
         super().normalize(archive, logger)
+        if self.chemical_formula:
+            elements, counts = parse_chemical_formula(self.chemical_formula)
+            total = 0
+            for token in counts:
+                total += int(token)
+            if total != 0:
+                elemental_fraction = np.array(counts) / total
+                elementality = []
+                i = 0
+                for entry in elements:
+                    elemental_try = ElementalComposition()
+                    elemental_try.element = entry
+                    elemental_try.atomic_fraction = elemental_fraction[i]
+                    i += 1
+                    elementality.append(elemental_try)
+            else:
+                print('No elements provided')
+            self.material_elemental_composition = elementality
 
 
 class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
@@ -368,6 +386,10 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         unit='um',
     )
 
+    resist_elemental_composition = SubSection(
+        section_def=ElementalComposition, repeats=True
+    )
+
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
         if self.exposure_required:
@@ -380,6 +402,24 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
                 },
                 unit='minute',
             )
+        if self.chemical_formula:
+            elements, counts = parse_chemical_formula(self.chemical_formula)
+            total = 0
+            for token in counts:
+                total += int(token)
+            if total != 0:
+                elemental_fraction = np.array(counts) / total
+                elementality = []
+                i = 0
+                for entry in elements:
+                    elemental_try = ElementalComposition()
+                    elemental_try.element = entry
+                    elemental_try.atomic_fraction = elemental_fraction[i]
+                    i += 1
+                    elementality.append(elemental_try)
+            else:
+                print('No elements provided')
+            self.resist_elemental_composition = elementality
 
 
 m_package.__init_metainfo__()

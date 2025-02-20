@@ -24,6 +24,7 @@ import numpy as np
 from nomad.datamodel.data import (
     ArchiveSection,
 )
+from nomad.datamodel.metainfo.basesections import ElementalComposition
 from nomad.datamodel.metainfo.eln import Chemical
 from nomad.metainfo import (
     Package,
@@ -36,7 +37,10 @@ from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
 )
 from fabrication_facilities.schema_packages.transform import DevelopingStep
-from fabrication_facilities.schema_packages.utils import Massflow_controller
+from fabrication_facilities.schema_packages.utils import (
+    Massflow_controller,
+    parse_chemical_formula,
+)
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
@@ -170,16 +174,30 @@ class EtchingRIE(FabricationProcessStep, Chemical, ArchiveSection):
         repeats=True,
     )
 
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        """
-        The normalizer for the `Step` class.
+    material_elemental_composition = SubSection(
+        section_def=ElementalComposition, repeats=True
+    )
 
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        """
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
+        if self.chemical_formula:
+            elements, counts = parse_chemical_formula(self.chemical_formula)
+            total = 0
+            for token in counts:
+                total += int(token)
+            if total != 0:
+                elemental_fraction = np.array(counts) / total
+                elementality = []
+                i = 0
+                for entry in elements:
+                    elemental_try = ElementalComposition()
+                    elemental_try.element = entry
+                    elemental_try.atomic_fraction = elemental_fraction[i]
+                    i += 1
+                    elementality.append(elemental_try)
+            else:
+                print('No elements provided')
+            self.material_elemental_composition = elementality
 
 
 class WetCleaning(DevelopingStep, ArchiveSection):
