@@ -66,7 +66,7 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
     )
     fabricationEquipmentRecipeName = Quantity(
         type=str,
-        description='Name of the file that contains the geometry to impress, the recipe',
+        description='Name of the file that contains the geometry to impress',
         a_eln={
             'label': 'file CAD name',
             'component': 'StringEditQuantity',
@@ -119,7 +119,7 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
     )
     alignment_required = Quantity(
         type=bool,
-        description='Amount of material deposited under standard conditions described in the recipe',
+        description='Amount of material deposited as described in the recipe',
         a_eln={
             'component': 'BoolEditQuantity',
         },
@@ -183,7 +183,7 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
     )
     fabricationEquipmentRecipeName = Quantity(
         type=str,
-        description='Name of the file that contains the geometry to impress, the recipe',
+        description='Name of the file that contains the geometry to impress',
         a_eln={
             'label': 'file CAD name',
             'component': 'StringEditQuantity',
@@ -236,7 +236,7 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
     )
     alignment_required = Quantity(
         type=bool,
-        description='Amount of material deposited under standard conditions described in the recipe',
+        description='Amount of material deposited as described in the recipe',
         a_eln={
             'component': 'BoolEditQuantity',
         },

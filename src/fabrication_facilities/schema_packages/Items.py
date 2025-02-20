@@ -39,18 +39,6 @@ if TYPE_CHECKING:
 
 m_package = Package(name='Items plugin')
 
-# class Staging_quantity(MSection):
-#    m_def=Section()
-#
-#    def __init_metainfo__(self, txt):
-#        self.measure = txt
-#    def select_quantity(self):
-#       return Quantity(
-#            type=np.float64 if self.measure!=None or self.measure != ""  else str,
-#            a_eln={"component": "NumberEditQuantity" if self.measure!=None or self.measure != "" else "StringEditQuantity"},
-#            unit=self.measure if self.measure!=None or self.measure != ""  else None
-#        )
-
 
 class ItemPropertyDefinition(ArchiveSection):
     """
@@ -167,7 +155,8 @@ class DopingProperties(ItemPropertyDefinition):
 #            "value",
 #            Quantity(
 #                type=np.float64 if unit_of_measure else str,
-#                a_eln={"component": "NumberEditQuantity" if unit_of_measure else "StringEditQuantity"},
+#                a_eln={
+#       "component": "NumberEditQuantity" if unit_of_measure else "StringEditQuantity"},
 #                unit=unit_of_measure if unit_of_measure else None,
 #            )
 #        )

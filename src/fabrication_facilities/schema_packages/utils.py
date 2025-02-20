@@ -1,3 +1,5 @@
+import re
+from collections import defaultdict
 from typing import (
     TYPE_CHECKING,
 )
@@ -51,6 +53,57 @@ class Massflow_controller(Chemical, ArchiveSection):
             logger (BoundLogger): A structlog logger.
         """
         super().normalize(archive, logger)
+
+
+def parse_chemical_formula(formula):
+    formula = formula.replace('·', '.')
+    if '.' in formula:
+        main_part, hydrate_part = formula.split('.')
+    else:
+        main_part, hydrate_part = formula, None
+
+    def extract_elements(compound):
+        # Espressione per trovare elementi chimici seguiti da un numero opzionale
+        matches = re.findall(r'([A-Z][a-z]*)(\d*)', compound)
+        elements = defaultdict(int)
+
+        for element, count in matches:
+            elements[element] += int(count) if count else 1
+
+        return elements
+
+    element_main = defaultdict(int)
+
+    # Espandiamo le parentesi prima di estrarre gli elementi
+    while '(' in main_part:
+        main_part = re.sub(
+            r'\(([^()]*)\)(\d+)', lambda m: m.group(1) * int(m.group(2)), main_part
+        )
+
+    # Trova elementi e numeri
+    matches = re.findall(r'([A-Z][a-z]*)(\d*)', main_part)
+
+    for element, count in matches:
+        element_main[element] += (
+            int(count) if count else 1
+        )  # Se il numero manca, assume 1
+
+    if hydrate_part:
+        hydrate_match = re.match(r'(\d*)H2O', hydrate_part)
+        if hydrate_match:
+            water_molecules = (
+                int(hydrate_match.group(1)) if hydrate_match.group(1) else 1
+            )
+            elements_hydrate = extract_elements('H2O')
+
+            for element, count in elements_hydrate.items():
+                element_main[element] += count * water_molecules
+
+    # Convertiamo il dizionario in due liste ordinate
+    elements = list(element_main.keys())
+    counts = list(element_main.values())
+
+    return elements, counts
 
 
 m_package.__init_metainfo__()

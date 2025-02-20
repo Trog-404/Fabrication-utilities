@@ -72,7 +72,7 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
     )
     thickness_from_recipe = Quantity(
         type=np.float64,
-        description='Total material deposited under conditions described in the recipe',
+        description='Total material deposited as described in the recipe',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
         unit='um',
     )
@@ -254,8 +254,15 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
             'component': 'BoolEditQuantity',
         },
     )
-    exposure_duration = None
-    # Quantity(type=any,description='The duration of the exposure',a_eln={'component': None,'defaultDisplayUnit': None,},unit=None,)
+    exposure_duration = Quantity(
+        type=np.float64,
+        description='The duration of the exposure',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'sec',
+        },
+        unit='sec',
+    )
     peb_required = Quantity(
         type=bool,
         description='The recipe use exposure?',
@@ -263,11 +270,25 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
             'component': 'BoolEditQuantity',
         },
     )
-    peb_duration = None
-    # Quantity(type=,description='The duration of the exposure',a_eln={'component': None,'defaultDisplayUnit': None,},unit=None,)
-    peb_temperature = None
+    peb_duration = Quantity(
+        type=np.float64,
+        description='The duration of the peb',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'sec',
+        },
+        unit='sec',
+    )
+    peb_temperature = Quantity(
+        type=np.float64,
+        description='The temperature of the peb',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'Celsius',
+        },
+        unit='Celsius',
+    )
 
-    # Quantity(type=any,description='The duration of the exposure',a_eln={'component': None,'defaultDisplayUnit': None,},unit=None,)
     dewetting_duration = Quantity(
         type=np.float64,
         description='The duration of the dewetting',
