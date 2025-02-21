@@ -446,6 +446,10 @@ class Equipment(Instrument, EntryData, ArchiveSection):
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
     )
+    institution = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
     manufacturer = Quantity(
         type=str,
         a_eln={'component': 'StringEditQuantity'},
