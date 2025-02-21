@@ -33,16 +33,15 @@ app_entry_point = AppEntryPoint(
         menu=Menu(
             title='General informations',
             items=[
-                Menu(
+                MenuItemTerms(
                     title='Institution',
-                    indentation=2,
-                    items=[
-                        MenuItemTerms(
-                            title='Institution',
-                            type='terms',
-                            search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
-                        ),
-                    ],
+                    type='terms',
+                    search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
+                ),
+                MenuItemTerms(
+                    title='Availability',
+                    type='terms',
+                    search_quantity='data.is_bookable#fabrication_facilities.schema_packages.equipment.Equipment',
                 ),
             ],
         ),
