@@ -37,12 +37,13 @@ app_entry_point = AppEntryPoint(
                     title='Institution',
                     indentation=2,
                     items=[
-                        MenuItemCustomQuantities(
-                            title='Institution', type='custom_quantities'
+                        MenuItemTerm(
+                            title='Institution',
+                            type='terms',
+                            search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
                         ),
                     ],
                 ),
-                #                    search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
             ],
         ),
         # This is a submenu whose items become visible once selected. It
