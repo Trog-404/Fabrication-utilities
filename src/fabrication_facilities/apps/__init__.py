@@ -20,14 +20,14 @@ app_entry_point = AppEntryPoint(
         search_quantities=SearchQuantities(
             include=['*#fabrication_facilities.schema_packages.equipment.Equipment'],
         ),
-        #        columns=[
-        #            Column(quantity='entry_id', selected=True),
-        #            Column(
-        #                quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
-        #                selected=True,
-        #            ),
-        #            Column(quantity='upload_create_time'),
-        #        ],
+        columns=[
+            Column(quantity='entry_id', selected=True),
+            Column(
+                quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
+                selected=True,
+            ),
+            Column(quantity='upload_create_time'),
+        ],
         #        filters_locked={
         #            'section_defs.definition_qualified_name:all': [
         #                'fabrication_facilities.schema_packages.equipment.Equipment'
