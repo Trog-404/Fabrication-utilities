@@ -6,12 +6,12 @@ import numpy as np
 from nomad.datamodel.data import (
     ArchiveSection,
 )
+from nomad.datamodel.metainfo.eln import Chemical
 from nomad.metainfo import (
     Package,
     Quantity,
     Section,
 )
-from nomad.datamodel.metainfo.eln import Chemical
 
 from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
@@ -317,7 +317,7 @@ class DevelopingStep(FabricationProcessStep, ArchiveSection):
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'sec'},
         unit='sec',
     )
-    developing_temperature = Quantity (
+    developing_temperature = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
         unit='celsius',

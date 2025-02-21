@@ -29,8 +29,8 @@ from nomad.datamodel.metainfo.basesections import (
     ProcessStep,
 )
 from nomad.metainfo import (
-    MEnum,
     Datetime,
+    MEnum,
     Package,
     Quantity,
     Section,

@@ -1,12 +1,10 @@
 from nomad.config.models.plugins import AppEntryPoint
 from nomad.config.models.ui import (
     App,
-    SearchQuantities,
     Column,
     Menu,
-    MenuItemCustomQuantities,
-    MenuItemHistogram,
     MenuItemTerms,
+    SearchQuantities,
 )
 
 dir = 'fabrication_facilities.schema_packages.equipment.Equipment'
@@ -33,7 +31,7 @@ app_entry_point = AppEntryPoint(
             ),
             Column(quantity='upload_create_time', selected=True),
         ],
-        filters_locked={'section_defs.definition_qualified_name:all': [dir]},
+        filters_locked={'section_defs.definition_qualified_name': dir},
         menu=Menu(
             title='General informations',
             type='nested_object',
@@ -72,26 +70,5 @@ app_entry_point = AppEntryPoint(
                 ),
             ],
         ),
-        # This is a submenu whose items become visible once selected. It
-        # contains three items: one full-width histogram and two terms items
-        # which are displayed side-by-side.
-        # Menu(
-        # title='Submenu',
-        # size='md',
-        # items=[
-        # MenuItemHistogram(search_quantity='upload_create_time'),
-        # These items target data from a custom schema
-        # MenuItemTerms(
-        #    width=6,
-        #    search_quantity='data.quantity1#nomad_example.schema_packages.mypackage.MySchema',
-        # ),
-        # MenuItemTerms(
-        #    width=6,
-        #    search_quantity='data.quantity2#nomad_example.schema_packages.mypackage.MySchema',
-        # ),
-        #    ],
-        #    ),
-        #            ],
-        #        ),
     ),
 )
