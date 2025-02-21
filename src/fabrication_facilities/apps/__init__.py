@@ -1,6 +1,8 @@
 from nomad.config.models.plugins import AppEntryPoint
 from nomad.config.models.ui import (
     App,
+    SearchQuantities,
+    Column,
     Menu,
     MenuItemHistogram,
     MenuItemTerms,
@@ -15,13 +17,17 @@ app_entry_point = AppEntryPoint(
         category='Fabrication facilities',
         description='App to search fabrication equipments.',
         readme=' The findability reach the level of the single technique at disposal.',
-        #        columns=Columns(
-        #            selected=[''],
-        #            options={
-        #                'entry_id': Column(),
-        #            },
-        #        ),
-        #    ),
+        search_quantities=SearchQuantities(
+            include=['fabrication_facilities.schema_packages.equipment.Equipment'],
+        ),
+        columns=[
+            Column(quantity='institution', selected=True),
+            # Column(
+            # quantity='data.mysection.myquantity#nomad_example.schema_packages.mypackage.MySchema',
+            # selected=True,
+            # ),
+            # Column(quantity='upload_create_time'),
+        ],
         #        menu=Menu(
         #            size='sm',
         #            items=[
