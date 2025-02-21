@@ -18,15 +18,15 @@ app_entry_point = AppEntryPoint(
         description='App to search fabrication equipments.',
         readme=' The findability reach the level of the single technique at disposal.',
         search_quantities=SearchQuantities(
-            include=['fabrication_facilities.schema_packages.equipment.Equipment'],
+            include=['*#fabrication_facilities.schema_packages.equipment.Equipment'],
         ),
         columns=[
-            Column(quantity='institution', selected=True),
-            # Column(
-            # quantity='data.mysection.myquantity#nomad_example.schema_packages.mypackage.MySchema',
-            # selected=True,
-            # ),
-            # Column(quantity='upload_create_time'),
+            Column(quantity='entry_id', selected=True),
+            Column(
+                quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
+                selected=True,
+            ),
+            Column(quantity='upload_create_time'),
         ],
         menu=Menu(
             size='sm',
