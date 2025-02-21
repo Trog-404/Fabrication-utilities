@@ -29,6 +29,7 @@ from nomad.datamodel.metainfo.basesections import (
     ProcessStep,
 )
 from nomad.metainfo import (
+    MEnum,
     Datetime,
     Package,
     Quantity,
@@ -184,6 +185,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
                     'description',
                     'operator',
                     'id_items_processed',
+                    'room',
                     'starting_date',
                     'ending_date',
                     'step_type',
@@ -210,11 +212,12 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     id_item_processed = Quantity(
         type=str, shape=['*'], a_eln={'component': 'StringEditQuantity'}
     )
-    starting_date = Quantity(
+    room = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    start_date = Quantity(
         type=Datetime,
-        a_eln={'label': 'starting date', 'component': 'DateTimeEditQuantity'},
+        a_eln={'component': 'DateTimeEditQuantity'},
     )
-    ending_date = Quantity(
+    end_date = Quantity(
         type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
     )
@@ -255,10 +258,11 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
                 'order': [
                     'name',
                     'id_proposal',
-                    'location',
+                    'locations',
                     'description',
-                    'starting_date',
-                    'ending_date',
+                    'author',
+                    'start_date',
+                    'end_date',
                     'fabricationProductType',
                     'comment',
                 ]
@@ -275,6 +279,18 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
         type=str,
         a_eln={'component': 'StringEditQuantity'},
     )
+    project = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    affiliation = Quantity(
+        type=MEnum(
+            [
+                'NFFA-DI',
+                'iENTRANCE@ENL',
+            ]
+        )
+    )
     location = Quantity(
         type=str,
         shape=['*'],
@@ -288,6 +304,8 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
+    author = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    cost_model = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     starting_date = Quantity(
         type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
