@@ -34,8 +34,8 @@ app_entry_point = AppEntryPoint(
         filters_locked={'section_defs.definition_qualified_name': dir},
         menu=Menu(
             title='General informations',
-            type='nested_object',
             items=[
+                MenuItemTerms(),
                 Menu(
                     title='Infrastrucure',
                     indentation=2,
