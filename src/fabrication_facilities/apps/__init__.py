@@ -31,12 +31,13 @@ app_entry_point = AppEntryPoint(
             Column(quantity='upload_create_time', selected=True),
         ],
         menu=Menu(
-            title='Equipment',
-            #            items=[
-            #                MenuItemCustomQuantities(
-            #                    search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
-            #                ),
-            #            ],
+            title='General informations',
+            items=[
+                Menu(
+                    title='Institution',
+                ),
+                #                    search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
+            ],
         ),
         # This is a submenu whose items become visible once selected. It
         # contains three items: one full-width histogram and two terms items
