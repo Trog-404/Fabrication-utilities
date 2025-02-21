@@ -9,6 +9,9 @@ from nomad.config.models.ui import (
     MenuItemTerms,
 )
 
+dir = 'fabrication_facilities.schema_packages.equipment.Equipment'
+Mainstr = 'data.equipmentTechniques.techniqueMainCategory'
+Substr = 'data.equipmentTechniques.techniqueSubCategory'
 app_entry_point = AppEntryPoint(
     name='Fabrication findability',
     description='New app entry point configuration for fabrication facilities.',
@@ -25,23 +28,48 @@ app_entry_point = AppEntryPoint(
             Column(quantity='entry_name', selected=True),
             Column(quantity='entry_type', selected=True),
             Column(
-                quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
+                quantity=f'data.institution#{dir}',
                 selected=True,
             ),
             Column(quantity='upload_create_time', selected=True),
         ],
+        #        filters_locked={
+        #            'section_defs.definition_qualified_name:all': f'{dir}'
+        #        },
         menu=Menu(
             title='General informations',
             items=[
-                MenuItemTerms(
-                    title='Institution',
-                    type='terms',
-                    search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
+                Menu(
+                    title='Infrastrucure',
+                    indentation=2,
+                    items=[
+                        MenuItemTerms(
+                            title='Institution',
+                            type='terms',
+                            search_quantity=f'data.institution#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='Availability',
+                            type='terms',
+                            search_quantity=f'data.is_bookable#{dir}',
+                        ),
+                    ],
                 ),
-                MenuItemTerms(
-                    title='Availability',
-                    type='terms',
-                    search_quantity='data.is_bookable#fabrication_facilities.schema_packages.equipment.Equipment',
+                Menu(
+                    title='Technique',
+                    indentation=2,
+                    items=[
+                        MenuItemTerms(
+                            title='MainTechnique',
+                            type='terms',
+                            search_quantity=f'{Mainstr}#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='fabrication step',
+                            type='terms',
+                            search_quantity=f'{Substr}#{dir}',
+                        ),
+                    ],
                 ),
             ],
         ),
