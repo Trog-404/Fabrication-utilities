@@ -79,15 +79,15 @@ app_entry_point = AppEntryPoint(
                             search_quantity=f'{cap}.name#{dir}',
                         ),
                         MenuItemTerms(
-                            title='min value',
+                            title='value',
                             type='terms',
-                            search_quantity=f'{cap}.value_min#{dir}',
+                            search_quantity=f'{cap}.value#{dir}',
                         ),
-                        MenuItemTerms(
-                            title='max value',
-                            type='terms',
-                            search_quantity=f'{cap}.value_max#{dir}',
-                        ),
+                        #                        MenuItemTerms(
+                        #                            title='max value',
+                        #                            type='terms',
+                        #                            search_quantity=f'{cap}.value_max#{dir}',
+                        #                        ),
                     ],
                 ),
                 #                Menu(
