@@ -53,22 +53,22 @@ app_entry_point = AppEntryPoint(
                         ),
                     ],
                 ),
-                #                Menu(
-                #                    title='Technique',
-                #                    indentation=0,
-                #                    items=[
-                #                        MenuItemTerms(
-                #                            title='MainTechnique',
-                #                            type='terms',
-                #                            search_quantity=f'{Mainstr}#{dir}',
-                #                        ),
-                #                        MenuItemTerms(
-                #                            title='fabrication step',
-                #                            type='terms',
-                #                            search_quantity=f'{Substr}#{dir}',
-                #                        ),
-                #                    ],
-                #                ),
+                Menu(
+                    title='Technique',
+                    indentation=0,
+                    items=[
+                        MenuItemTerms(
+                            title='MainTechnique',
+                            type='terms',
+                            search_quantity=f'{Mainstr}#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='fabrication step',
+                            type='terms',
+                            search_quantity=f'{Substr}#{dir}',
+                        ),
+                    ],
+                ),
                 #                Menu(
                 #                    title='capabilities',
                 #                    indentation=0,
