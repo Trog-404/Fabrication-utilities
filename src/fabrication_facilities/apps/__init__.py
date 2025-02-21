@@ -35,6 +35,12 @@ app_entry_point = AppEntryPoint(
             items=[
                 Menu(
                     title='Institution',
+                    indentation=2,
+                    items=[
+                        MenuItemCustomQuantities(
+                            title='Institution', type='custom_quantities'
+                        ),
+                    ],
                 ),
                 #                    search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
             ],
