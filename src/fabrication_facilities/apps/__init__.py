@@ -37,7 +37,7 @@ app_entry_point = AppEntryPoint(
                     title='Institution',
                     indentation=2,
                     items=[
-                        MenuItemTerm(
+                        MenuItemTerms(
                             title='Institution',
                             type='terms',
                             search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
