@@ -11,6 +11,7 @@ from nomad.metainfo import (
     Quantity,
     Section,
 )
+from nomad.datamodel.metainfo.eln import Chemical
 
 from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
@@ -344,6 +345,55 @@ class DevelopingStep(FabricationProcessStep, ArchiveSection):
             logger (BoundLogger): A structlog logger.
         """
         super().normalize(archive, logger)
+
+
+class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
+    target_material = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    recipe_name = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    temperature_start = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
+        unit='celsius',
+    )
+    temperature_final_target = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
+        unit='celsius',
+    )
+    oxigen_percentage = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+    oxigen_flow = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+    temperature_final_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
+        unit='celsius',
+    )
+    duration_effective = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
+        unit='minute',
+    )
+    temperature_ramp_up_rate = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'celsius/minunte',
+        },
+        unit='celsius/minute',
+    )
+    temperature_ramp_down_rate = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'celsius/minunte',
+        },
+        unit='celsius/minute',
+    )
 
 
 m_package.__init_metainfo__()

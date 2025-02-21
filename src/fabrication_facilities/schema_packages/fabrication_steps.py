@@ -180,7 +180,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
             ],
             'properties': {
                 'order': [
-                    'job_id',
+                    'job_number',
                     'name',
                     'description',
                     'operator',
@@ -196,7 +196,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
             },
         },
     )
-    job_id = Quantity(
+    job_number = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
     )
@@ -258,6 +258,8 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
                 'order': [
                     'name',
                     'id_proposal',
+                    'project',
+                    'affiliation',
                     'locations',
                     'description',
                     'author',
@@ -291,7 +293,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
             ]
         )
     )
-    location = Quantity(
+    locations = Quantity(
         type=str,
         shape=['*'],
         a_eln={'component': 'StringEditQuantity', 'label': 'institutions'},
