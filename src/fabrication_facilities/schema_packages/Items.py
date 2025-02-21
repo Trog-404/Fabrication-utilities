@@ -253,10 +253,6 @@ class StartingMaterial(Entity, ArchiveSection):
         type=bool,
         a_eln={'component': 'BoolEditQuantity'},
     )
-    properties = SubSection(
-        section_def=ItemPropertyDefinition,
-        repeats=True,
-    )
 
 
 #    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:

@@ -324,7 +324,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
         type=ListofProductType,
         a_eln={'component': 'ReferenceEditQuantity'},
     )
-    item_registration = SubSection(
+    items_registration = SubSection(
         section_def=SampleParenting,
         repeats=False,
     )
