@@ -54,7 +54,7 @@ app_entry_point = AppEntryPoint(
                     ],
                 ),
                 Menu(
-                    title='Technique',
+                    title='Techniques',
                     indentation=0,
                     items=[
                         MenuItemTerms(
@@ -73,15 +73,15 @@ app_entry_point = AppEntryPoint(
                     title='Capabilities',
                     indentation=0,
                     items=[
+                        #                        MenuItemTerms(
+                        #                            title='property',
+                        #                            type='terms',
+                        #                            search_quantity=f'{cap}.name#{dir}',
+                        #                        ),
                         MenuItemTerms(
-                            title='property',
+                            title='min value',
                             type='terms',
-                            search_quantity=f'{cap}.name#{dir}',
-                        ),
-                        MenuItemTerms(
-                            title='value',
-                            type='terms',
-                            search_quantity=f'{cap}.value#{dir}',
+                            search_quantity=f'{cap}.value_min#{dir}',
                         ),
                         #                        MenuItemTerms(
                         #                            title='max value',
