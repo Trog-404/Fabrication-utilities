@@ -99,11 +99,11 @@ app_entry_point = AppEntryPoint(
                             type='terms',
                             search_quantity=f'{itp}.itemShapeType#{dir}',
                         ),
-                        #                        MenuItemTerms(
-                        #                            title='items property',
-                        #                            type='terms',
-                        #                            search_quantity=f'{itp}.properties.name#{dir}',
-                        #                        ),
+                        MenuItemTerms(
+                            title='items property',
+                            type='terms',
+                            search_quantity=f'{itp}.properties.name#{dir}',
+                        ),
                         #                        MenuItemTerms(
                         #                            title='min value',
                         #                            type='terms',
