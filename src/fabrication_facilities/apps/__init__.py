@@ -28,19 +28,21 @@ app_entry_point = AppEntryPoint(
             ),
             Column(quantity='upload_create_time'),
         ],
-        #        filters_locked={
-        #            'section_defs.definition_qualified_name:all': [
-        #                'fabrication_facilities.schema_packages.equipment.Equipment'
-        #            ]
-        #        },
-        #        menu=Menu(
-        #            size='sm',
-        #            title='Equipment',
-        #            items=[
-        #                MenuItemTerms(
-        #                    search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
-        #                    options=5,
-        #                ),
+        filters_locked={
+            'section_defs.definition_qualified_name:all': [
+                'fabrication_facilities.schema_packages.equipment.Equipment'
+            ]
+        },
+        menu=Menu(
+            size='sm',
+            title='Equipment',
+            items=[
+                MenuItemTerms(
+                    search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
+                    options=5,
+                ),
+            ],
+        ),
         # This is a submenu whose items become visible once selected. It
         # contains three items: one full-width histogram and two terms items
         # which are displayed side-by-side.
@@ -58,8 +60,8 @@ app_entry_point = AppEntryPoint(
         #    width=6,
         #    search_quantity='data.quantity2#nomad_example.schema_packages.mypackage.MySchema',
         # ),
-        # ],
-        # ),
+        #    ],
+        #    ),
         #            ],
         #        ),
     ),
