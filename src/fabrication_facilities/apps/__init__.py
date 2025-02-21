@@ -17,9 +17,9 @@ app_entry_point = AppEntryPoint(
         category='Fabrication facilities',
         description='App to search fabrication equipments.',
         readme=' The findability reach the level of the single technique at disposal.',
-        #        search_quantities=SearchQuantities(
-        #            include=['*#fabrication_facilities.schema_packages.equipment.Equipment'],
-        #        ),
+        search_quantities=SearchQuantities(
+            include=['*#fabrication_facilities.schema_packages.equipment.Equipment'],
+        ),
         #        columns=[
         #            Column(quantity='entry_id', selected=True),
         #            Column(
