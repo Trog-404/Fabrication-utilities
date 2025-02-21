@@ -50,12 +50,17 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
             ],
             'properties': {
                 'order': [
+                    'job_number',
                     'name',
-                    'job_progressive_id',
-                    'start_time',
-                    'ending_date',
-                    'fabricationProcessStepDefinition',
-                    'fabricationEquipmentRecipeName',
+                    'description',
+                    'operator',
+                    'id_items_processed',
+                    'room',
+                    'start_date',
+                    'end_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
                     'thickness_from_recipe',
                     'duration_from_recipe',
                     'deposition_rate_from_recipe',
@@ -158,11 +163,6 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
         section_def=ElementalComposition, repeats=True
     )
 
-    #    output_measures= SubSection(
-    #        section_def= Link,
-    #        repeats= False,
-    #    )
-
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
         if self.chemical_formula:
@@ -197,12 +197,17 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
             ],
             'properties': {
                 'order': [
+                    'job_number',
                     'name',
-                    'job_progressive_id',
-                    'start_time',
+                    'description',
+                    'operator',
+                    'id_items_processed',
+                    'room',
+                    'starting_date',
                     'ending_date',
-                    'fabricationProcessStepDefinition',
-                    'fabricationEquipmentRecipeName',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
                     'thickness_from_recipe',
                     'duration_from_recipe',
                     'short_name',

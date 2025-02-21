@@ -317,6 +317,11 @@ class DevelopingStep(FabricationProcessStep, ArchiveSection):
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'sec'},
         unit='sec',
     )
+    developing_temperature = Quantity (
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
+        unit='celsius',
+    )
     cleaning_solution = Quantity(
         type=str,
         a_eln={
