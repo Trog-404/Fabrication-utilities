@@ -33,7 +33,7 @@ app_entry_point = AppEntryPoint(
             ),
             Column(quantity='upload_create_time', selected=True),
         ],
-        filters_locked={'section_defs.definition_qualified_name:all': f'{dir}'},
+        filters_locked={'section_defs.definition_qualified_name:all': [dir]},
         menu=Menu(
             title='General informations',
             type='nested_object',
