@@ -4,12 +4,15 @@ from nomad.config.models.ui import (
     Column,
     Menu,
     MenuItemTerms,
+    MenuItemCustomQuantities,
     SearchQuantities,
 )
 
 dir = 'fabrication_facilities.schema_packages.equipment.Equipment'
 Mainstr = 'data.equipmentTechniques.techniqueMainCategory'
 Substr = 'data.equipmentTechniques.techniqueSubCategory'
+cap = 'data.capabilities'
+itp = 'data.permittedItems'
 app_entry_point = AppEntryPoint(
     name='Fabrication findability',
     description='New app entry point configuration for fabrication facilities.',
@@ -33,12 +36,10 @@ app_entry_point = AppEntryPoint(
         ],
         filters_locked={'section_defs.definition_qualified_name': dir},
         menu=Menu(
-            title='General informations',
             items=[
-                MenuItemTerms(),
                 Menu(
                     title='Infrastrucure',
-                    indentation=2,
+                    indentation=0,
                     items=[
                         MenuItemTerms(
                             title='Institution',
@@ -54,7 +55,7 @@ app_entry_point = AppEntryPoint(
                 ),
                 Menu(
                     title='Technique',
-                    indentation=2,
+                    indentation=0,
                     items=[
                         MenuItemTerms(
                             title='MainTechnique',
@@ -67,6 +68,56 @@ app_entry_point = AppEntryPoint(
                             search_quantity=f'{Substr}#{dir}',
                         ),
                     ],
+                ),
+                Menu(
+                    title='capabilities',
+                    indentation=0,
+                    items=[
+                        MenuItemTerms(
+                            title='property',
+                            type='terms',
+                            search_quantity=f'{cap}.name#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='min value',
+                            type='terms',
+                            search_quantity=f'{cap}.value_min#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='max value',
+                            type='terms',
+                            search_quantity=f'{cap}.value_max#{dir}',
+                        ),
+                    ],
+                ),
+                Menu(
+                    title='Items allowed',
+                    indentation=0,
+                    items=[
+                        MenuItemTerms(
+                            title='items shape',
+                            type='terms',
+                            search_quantity=f'{itp}.itemShapeType#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='items property',
+                            type='terms',
+                            search_quantity=f'{itp}.properties.name#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='min value',
+                            type='terms',
+                            search_quantity=f'{itp}.properties.value_min#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='max value',
+                            type='terms',
+                            search_quantity=f'{itp}.properties.value_max#{dir}',
+                        ),
+                    ],
+                ),
+                MenuItemCustomQuantities(
+                    title='Costumer user quantities', type='custom_quantities'
                 ),
             ],
         ),
