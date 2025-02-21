@@ -3,8 +3,8 @@ from nomad.config.models.ui import (
     App,
     Column,
     Menu,
-    MenuItemTerms,
     MenuItemCustomQuantities,
+    MenuItemTerms,
     SearchQuantities,
 )
 
@@ -69,56 +69,62 @@ app_entry_point = AppEntryPoint(
                         ),
                     ],
                 ),
-                #                Menu(
-                #                    title='capabilities',
-                #                    indentation=0,
-                #                    items=[
-                #                        MenuItemTerms(
-                #                            title='property',
-                #                            type='terms',
-                #                            search_quantity=f'{cap}.name#{dir}',
-                #                        ),
-                #                        MenuItemTerms(
-                #                            title='min value',
-                #                            type='terms',
-                #                            search_quantity=f'{cap}.value_min#{dir}',
-                #                        ),
-                #                        MenuItemTerms(
-                #                            title='max value',
-                #                            type='terms',
-                #                            search_quantity=f'{cap}.value_max#{dir}',
-                #                        ),
-                #                    ],
-                #                ),
-                #                Menu(
-                #                    title='Items allowed',
-                #                    indentation=0,
-                #                    items=[
-                #                        MenuItemTerms(
-                #                            title='items shape',
-                #                            type='terms',
-                #                            search_quantity=f'{itp}.itemShapeType#{dir}',
-                #                        ),
-                #                        MenuItemTerms(
-                #                            title='items property',
-                #                            type='terms',
-                #                            search_quantity=f'{itp}.properties.name#{dir}',
-                #                        ),
-                #                        MenuItemTerms(
-                #                            title='min value',
-                #                            type='terms',
-                #                            search_quantity=f'{itp}.properties.value_min#{dir}',
-                #                        ),
-                #                        MenuItemTerms(
-                #                            title='max value',
-                #                            type='terms',
-                #                            search_quantity=f'{itp}.properties.value_max#{dir}',
-                #                        ),
-                #                    ],
-                #                ),
-                #                MenuItemCustomQuantities(
-                #                    title='Costumer user quantities', type='custom_quantities'
-                #                ),
+                Menu(
+                    title='capabilities',
+                    indentation=0,
+                    items=[
+                        MenuItemTerms(
+                            title='property',
+                            type='terms',
+                            search_quantity=f'{cap}.name#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='min value',
+                            type='terms',
+                            search_quantity=f'{cap}.value_min#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='max value',
+                            type='terms',
+                            search_quantity=f'{cap}.value_max#{dir}',
+                        ),
+                    ],
+                ),
+                Menu(
+                    title='Items allowed',
+                    indentation=0,
+                    items=[
+                        MenuItemTerms(
+                            title='items shape',
+                            type='terms',
+                            search_quantity=f'{itp}.itemShapeType#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='items property',
+                            type='terms',
+                            search_quantity=f'{itp}.properties.name#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='min value',
+                            type='terms',
+                            search_quantity=f'{itp}.properties.value_min#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='max value',
+                            type='terms',
+                            search_quantity=f'{itp}.properties.value_max#{dir}',
+                        ),
+                    ],
+                ),
+                Menu(
+                    title='User defined quantities',
+                    items=[
+                        MenuItemCustomQuantities(
+                            title='Costumer user quantities',
+                            type='custom_quantities',
+                        ),
+                    ],
+                ),
             ],
         ),
     ),
