@@ -4,6 +4,7 @@ from nomad.config.models.ui import (
     SearchQuantities,
     Column,
     Menu,
+    MenuItemCustomQuantities,
     MenuItemHistogram,
     MenuItemTerms,
 )
@@ -21,22 +22,18 @@ app_entry_point = AppEntryPoint(
             include=['*#fabrication_facilities.schema_packages.equipment.Equipment'],
         ),
         columns=[
-            Column(quantity='entry_id', selected=True),
+            Column(quantity='entry_name', selected=True),
+            Column(quantity='entry_type', selected=True),
             Column(
                 quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
                 selected=True,
             ),
-            Column(quantity='upload_create_time'),
+            Column(quantity='upload_create_time', selected=True),
         ],
-        #        filters_locked={
-        #            'section_defs.definition_qualified_name:all': [
-        #                'fabrication_facilities.schema_packages.equipment.Equipment'
-        #            ]
-        #        },
         menu=Menu(
             title='Equipment',
             items=[
-                MenuItemTerms(
+                MenuItemCustomQuantities(
                     search_quantity='data.institution#fabrication_facilities.schema_packages.equipment.Equipment',
                     options=5,
                 ),
