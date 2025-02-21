@@ -28,6 +28,11 @@ app_entry_point = AppEntryPoint(
             ),
             Column(quantity='upload_create_time'),
         ],
+        filters_locked={
+            'section_defs.definition_qualified_name:all': [
+                'fabrication_facilities.schema_packages.equipment.Equipment'
+            ]
+        },
         menu=Menu(
             size='sm',
             title='Equipment',
