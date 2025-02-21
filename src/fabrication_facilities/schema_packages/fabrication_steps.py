@@ -41,6 +41,7 @@ from fabrication_facilities.schema_packages.equipment import (
     EquipmentReference,
     EquipmentTechnique,
 )
+from fabrication_facilities.schema_packages.Items import SampleParenting
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
@@ -174,22 +175,26 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
             'hide': [
                 'comment',
                 'duration',
+                'start_time',
             ],
             'properties': {
                 'order': [
-                    'job_progressive_id',
+                    'job_id',
                     'name',
                     'description',
-                    'start_time',
+                    'operator',
+                    'id_items_processed',
+                    'starting_date',
                     'ending_date',
-                    'fabricationProcessStepDefinition',
-                    'fabricationEquipmentRecipeName',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
                     'notes',
                 ],
             },
         },
     )
-    job_progressive_id = Quantity(
+    job_id = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
     )
@@ -201,7 +206,11 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
-    start_time = Quantity(
+    operator = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    id_item_processed = Quantity(
+        type=str, shape=['*'], a_eln={'component': 'StringEditQuantity'}
+    )
+    starting_date = Quantity(
         type=Datetime,
         a_eln={'label': 'starting date', 'component': 'DateTimeEditQuantity'},
     )
@@ -209,13 +218,14 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
         type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
     )
-    fabricationProcessStepDefinition = Quantity(
+    step_type = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    definition_of_process_step = Quantity(
         type=FabricationProcessStepDefinition,
         a_eln={'component': 'ReferenceEditQuantity'},
     )
-    fabricationEquipmentRecipeName = Quantity(
+    recipe_name = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity', 'label': 'recipe name'},
+        a_eln={'component': 'StringEditQuantity'},
     )
     notes = Quantity(
         type=str,
@@ -244,24 +254,31 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
             'properties': {
                 'order': [
                     'name',
-                    'id',
+                    'id_proposal',
+                    'location',
                     'description',
-                    'datetime',
-                    'end_time',
+                    'starting_date',
+                    'ending_date',
                     'fabricationProductType',
                     'comment',
                 ]
             },
             'hide': [
+                'end_date',
+                'datetime',
                 'lab_id',
-                'location',
                 'method',
             ],
         },
     )
-    id = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
+    id_proposal = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    location = Quantity(
+        type=str,
+        shape=['*'],
+        a_eln={'component': 'StringEditQuantity', 'label': 'institutions'},
     )
     name = Quantity(
         type=str,
@@ -271,13 +288,13 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
-    datetime = Quantity(
+    starting_date = Quantity(
         type=Datetime,
-        a_eln={'component': 'DateTimeEditQuantity', 'label': 'starting date'},
+        a_eln={'component': 'DateTimeEditQuantity'},
     )
-    end_time = Quantity(
+    ending_date = Quantity(
         type=Datetime,
-        a_eln={'component': 'DateTimeEditQuantity', 'label': 'ending date'},
+        a_eln={'component': 'DateTimeEditQuantity'},
     )
     comment = Quantity(
         type=str,
@@ -286,6 +303,10 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
     fabricationProductType = Quantity(
         type=ListofProductType,
         a_eln={'component': 'ReferenceEditQuantity'},
+    )
+    item_registration = SubSection(
+        section_def=SampleParenting,
+        repeats=False,
     )
     steps = SubSection(
         section_def=FabricationProcessStep,
