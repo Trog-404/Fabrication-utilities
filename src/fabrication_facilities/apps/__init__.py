@@ -78,16 +78,16 @@ app_entry_point = AppEntryPoint(
                             type='terms',
                             search_quantity=f'{cap}.name#{dir}',
                         ),
-                        #                        MenuItemTerms(
-                        #                            title='min value',
-                        #                            type='terms',
-                        #                            search_quantity=f'{cap}.value_min#{dir}',
-                        #                        ),
-                        #                        MenuItemTerms(
-                        #                            title='max value',
-                        #                            type='terms',
-                        #                            search_quantity=f'{cap}.value_max#{dir}',
-                        #                        ),
+                        MenuItemTerms(
+                            title='min value',
+                            type='terms',
+                            #                            search_quantity=f'{cap}.value_min#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='max value',
+                            type='terms',
+                            #                            search_quantity=f'{cap}.value_max#{dir}',
+                        ),
                     ],
                 ),
                 Menu(
@@ -104,16 +104,16 @@ app_entry_point = AppEntryPoint(
                             type='terms',
                             search_quantity=f'{itp}.properties.name#{dir}',
                         ),
-                        #                        MenuItemTerms(
-                        #                            title='min value',
-                        #                            type='terms',
-                        #                            search_quantity=f'{itp}.properties.value_min#{dir}',
-                        #                        ),
-                        #                        MenuItemTerms(
-                        #                            title='max value',
-                        #                            type='terms',
-                        #                            search_quantity=f'{itp}.properties.value_max#{dir}',
-                        #                        ),
+                        MenuItemTerms(
+                            title='min value',
+                            type='terms',
+                            #                            search_quantity=f'{itp}.properties.value_min#{dir}',
+                        ),
+                        MenuItemTerms(
+                            title='max value',
+                            type='terms',
+                            #                            search_quantity=f'{itp}.properties.value_max#{dir}',
+                        ),
                     ],
                 ),
                 Menu(
