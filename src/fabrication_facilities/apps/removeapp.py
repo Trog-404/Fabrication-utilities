@@ -41,9 +41,9 @@ processapp = App(
                 indentation=0,
                 items=[
                     MenuItemTerms(
-                        title='Institution',
+                        title='Affiliation',
                         type='terms',
-                        search_quantity=f'data.institution#{dir}',
+                        search_quantity=f'data.affiliation#{dir}',
                     ),
                 ],
             ),
