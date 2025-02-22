@@ -28,7 +28,7 @@ processapp = App(
         Column(quantity='entry_name', selected=True),
         Column(quantity='entry_type', selected=True),
         Column(
-            quantity=f'data.institution#{dir}',
+            quantity=f'data.affiliation#{dir}',
             selected=True,
         ),
         Column(quantity='upload_create_time', selected=True),
@@ -44,6 +44,21 @@ processapp = App(
                         title='Affiliation',
                         type='terms',
                         search_quantity=f'data.affiliation#{dir}',
+                    ),
+                    MenuItemTerms(
+                        title='ID proposal',
+                        type='terms',
+                        search_quantity=f'data.id_proposal#{dir}',
+                    ),
+                    MenuItemTerms(
+                        title='Product Type',
+                        type='terms',
+                        search_quantity=f'data.fabricationProductType#{dir}',
+                    ),
+                    MenuItemTerms(
+                        title='locations',
+                        type='terms',
+                        search_quantity=f'data.locations#{dir}',
                     ),
                 ],
             ),
