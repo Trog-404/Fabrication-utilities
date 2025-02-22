@@ -133,7 +133,6 @@ class Jobdone(ArchiveSection):
     referenced_activity = Quantity(
         type=FinalTechnique,
         a_eln={'component': 'ReferenceEditQuantity'},
-        shape=['*'],
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
