@@ -3,10 +3,8 @@ from nomad.config.models.ui import (
     Column,
     Menu,
     MenuItemCustomQuantities,
-    MenuItemTerms,
     MenuItemDefinitions,
-    MenuItemHistogram,
-    Axis,
+    MenuItemTerms,
     SearchQuantities,
 )
 
@@ -55,7 +53,7 @@ processapp = App(
                     #                    MenuItemTerms(
                     #                        title='Product Type',
                     #                        type='terms',
-                    #                        search_quantity=f'data.fabricationProductType#{dir}',
+                    #
                     #                    ),
                     # Menu(
                     #    title='Prova',

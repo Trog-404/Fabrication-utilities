@@ -26,8 +26,8 @@ from nomad.datamodel.data import (
     EntryData,
 )
 from nomad.datamodel.metainfo.basesections import (
-    Entity,
     ElementalComposition,
+    Entity,
     ProcessStep,
 )
 from nomad.datamodel.metainfo.eln import Chemical
@@ -39,8 +39,8 @@ from nomad.metainfo import (
     Section,
     SubSection,
 )
-from fabrication_facilities.schema_packages.utils import parse_chemical_formula
 
+from fabrication_facilities.schema_packages.utils import parse_chemical_formula
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
@@ -55,8 +55,6 @@ m_package = Package(name='Items plugin')
 
 # In questa parte del plugin non mi piace come si inseriscono le proprietà degli items
 # forse sarebbe il caso di definirle una per una
-from nomad.metainfo import Section, Quantity, SubSection
-import numpy as np
 
 
 class ItemPropertyDefinition(ArchiveSection):
@@ -110,7 +108,7 @@ class StringProperties(ItemPropertyDefinition):
                     'id',
                     'value',
                 ]
-            }
+            },
         },
     )
     value = Quantity(

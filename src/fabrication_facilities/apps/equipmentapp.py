@@ -1,11 +1,11 @@
 from nomad.config.models.ui import (
     App,
+    Axis,
     Column,
     Menu,
     MenuItemCustomQuantities,
-    MenuItemTerms,
     MenuItemHistogram,
-    Axis,
+    MenuItemTerms,
     SearchQuantities,
 )
 

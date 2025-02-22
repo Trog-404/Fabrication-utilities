@@ -1,4 +1,5 @@
 from nomad.config.models.plugins import AppEntryPoint
+
 from fabrication_facilities.apps.equipmentapp import equipmentapp
 from fabrication_facilities.apps.removeapp import processapp
 
