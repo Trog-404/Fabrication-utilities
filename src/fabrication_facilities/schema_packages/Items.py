@@ -70,7 +70,7 @@ class CustomPropertyDefinition(MSection):
     )
 
 
-class ItemPropertyDefinition(MSection):
+class ItemPropertyDefinition(EntryData, MSection):
     m_def = Section(
         a_eln={'properties': {'order': ['name', 'description', 'id', 'unit']}},
         description='Properties of an item.',
