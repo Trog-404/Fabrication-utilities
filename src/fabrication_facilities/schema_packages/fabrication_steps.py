@@ -42,7 +42,6 @@ from fabrication_facilities.schema_packages.equipment import (
     EquipmentReference,
     EquipmentTechnique,
 )
-from fabrication_facilities.schema_packages.Items import SampleParenting
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
@@ -324,10 +323,6 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
     fabricationProductType = Quantity(
         type=ListofProductType,
         a_eln={'component': 'ReferenceEditQuantity'},
-    )
-    items_registration = SubSection(
-        section_def=SampleParenting,
-        repeats=False,
     )
     steps = SubSection(
         section_def=FabricationProcessStep,
