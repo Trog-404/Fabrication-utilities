@@ -4,6 +4,7 @@ from nomad.config.models.ui import (
     Menu,
     MenuItemCustomQuantities,
     MenuItemTerms,
+    MenuItemDefinitions,
     MenuItemHistogram,
     Axis,
     SearchQuantities,
@@ -50,21 +51,22 @@ processapp = App(
                         type='terms',
                         search_quantity=f'data.id_proposal#{dir}',
                     ),
+                    MenuItemDefinitions(title='prova', type='definitions'),
                     #                    MenuItemTerms(
                     #                        title='Product Type',
                     #                        type='terms',
                     #                        search_quantity=f'data.fabricationProductType#{dir}',
                     #                    ),
-                    Menu(
-                        title='Prova',
-                        items=[
-                            MenuItemTerms(
-                                title='date',
-                                type='terms',
-                                search_quantity=f'data.starting_date#{dir}',
-                            )
-                        ],
-                    ),
+                    # Menu(
+                    #    title='Prova',
+                    #    items=[
+                    #        MenuItemTerms(
+                    #            title='date',
+                    #            type='terms',
+                    #            search_quantity=f'data.starting_date#{dir}',
+                    #        )
+                    #    ],
+                    # ),
                 ],
             ),
             Menu(
