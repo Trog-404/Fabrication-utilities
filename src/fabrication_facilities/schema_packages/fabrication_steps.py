@@ -201,14 +201,14 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
                     'locations',
                     'description',
                     'author',
-                    'start_date',
-                    'end_date',
+                    'starting_date',
+                    'ending_date',
                     'fabricationProductType',
                     'comment',
                 ]
             },
             'hide': [
-                'end_date',
+                'end_time',
                 'datetime',
                 'lab_id',
                 'method',
@@ -228,8 +228,9 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
             [
                 'NFFA-DI',
                 'iENTRANCE@ENL',
-            ]
-        )
+            ],
+        ),
+        a_eln={'component': 'EnumEditQuantity'},
     )
     locations = Quantity(
         type=str,
