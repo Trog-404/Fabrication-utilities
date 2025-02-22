@@ -212,6 +212,7 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     id_item_processed = Quantity(
         type=str, shape=['*'], a_eln={'component': 'StringEditQuantity'}
     )
+    location = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     room = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     start_date = Quantity(
         type=Datetime,

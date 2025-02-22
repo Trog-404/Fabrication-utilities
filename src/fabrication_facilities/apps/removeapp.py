@@ -55,10 +55,15 @@ processapp = App(
                         type='terms',
                         search_quantity=f'data.fabricationProductType#{dir}',
                     ),
-                    MenuItemTerms(
-                        title='locations',
-                        type='terms',
-                        search_quantity=f'data.locations#{dir}',
+                    Menu(
+                        title='Prova',
+                        items=[
+                            MenuItemTerms(
+                                title='date',
+                                type='terms',
+                                search_quantity=f'data.starting_date#{dir}',
+                            )
+                        ],
                     ),
                 ],
             ),
