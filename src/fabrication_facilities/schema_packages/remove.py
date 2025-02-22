@@ -66,7 +66,8 @@ class EtchingRIE(FabricationProcessStep, Chemical, ArchiveSection):
                 'datetime',
                 'comment',
                 'duration',
-                'end_date',
+                'end_time',
+                'start_time',
             ],
             'properties': {
                 'order': [
@@ -207,7 +208,7 @@ class EtchingRIE(FabricationProcessStep, Chemical, ArchiveSection):
             self.material_elemental_composition = elementality
 
 
-class WetCleaning(DevelopingStep, ArchiveSection):
+class WetCleaning(FabricationProcessStep, ArchiveSection):
     m_def = Section(
         a_eln={
             'hide': [
@@ -216,6 +217,8 @@ class WetCleaning(DevelopingStep, ArchiveSection):
                 'datetime',
                 'comment',
                 'duration',
+                'end_time',
+                'start_time',
             ],
             'properties': {
                 'order': [
@@ -231,59 +234,62 @@ class WetCleaning(DevelopingStep, ArchiveSection):
                     'step_type',
                     'definition_of_process_step',
                     'recipe_name',
-                    'developing_solution',
-                    'devoloping_solution_proportions',
-                    'developing_duration',
-                    'developing_temperature',
-                    'cleaning_solution',
-                    'cleaning_solution_proportions',
-                    'cleaning_duration',
+                    'removing_solution',
+                    'removing_solution_proportions',
+                    'removing_duration',
+                    'removing_temperature',
+                    'rising_solution',
+                    'rising_solution_proportions',
+                    'rising_duration',
                     'notes',
                 ]
             },
         },
     )
 
-    developing_solution = Quantity(
+    removing_solution = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity', 'label': 'removing_solution'},
+        a_eln={'component': 'StringEditQuantity'},
     )
-    developing_solution_proportions = Quantity(
+    removing_solution_proportions = Quantity(
         type=str,
         a_eln={
             'component': 'StringEditQuantity',
-            'label': 'removing solution proportions',
         },
     )
-    developing_duration = Quantity(
+    removing_duration = Quantity(
         type=np.float64,
         a_eln={
             'component': 'NumberEditQuantity',
             'defaultDisplayUnit': 'sec',
-            'label': 'removing duration',
         },
         unit='sec',
     )
-    cleaning_solution = Quantity(
+    removing_temperature = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'celsius',
+        },
+        unit='celsius',
+    )
+    rising_solution = Quantity(
         type=str,
         a_eln={
             'component': 'StringEditQuantity',
-            'label': 'rising solution',
         },
     )
-    cleaning_solution_proportions = Quantity(
+    rising_solution_proportions = Quantity(
         type=str,
         a_eln={
             'component': 'StringEditQuantity',
-            'label': 'rising solution proportions',
         },
     )
-    cleaning_duration = Quantity(
+    rising_duration = Quantity(
         type=np.float64,
         a_eln={
             'component': 'NumberEditQuantity',
             'defaultDisplayUnit': 'sec',
-            'label': 'rising duration',
         },
         unit='sec',
     )

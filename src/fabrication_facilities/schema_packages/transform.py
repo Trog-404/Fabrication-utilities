@@ -11,10 +11,14 @@ from nomad.metainfo import (
     Package,
     Quantity,
     Section,
+    SubSection,
 )
-
+from nomad.datamodel.metainfo.basesections import ElementalComposition
 from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
+)
+from fabrication_facilities.schema_packages.utils import (
+    parse_chemical_formula,
 )
 
 if TYPE_CHECKING:
@@ -41,15 +45,23 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
                 'datetime',
                 'comment',
                 'duration',
+                'end_time',
+                'start_time',
             ],
             'properties': {
                 'order': [
+                    'job_number',
                     'name',
-                    'job_progressive_id',
-                    'start_time',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
                     'ending_date',
-                    'fabricationProcessStepDefinition',
-                    'fabricationEquipmentRecipeName',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
                     'dose',
                     'writing_field_dimension',
                     'address_size',
@@ -86,7 +98,7 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
         type=np.float64,
         description='Area covered globally in the process',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um*um'},
-        unit='um*um',
+        unit='um^2',
     )
     address_size = Quantity(
         type=np.float64,
@@ -157,6 +169,8 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
                 'datetime',
                 'comment',
                 'duration',
+                'end_time',
+                'start_time',
             ],
             'properties': {
                 'order': [
@@ -285,6 +299,8 @@ class DevelopingStep(FabricationProcessStep, ArchiveSection):
                 'datetime',
                 'comment',
                 'duration',
+                'end_time',
+                'start_time',
             ],
             'properties': {
                 'order': [
@@ -303,6 +319,7 @@ class DevelopingStep(FabricationProcessStep, ArchiveSection):
                     'developing_solution',
                     'devoloping_solution_proportions',
                     'developing_duration',
+                    'developing_temperature',
                     'cleaning_solution',
                     'cleaning_solution_proportions',
                     'cleaning_duration',
@@ -365,7 +382,50 @@ class DevelopingStep(FabricationProcessStep, ArchiveSection):
 
 
 class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
-    target_material = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'short_name',
+                    'chemical_formula',
+                    'temperature_start',
+                    'temperature_final_target',
+                    'oxygen_percentage',
+                    'oxygen_flow',
+                    'temperature_final_measured',
+                    'duration_effective',
+                    'temperature_ramp_up_rate',
+                    'temperature_ramp_down_rate',
+                    'notes',
+                ]
+            },
+        },
+    )
+
+    short_name = Quantity(
+        type=str, a_eln={'component': 'StringEditQuantity', 'label': 'target material'}
+    )
     recipe_name = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     temperature_start = Quantity(
         type=np.float64,
@@ -412,5 +472,30 @@ class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
         unit='celsius/minute',
     )
 
+    material_elemental_composition=SubSection(
+        section_def=ElementalComposition,
+        repeats= True
+    )
+
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
+        if self.chemical_formula:
+            elements, counts = parse_chemical_formula(self.chemical_formula)
+            total = 0
+            for token in counts:
+                total += int(token)
+            if total != 0:
+                elemental_fraction = np.array(counts) / total
+                elementality = []
+                i = 0
+                for entry in elements:
+                    elemental_try = ElementalComposition()
+                    elemental_try.element = entry
+                    elemental_try.atomic_fraction = elemental_fraction[i]
+                    i += 1
+                    elementality.append(elemental_try)
+            else:
+                print('No elements provided')
+            self.material_elemental_composition = elementality
 
 m_package.__init_metainfo__()
