@@ -50,21 +50,21 @@ processapp = App(
                         type='terms',
                         search_quantity=f'data.id_proposal#{dir}',
                     ),
-                    MenuItemTerms(
-                        title='Product Type',
-                        type='terms',
-                        search_quantity=f'data.fabricationProductType#{dir}',
-                    ),
-                    #                    Menu(
-                    #                        title='Prova',
-                    #                        items=[
-                    #                            MenuItemTerms(
-                    #                                title='date',
-                    #                                type='terms',
-                    #                                search_quantity=f'data.starting_date#{dir}',
-                    #                            )
-                    #                        ],
+                    #                    MenuItemTerms(
+                    #                        title='Product Type',
+                    #                        type='terms',
+                    #                        search_quantity=f'data.fabricationProductType#{dir}',
                     #                    ),
+                    Menu(
+                        title='Prova',
+                        items=[
+                            MenuItemTerms(
+                                title='date',
+                                type='terms',
+                                search_quantity=f'data.starting_date#{dir}',
+                            )
+                        ],
+                    ),
                 ],
             ),
             Menu(
