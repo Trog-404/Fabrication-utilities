@@ -48,6 +48,7 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
                 'comment',
                 'duration',
                 'end_time',
+                'start_time',
             ],
             'properties': {
                 'order': [
@@ -196,8 +197,8 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
                 'datetime',
                 'comment',
                 'duration',
-                'start_time',
                 'end_time',
+                'start_time',
             ],
             'properties': {
                 'order': [
@@ -349,7 +350,7 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         description='Velocity of the spinner',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 'revolutions_per_minute',
+            'defaultDisplayUnit': 'revolutions_per_minute',
         },
         unit='revolutions_per_minute',
     )
@@ -358,7 +359,7 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         description='Acceleration of the spinner',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 'revolutions_per_minute/sec',
+            'defaultDisplayUnit': 'revolutions_per_minute/sec',
         },
         unit='revolutions_per_minute/sec',
     )
@@ -367,7 +368,7 @@ class Spin_Coating(FabricationProcessStep, Chemical, ArchiveSection):
         description='Acceleration of the spinner',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 'sec',
+            'defaultDisplayUnit': 'sec',
         },
         unit='sec',
     )

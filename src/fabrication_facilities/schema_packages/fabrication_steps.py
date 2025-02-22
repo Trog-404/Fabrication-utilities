@@ -195,10 +195,11 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
             'properties': {
                 'order': [
                     'name',
-                    'id_proposal',
                     'project',
                     'affiliation',
+                    'id_proposal',
                     'locations',
+                    'cost_model',
                     'description',
                     'author',
                     'starting_date',
@@ -212,6 +213,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
                 'datetime',
                 'lab_id',
                 'method',
+                'location',
             ],
         },
     )
