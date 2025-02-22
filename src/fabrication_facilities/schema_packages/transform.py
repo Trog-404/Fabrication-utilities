@@ -70,14 +70,14 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
                     'chamber_pressure',
                     'chuck_temperature',
                     'tension',
-                    'alignment_required',
+                    'currentalignment_required',
                     'alignment_max_error',
                     'notes',
                 ]
             },
         },
     )
-    fabricationEquipmentRecipeName = Quantity(
+    recipe_name = Quantity(
         type=str,
         description='Name of the file that contains the geometry to impress',
         a_eln={
@@ -194,6 +194,7 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
                     'chamber_pressure',
                     'chuck_temperature',
                     'tension',
+                    'current',
                     'alignment_required',
                     'alignment_max_error',
                     'number_of_loops',
@@ -202,7 +203,7 @@ class FocusedIonBeamLithography(FabricationProcessStep, ArchiveSection):
             },
         },
     )
-    fabricationEquipmentRecipeName = Quantity(
+    recipe_name = Quantity(
         type=str,
         description='Name of the file that contains the geometry to impress',
         a_eln={
@@ -317,7 +318,7 @@ class DevelopingStep(FabricationProcessStep, ArchiveSection):
                     'definition_of_process_step',
                     'recipe_name',
                     'developing_solution',
-                    'devoloping_solution_proportions',
+                    'developing_solution_proportions',
                     'developing_duration',
                     'developing_temperature',
                     'cleaning_solution',
@@ -472,9 +473,8 @@ class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
         unit='celsius/minute',
     )
 
-    material_elemental_composition=SubSection(
-        section_def=ElementalComposition,
-        repeats= True
+    material_elemental_composition = SubSection(
+        section_def=ElementalComposition, repeats=True
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
@@ -497,5 +497,6 @@ class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
             else:
                 print('No elements provided')
             self.material_elemental_composition = elementality
+
 
 m_package.__init_metainfo__()
