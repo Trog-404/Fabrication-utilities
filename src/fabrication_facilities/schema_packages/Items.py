@@ -43,35 +43,80 @@ m_package = Package(name='Items plugin')
 
 # In questa parte del plugin non mi piace come si inseriscono le proprietà degli items
 # forse sarebbe il caso di definirle una per una
-class PropertyTry(EntryData, ArchiveSection):
+from nomad.metainfo import MSection, Section, Quantity, SubSection
+import numpy as np
+
+
+class CustomPropertyDefinition(MSection):
+    m_def = Section(
+        description='Definition of a custom property', label_quantity='property_name'
+    )
+    property_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+        description='Name of the custom property.',
+    )
+    value_min = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity'},
+        unit='mm',  # ad esempio, qui specifichi l'unità
+        description='Minimum value.',
+    )
+    value_max = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity'},
+        unit='mm',
+        description='Maximum value.',
+    )
+
+
+class ItemPropertyDefinition(MSection):
     m_def = Section(
         a_eln={'properties': {'order': ['name', 'description', 'id', 'unit']}},
+        description='Properties of an item.',
     )
-    id = Quantity(type=int, a_eln={'component': 'NumberEditQuantity'})
-    name = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
-    description = Quantity(type=str, a_eln={'component': 'RichTextEditQuantity'})
-    unit = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
-    # Non definiamo "value", ma usiamo una strategia dinamica
+    id = Quantity(
+        type=int,
+        a_eln={'component': 'NumberEditQuantity'},
+        description='Unique identifier.',
+    )
+    name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+        description='Name of the property.',
+    )
+    description = Quantity(
+        type=str,
+        a_eln={'component': 'RichTextEditQuantity'},
+        description='Description of the property.',
+    )
+    unit = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+        description='Unit of the property.',
+    )
+    # Invece di una quantità "value" generica, usiamo una sottosezione per i valori min e max
+    custom = SubSection(section_def=CustomPropertyDefinition, repeats=True)
 
     def normalize(self, archive, logger):
         super().normalize(archive, logger)
-        # Supponiamo che nel dato in arrivo ci sia un campo "value" generico,
-        # che vogliamo suddividere in value_min e value_max in base al nome.
-        if self.name:
-            base_name = self.name.lower()  # ad esempio, "diameter"
-            # Qui implementiamo la logica di divisione
-            # Ad esempio, se self.value (genericamente impostato) contiene una coppia di valori:
-            # [min_value, max_value], creiamo dinamicamente due quantities.
-            if (
-                hasattr(self, 'value')
-                and isinstance(self.value, (list, tuple))
-                and len(self.value) == 2
-            ):
-                min_val, max_val = self.value
-                # Creiamo due quantità derivate o le assegnamo a proprietà della sottosezione
-                setattr(self, f'{base_name}_value_min', min_val)
-                setattr(self, f'{base_name}_value_max', max_val)
-            # Altrimenti, se il dato non è presente, potremmo lasciare queste quantità non definite.
+        # Supponiamo che nei dati in ingresso sia presente "value": [min, max]
+        if (
+            hasattr(self, 'value')
+            and isinstance(self.value, (list, tuple))
+            and len(self.value) == 2
+        ):
+            min_val, max_val = self.value
+            # Creiamo una custom property in base al nome
+            cp = CustomPropertyDefinition(
+                property_name=self.name, value_min=min_val, value_max=max_val
+            )
+            # Assegniamo la sottosezione custom con questo valore
+            self.custom = [cp]
+        else:
+            logger.warn(
+                f"Il campo 'value' per la proprietà {self.name} non è nel formato atteso."
+            )
 
 
 class ItemPropertyDefinition(ArchiveSection):
