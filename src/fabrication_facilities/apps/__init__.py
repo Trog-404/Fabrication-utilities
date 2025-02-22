@@ -14,3 +14,5 @@ process_app_entry_point = AppEntryPoint(
     description='New app for equipment of fabrication facilities.',
     app=processapp,
 )
+
+app_entry_point = equipment_app_entry_point
