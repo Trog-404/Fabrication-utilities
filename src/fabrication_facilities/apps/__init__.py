@@ -80,16 +80,22 @@ app_entry_point = AppEntryPoint(
                             type='terms',
                             search_quantity=f'{cap}.name#{dir}',
                         ),
-                        # MenuItemTerms(
-                        #    title='min value',
-                        #    type='terms',
-                        #    #                            search_quantity=f'{cap}.value_min#{dir}',
-                        # ),
-                        # MenuItemTerms(
-                        #   title='max value',
-                        #  type='terms',
-                        #                            search_quantity=f'{cap}.value_max#{dir}',
-                        # ),
+                        MenuItemHistogram(
+                            title='min value',
+                            x=Axis(
+                                search_quantity=f'{cap}.value_min#{dir}',
+                                title='Min value',
+                            ),
+                            nbins=10,
+                        ),
+                        MenuItemHistogram(
+                            title='max value',
+                            x=Axis(
+                                search_quantity=f'{cap}.value_max#{dir}',
+                                title='Min value',
+                            ),
+                            nbins=10,
+                        ),
                     ],
                 ),
                 Menu(
