@@ -30,7 +30,7 @@ from nomad.datamodel.metainfo.basesections import (
     ElementalComposition,
     ProcessStep,
 )
-from nomad.datamode.metainfo.eln import Chemical
+from nomad.datamodel.metainfo.eln import Chemical
 from nomad.datamodel.metainfo.workflow import Link
 from nomad.metainfo import (
     MEnum,
