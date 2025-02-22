@@ -5,6 +5,8 @@ from nomad.config.models.ui import (
     Menu,
     MenuItemCustomQuantities,
     MenuItemTerms,
+    MenuItemHistogram,
+    Axis,
     SearchQuantities,
 )
 
@@ -104,15 +106,21 @@ app_entry_point = AppEntryPoint(
                             type='terms',
                             search_quantity=f'{itp}.properties.name#{dir}',
                         ),
-                        MenuItemTerms(
+                        MenuItemHistogram(
                             title='min value',
-                            type='terms',
-                            search_quantity=f'{itp}.properties.valuemin#{dir}',
+                            x=Axis(
+                                search_quantity=f'{itp}.properties.value_min#{dir}',
+                                title='Min value',
+                            ),
+                            nbins=10,
                         ),
-                        MenuItemTerms(
+                        MenuItemHistogram(
                             title='max value',
-                            type='terms',
-                            search_quantity=f'{itp}.properties.valuemax#{dir}',
+                            x=Axis(
+                                search_quantity=f'{itp}.properties.value_max#{dir}',
+                                title='Min value',
+                            ),
+                            nbins=10,
                         ),
                     ],
                 ),

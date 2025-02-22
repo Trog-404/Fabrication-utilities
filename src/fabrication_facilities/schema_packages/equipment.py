@@ -351,11 +351,11 @@ class ItemPermittedPropertyDefinition(ItemPropertyDefinition, ArchiveSection):
 
     m_def = Section(a_eln={'hide': ['value']})
 
-    valuemax = Quantity(
+    value_max = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity'},
     )
-    valuemin = Quantity(
+    value_min = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity'},
     )
