@@ -63,8 +63,8 @@ class FabricationProductType(EntryData, ArchiveSection):
         a_eln={'properties': {'order': ['name', 'description', 'id']}},
     )
     id = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     name = Quantity(
         type=str,
@@ -72,7 +72,7 @@ class FabricationProductType(EntryData, ArchiveSection):
     )
     description = Quantity(
         type=str,
-        a_eln={'component': 'StringEditQuantity'},
+        a_eln={'component': 'RichTextEditQuantity'},
     )
 
 
@@ -125,8 +125,8 @@ class FabricationProcessStepDefinition(ArchiveSection):
         },
     )
     id = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     name = Quantity(
         type=str,
@@ -182,11 +182,12 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
                     'job_number',
                     'name',
                     'description',
+                    'location',
                     'operator',
                     'id_items_processed',
                     'room',
-                    'start_date',
-                    'end_date',
+                    'starting_date',
+                    'ending_date',
                     'step_type',
                     'definition_of_process_step',
                     'recipe_name',
@@ -213,11 +214,11 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
     )
     location = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     room = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
-    start_date = Quantity(
+    starting_date = Quantity(
         type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
     )
-    end_date = Quantity(
+    ending_date = Quantity(
         type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
     )

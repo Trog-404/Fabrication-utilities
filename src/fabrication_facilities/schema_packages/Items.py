@@ -78,8 +78,8 @@ class ItemPropertyDefinition(ArchiveSection):
         },
     )
     id = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     name = Quantity(
         type=str,
@@ -100,27 +100,39 @@ class ItemPropertyDefinition(ArchiveSection):
 
 
 class StringProperties(ItemPropertyDefinition):
-    m_def = Section()
-    id = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
-    )
-    name = Quantity(
-        type=str,
-        a_eln={'component': 'StringEditQuantity'},
-    )
-    description = Quantity(
-        type=str,
-        a_eln={'component': 'RichTextEditQuantity'},
+    m_def = Section(
+        a_eln={
+            'hide': ['unit'],
+            'properties': {
+                'order': [
+                    'name',
+                    'description',
+                    'id',
+                    'value',
+                ]
+            }
+        },
     )
     value = Quantity(
-        type=np.float64,
-        a_eln={'component': 'NumberEditQuantity'},
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
 
 
 class NumericProperties(ItemPropertyDefinition):
-    m_def = Section()
+    m_def = Section(
+        a_eln={
+            'properties': {
+                'order': [
+                    'name',
+                    'description',
+                    'id',
+                    'unit',
+                    'value',
+                ]
+            }
+        },
+    )
     id = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
@@ -193,8 +205,8 @@ class ItemShapeType(ArchiveSection):
     )
 
     id = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     name = Quantity(
         type=str,
@@ -232,8 +244,8 @@ class ListOfItemPropertyDefinition(EntryData, ArchiveSection):
         a_eln={'component': 'StringEditQuantity'},
     )
     id = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     list_of_possible_properties = SubSection(
         section_def=ItemPropertyDefinition,
@@ -376,6 +388,10 @@ class SampleParenting(Entity, EntryData, ArchiveSection):
                 ],
             },
         }
+    )
+    id = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     inputs = SubSection(
         section_def=StartingMaterial,
