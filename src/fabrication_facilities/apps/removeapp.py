@@ -14,6 +14,7 @@ schema = [
     '*#fabrication_facilities.schema_packages.fabrication_steps.add.ICP_CVD',
 ]
 dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess'
+dir1 = 'fabrication_facilities.schema_packages.fabrication_steps.add.ICP_CVD'
 step = 'data.steps.step_type'
 ec = 'data.steps.fluximeters.elemental_composition.element'
 mec = 'data.steps.material_elemental_composition.element'
@@ -72,6 +73,22 @@ processapp = App(
                 ],
             ),
             Menu(
+                title='synthesis',
+                items=[
+                    Menu(
+                        title='CVD',
+                        items=[
+                            MenuItemPeriodicTable(
+                                title='Elements of the target material',
+                                type='periodic_table',
+                                width=8,
+                                search_quantity=f'{mec}#{dir1}',
+                            ),
+                        ],
+                    )
+                ],
+            ),
+            Menu(
                 title='User defined quantities',
                 items=[
                     MenuItemCustomQuantities(
@@ -86,20 +103,4 @@ processapp = App(
 #            Menu(
 #                title='Integration',
 #                items=[],
-#            ),
-#            Menu(
-#                title='synthesis',
-#                items=[
-#                    Menu(
-#                        title='CVD',
-#                        items=[
-#                            MenuItemPeriodicTable(
-#                                title='Elements of the target material',
-#                                type='periodic_table',
-#                                width=8,
-#                                search_quantity=f'{mec}#{dir}',
-#                            ),
-#                        ],
-#                    )
-#                ],
 #            ),
