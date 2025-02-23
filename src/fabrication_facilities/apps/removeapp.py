@@ -72,43 +72,43 @@ processapp = App(
                 title='Integration',
                 items=[],
             ),
-            Menu(
-                title='synthesis',
-                items=[
-                    Menu(
-                        title='CVD',
-                        items=[
-                            MenuItemPeriodicTable(
-                                title='Elements of the target material',
-                                type='periodic_table',
-                                width=8,
-                                search_quantity=f'{mec}#{dir}',
-                            ),
-                            MenuItemTerms(
-                                title='Name of the target material',
-                                type='term',
-                                search_quantity=f'data.steps.short_name#{dir}',
-                            ),
-                            MenuItemTerms(
-                                title='Formula of the target material',
-                                type='term',
-                                search_quantity=f'data.steps.chemical_formula#{dir}',
-                            ),
-                            MenuItemPeriodicTable(
-                                title='Elements in the gases employed',
-                                type='periodic_table',
-                                width=8,
-                                search_quantity=f'{ec}#{dir}',
-                            ),
-                            MenuItemTerms(
-                                title='Formulas of the gases employed',
-                                type='term',
-                                search_quantity=f'{flux}.chemical_formula#{dir}',
-                            ),
-                        ],
-                    )
-                ],
-            ),
+            #            Menu(
+            #                title='synthesis',
+            #                items=[
+            #                    Menu(
+            #                        title='CVD',
+            #                        items=[
+            #                            MenuItemPeriodicTable(
+            #                                title='Elements of the target material',
+            #                                type='periodic_table',
+            #                                width=8,
+            #                                search_quantity=f'{mec}#{dir}',
+            #                            ),
+            #                            MenuItemTerms(
+            #                                title='Name of the target material',
+            #                                type='term',
+            #                                search_quantity=f'data.steps.short_name#{dir}',
+            #                            ),
+            #                            MenuItemTerms(
+            #                                title='Formula of the target material',
+            #                                type='term',
+            #                                search_quantity=f'data.steps.chemical_formula#{dir}',
+            #                            ),
+            #                            MenuItemPeriodicTable(
+            #                                title='Elements in the gases employed',
+            #                                type='periodic_table',
+            #                                width=8,
+            #                                search_quantity=f'{ec}#{dir}',
+            #                            ),
+            #                            MenuItemTerms(
+            #                                title='Formulas of the gases employed',
+            #                                type='term',
+            #                                search_quantity=f'{flux}.chemical_formula#{dir}',
+            #                            ),
+            #                        ],
+            #                    )
+            #                ],
+            #            ),
             Menu(
                 title='User defined quantities',
                 items=[
