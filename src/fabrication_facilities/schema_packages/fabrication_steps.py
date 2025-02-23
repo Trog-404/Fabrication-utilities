@@ -124,7 +124,6 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
                     'location',
                     'operator',
                     'room',
-                    'id_item_processed',
                     'starting_date',
                     'ending_date',
                     'step_type',
@@ -148,7 +147,6 @@ class FabricationProcessStep(ProcessStep, ArchiveSection):
         a_eln={'component': 'RichTextEditQuantity'},
     )
     operator = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
-    id_item_processed = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     location = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     room = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     starting_date = Quantity(
@@ -198,14 +196,14 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
                     'project',
                     'affiliation',
                     'id_proposal',
+                    'id_item_processed',
                     'locations',
                     'cost_model',
                     'description',
                     'author',
                     'starting_date',
                     'ending_date',
-                    'generic_product_name'
-                    'fabricationProductType',
+                    'generic_product_namefabricationProductType',
                     'comment',
                 ]
             },
@@ -226,6 +224,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
         type=str,
         a_eln={'component': 'StringEditQuantity'},
     )
+    id_item_processed = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     affiliation = Quantity(
         type=MEnum(
             [
