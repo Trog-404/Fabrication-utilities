@@ -3,29 +3,18 @@ from nomad.config.models.ui import (
     Column,
     Menu,
     MenuItemCustomQuantities,
-    MenuItemPeriodicTable,
     MenuItemTerms,
     SearchQuantities,
 )
 
-schema = [
-    '*#fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess',
-    '*#fabrication_facilities.schema_packages.fabrication_steps.add.SpinCoating',
-    '*#fabrication_facilities.schema_packages.fabrication_steps.add.ICP_CVD',
-]
 dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess'
-dir1 = 'fabrication_facilities.schema_packages.fabrication_steps.add.ICP_CVD'
-step = 'data.steps.step_type'
-ec = 'data.steps.fluximeters.elemental_composition.element'
-mec = 'data.steps.material_elemental_composition.element'
-flux = 'data.steps.fluximeters'
 processapp = App(
     label='Processes',
     path='processesapp',
     category='Fabrication facilities',
     description='App to search fabrication processes.',
     readme=' The findability reach the level of the step.',
-    search_quantities=SearchQuantities(include=schema),
+    search_quantities=SearchQuantities(include=f'*#{dir}'),
     columns=[
         Column(quantity='entry_name', selected=True),
         Column(quantity='entry_type', selected=True),
@@ -57,35 +46,11 @@ processapp = App(
                         type='terms',
                         search_quantity=f'data.generic_product_name#{dir}',
                     ),
-                ],
-            ),
-            Menu(
-                title='Method',
-                items=[
-                    MenuItemTerms(
-                        title='step type', type='terms', search_quantity=f'{step}#{dir}'
-                    ),
                     MenuItemTerms(
                         title='ID item processed',
                         type='terms',
                         search_quantity=f'data.id_item_processed#{dir}',
                     ),
-                ],
-            ),
-            Menu(
-                title='synthesis',
-                items=[
-                    Menu(
-                        title='CVD',
-                        items=[
-                            #                            MenuItemPeriodicTable(
-                            #                                title='Elements of the target material',
-                            #                                type='periodic_table',
-                            #                                width=8,
-                            #                                search_quantity=f'{mec}#{dir1}',
-                            #                            ),
-                        ],
-                    )
                 ],
             ),
             Menu(
@@ -100,7 +65,3 @@ processapp = App(
         ],
     ),
 )
-#            Menu(
-#                title='Integration',
-#                items=[],
-#            ),
