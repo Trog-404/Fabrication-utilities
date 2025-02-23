@@ -10,9 +10,10 @@ from nomad.config.models.ui import (
 
 schema = [
     '*#fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess',
-    #    '*#fabrication_facilities.schema_packages.fabrication_steps.add.SpinCoating',
-    #    '*#fabrication_facilities.schema_packages.fabrication_steps.add.ICP_CVD',
+    '*#fabrication_facilities.schema_packages.fabrication_steps.add.SpinCoating',
+    '*#fabrication_facilities.schema_packages.fabrication_steps.add.ICP_CVD',
 ]
+dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess'
 step = 'data.steps.step_type'
 ec = 'data.steps.fluximeters.elemental_composition.element'
 mec = 'data.steps.material_elemental_composition.element'
