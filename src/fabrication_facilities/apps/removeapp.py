@@ -58,9 +58,9 @@ processapp = App(
             Menu(
                 title='Method',
                 items=[
-                    #                    MenuItemTerms(
-                    #                        title='step type', type='terms', search_quantity=f'{step}#{dir}'
-                    #                    ),
+                    MenuItemTerms(
+                        title='step type', type='terms', search_quantity=f'{step}#{dir}'
+                    ),
                     MenuItemTerms(
                         title='ID item processed',
                         type='terms',
@@ -68,14 +68,14 @@ processapp = App(
                     ),
                 ],
             ),
+            #            Menu(
+            #                title='Integration',
+            #                items=[],
+            #            ),
         ],
     ),
 )
 #                ],
-#            ),
-#            Menu(
-#                title='Integration',
-#                items=[],
 #            ),
 #            Menu(
 #                title='synthesis',
