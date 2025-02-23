@@ -71,26 +71,6 @@ processapp = App(
                     ),
                 ],
             ),
-            #            Menu(
-            #                title='Integration',
-            #                items=[],
-            #            ),
-            Menu(
-                title='synthesis',
-                items=[
-                    Menu(
-                        title='CVD',
-                        items=[
-                            MenuItemPeriodicTable(
-                                title='Elements of the target material',
-                                type='periodic_table',
-                                width=8,
-                                search_quantity=f'{mec}#{dir}',
-                            ),
-                        ],
-                    )
-                ],
-            ),
             Menu(
                 title='User defined quantities',
                 items=[
@@ -103,3 +83,23 @@ processapp = App(
         ],
     ),
 )
+#            Menu(
+#                title='Integration',
+#                items=[],
+#            ),
+#            Menu(
+#                title='synthesis',
+#                items=[
+#                    Menu(
+#                        title='CVD',
+#                        items=[
+#                            MenuItemPeriodicTable(
+#                                title='Elements of the target material',
+#                                type='periodic_table',
+#                                width=8,
+#                                search_quantity=f'{mec}#{dir}',
+#                            ),
+#                        ],
+#                    )
+#                ],
+#            ),
