@@ -55,19 +55,19 @@ processapp = App(
                     ),
                 ],
             ),
-            #            Menu(
-            #                title='Method',
-            #                items=[
-            #                    MenuItemTerms(
-            #                        title='step type', type='terms', search_quantity=f'{step}#{dir}'
-            #                    ),
-            #                    MenuItemTerms(
-            #                        title='ID item processed',
-            #                        type='terms',
-            #                        search_quantity=f'data.id_item_processed#{dir}',
-            #                    ),
-            #                ],
-            #            ),
+            Menu(
+                title='Method',
+                items=[
+                    #                    MenuItemTerms(
+                    #                        title='step type', type='terms', search_quantity=f'{step}#{dir}'
+                    #                    ),
+                    MenuItemTerms(
+                        title='ID item processed',
+                        type='terms',
+                        search_quantity=f'data.id_item_processed#{dir}',
+                    ),
+                ],
+            ),
         ],
     ),
 )
