@@ -8,10 +8,11 @@ from nomad.config.models.ui import (
     SearchQuantities,
 )
 
-dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess'
-dir1 = 'fabrication_facilities.schema_packages.fabrication_steps.add'
-dir2 = 'fabrication_facilities.schema_packages.fabrication_steps.transform'
-dir3 = 'fabrication_facilities.schema_packages.fabrication_steps.remove'
+schema = [
+    '*#fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess',
+    '*#fabrication_facilities.schema_packages.fabrication_steps.add.SpinCoating',
+    '*#fabrication_facilities.schema_packages.fabrication_steps.add.ICP_CVD',
+]
 step = 'data.steps.step_type'
 ec = 'data.steps.fluximeters.elemental_composition.element'
 mec = 'data.steps.material_elemental_composition.element'
@@ -23,7 +24,7 @@ processapp = App(
     description='App to search fabrication processes.',
     readme=' The findability reach the level of the step.',
     search_quantities=SearchQuantities(
-        include=[f'*#{dir}', f'*#{dir1}', f'*#{dir2}', f'*#{dir3}'],
+        include=schema,
     ),
     columns=[
         Column(quantity='entry_name', selected=True),
