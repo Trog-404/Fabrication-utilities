@@ -162,7 +162,7 @@ class ICP_CVD(FabricationProcessStep, Chemical, ArchiveSection):
         section_def=Massflow_controller,
         repeats=True,
     )
-    material_elemental_compositon = SubSection(
+    material_elemental_composition = SubSection(
         section_def=ElementalComposition, repeats=True
     )
 

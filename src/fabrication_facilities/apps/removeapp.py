@@ -9,6 +9,9 @@ from nomad.config.models.ui import (
 )
 
 dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess'
+dir1 = 'fabrication_facilities.schema_packages.fabrication_steps.add'
+dir2 = 'fabrication_facilities.schema_packages.fabrication_steps.transform'
+dir3 = 'fabrication_facilities.schema_packages.fabrication_steps.remove'
 step = 'data.steps.step_type'
 ec = 'data.steps.fluximeters.elemental_composition.element'
 mec = 'data.steps.material_elemental_composition.element'
@@ -20,7 +23,7 @@ processapp = App(
     description='App to search fabrication processes.',
     readme=' The findability reach the level of the step.',
     search_quantities=SearchQuantities(
-        include=[f'*#{dir}'],
+        include=[f'*#{dir}', f'*#{dir1}', f'*#{dir2}', f'*#{dir3}'],
     ),
     columns=[
         Column(quantity='entry_name', selected=True),
@@ -84,27 +87,6 @@ processapp = App(
                                 width=8,
                                 search_quantity=f'{mec}#{dir}',
                             ),
-                            MenuItemTerms(
-                                title='Name of the target material',
-                                type='term',
-                                search_quantity=f'data.steps.short_name#{dir}',
-                            ),
-                            MenuItemTerms(
-                                title='Formula of the target material',
-                                type='term',
-                                search_quantity=f'data.steps.chemical_formula#{dir}',
-                            ),
-                            MenuItemPeriodicTable(
-                                title='Elements in the gases employed',
-                                type='periodic_table',
-                                width=8,
-                                search_quantity=f'{ec}#{dir}',
-                            ),
-                            MenuItemTerms(
-                                title='Formulas of the gases employed',
-                                type='term',
-                                search_quantity=f'{flux}.chemical_formula#{dir}',
-                            ),
                         ],
                     )
                 ],
@@ -121,8 +103,3 @@ processapp = App(
         ],
     ),
 )
-#                ],
-#            ),
-#        ],
-#    ),
-# )
