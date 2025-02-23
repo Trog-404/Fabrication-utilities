@@ -12,6 +12,7 @@ from nomad.config.models.ui import (
 dir = 'fabrication_facilities.schema_packages.equipment.Equipment'
 Mainstr = 'data.equipmentTechniques.techniqueMainCategory'
 Substr = 'data.equipmentTechniques.techniqueSubCategory'
+gen = 'data.equipmentTechniques.genericEquipmentName'
 cap = 'data.capabilities'
 itp = 'data.permittedItems'
 
@@ -41,6 +42,11 @@ equipmentapp = App(
                 indentation=0,
                 items=[
                     MenuItemTerms(
+                        title='Affiliation',
+                        type='terms',
+                        search_quantity=f'data.affiliation#{dir}',
+                    ),
+                    MenuItemTerms(
                         title='Institution',
                         type='terms',
                         search_quantity=f'data.institution#{dir}',
@@ -56,6 +62,11 @@ equipmentapp = App(
                 title='Techniques',
                 indentation=0,
                 items=[
+                    MenuItemTerms(
+                        title='Equipment class',
+                        type='terms',
+                        search_quantity=f'{gen}#{dir}',
+                    ),
                     MenuItemTerms(
                         title='MainTechnique',
                         type='terms',

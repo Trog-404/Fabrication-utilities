@@ -458,6 +458,7 @@ class Equipment(Instrument, EntryData, ArchiveSection):
                 'order': [
                     'name',
                     'inventary_code',
+                    'affiliation',
                     'product_model',
                     'institution',
                     'manufacturer',
@@ -471,6 +472,10 @@ class Equipment(Instrument, EntryData, ArchiveSection):
     inventary_code = Quantity(
         type=int,
         a_eln={'component': 'NumberEditQuantity'},
+    )
+    affiliation = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     institution = Quantity(
         type=str,

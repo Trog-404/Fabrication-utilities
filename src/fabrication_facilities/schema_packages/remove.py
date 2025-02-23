@@ -36,7 +36,6 @@ from nomad.metainfo import (
 from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
 )
-from fabrication_facilities.schema_packages.transform import DevelopingStep
 from fabrication_facilities.schema_packages.utils import (
     Massflow_controller,
     parse_chemical_formula,
