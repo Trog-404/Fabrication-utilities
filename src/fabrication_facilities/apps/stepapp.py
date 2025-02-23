@@ -14,7 +14,7 @@ stepapp = App(
     category='Fabrication facilities',
     description='App to search fabrication processes.',
     readme=' The findability reach the level of the step.',
-    search_quantities=SearchQuantities(include=f'*#{dir}'),
+    search_quantities=SearchQuantities(include=[f'*#{dir}']),
     columns=[
         Column(quantity='entry_name', selected=True),
         Column(quantity='entry_type', selected=True),
