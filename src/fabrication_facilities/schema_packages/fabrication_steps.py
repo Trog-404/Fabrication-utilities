@@ -204,6 +204,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
                     'author',
                     'starting_date',
                     'ending_date',
+                    'generic_product_name'
                     'fabricationProductType',
                     'comment',
                 ]
@@ -260,6 +261,10 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
     comment = Quantity(
         type=str,
         a_eln={'component': 'RichTextEditQuantity', 'label': 'notes'},
+    )
+    generic_product_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     fabricationProductType = Quantity(
         type=ListofProductType,
