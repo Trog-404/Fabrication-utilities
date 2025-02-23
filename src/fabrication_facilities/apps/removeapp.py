@@ -78,12 +78,12 @@ processapp = App(
                     Menu(
                         title='CVD',
                         items=[
-                            MenuItemPeriodicTable(
-                                title='Elements of the target material',
-                                type='periodic_table',
-                                width=8,
-                                search_quantity=f'{mec}#{dir1}',
-                            ),
+                            #                            MenuItemPeriodicTable(
+                            #                                title='Elements of the target material',
+                            #                                type='periodic_table',
+                            #                                width=8,
+                            #                                search_quantity=f'{mec}#{dir1}',
+                            #                            ),
                         ],
                     )
                 ],
