@@ -10,7 +10,7 @@ from nomad.config.models.ui import (
 dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcessStep'
 stepapp = App(
     label='Fabrcation steps',
-    path='processesapp',
+    path='stepapp',
     category='Fabrication facilities',
     description='App to search fabrication processes.',
     readme=' The findability reach the level of the step.',
