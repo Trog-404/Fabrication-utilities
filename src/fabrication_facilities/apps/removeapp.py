@@ -48,29 +48,29 @@ processapp = App(
                         type='terms',
                         search_quantity=f'data.id_proposal#{dir}',
                     ),
+                    MenuItemTerms(
+                        title='Product Type',
+                        type='terms',
+                        search_quantity=f'data.generic_product_name#{dir}',
+                    ),
                 ],
             ),
+            #            Menu(
+            #                title='Method',
+            #                items=[
+            #                    MenuItemTerms(
+            #                        title='step type', type='terms', search_quantity=f'{step}#{dir}'
+            #                    ),
+            #                    MenuItemTerms(
+            #                        title='ID item processed',
+            #                        type='terms',
+            #                        search_quantity=f'data.id_item_processed#{dir}',
+            #                    ),
+            #                ],
+            #            ),
         ],
     ),
 )
-#                    MenuItemTerms(
-#                        title='Product Type',
-#                        type='terms',
-#                        search_quantity=f'data.generic_product_name#{dir}',
-#                    ),
-#                ],
-#            ),
-#            Menu(
-#                title='Method',
-#                items=[
-#                    MenuItemTerms(
-#                        title='step type', type='terms', search_quantity=f'{step}#{dir}'
-#                    ),
-#                    MenuItemTerms(
-#                        title='ID item processed',
-#                        type='terms',
-#                        search_quantity=f'data.id_item_processed#{dir}',
-#                    ),
 #                ],
 #            ),
 #            Menu(
