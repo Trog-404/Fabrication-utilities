@@ -33,7 +33,7 @@ from nomad.metainfo import (
     SubSection,
 )
 
-from fabrication_facilities.schema_packages.fabrication_steps import (
+from fabrication_facilities.schema_packages.fabrication_utilities import (
     FabricationProcessStep,
 )
 from fabrication_facilities.schema_packages.utils import (

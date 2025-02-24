@@ -7,7 +7,7 @@ from nomad.config.models.ui import (
     SearchQuantities,
 )
 
-dir = 'fabrication_facilities.schema_packages.equipment.Equipment'
+dir = 'fabrication_facilities.schema_packages.fabrication_utilities.Equipment'
 Mainstr = 'data.equipmentTechniques.techniqueMainCategory'
 Substr = 'data.equipmentTechniques.techniqueSubCategory'
 gen = 'data.equipmentTechniques.genericEquipmentName'
@@ -24,7 +24,7 @@ equipmentapp = App(
     instrument's location is findable.
     """,
     search_quantities=SearchQuantities(
-        include=['*#fabrication_facilities.schema_packages.equipment.Equipment'],
+        include=[f'*#{dir}'],
     ),
     columns=[
         Column(quantity='entry_name', selected=True),
