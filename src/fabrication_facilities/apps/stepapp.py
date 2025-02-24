@@ -29,7 +29,7 @@ stepapp = App(
         ),
         Column(quantity='upload_create_time', selected=True),
     ],
-    #    filters_locked={'section_defs.definition_qualified_name': dir},
+    filters_locked={'section_defs.definition_qualified_name': dir},
     menu=Menu(
         items=[
             MenuItemTerms(
