@@ -9,7 +9,7 @@ from nomad.config.models.ui import (
 
 dir = 'fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep'
 schemas = [
-    '*#fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep'
+    '*#fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep',
     '*#fabrication_facilities.schema_packages.add.ICP_CVD',
     '*#fabrication_facilities.schema_packages.add.Spin_Coating',
 ]
