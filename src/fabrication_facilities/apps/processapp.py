@@ -57,16 +57,16 @@ processapp = App(
             Menu(
                 title='synthesis',
                 items=[
-                    #                    Menu(
-                    #                        title='Filters for ICP_CVD processes',
-                    #                        items=[
-                    #                            MenuItemTerms(
-                    #                                title='formula',
-                    #                                type='terms',
-                    #                                search_quantity=f"data.steps[?step_type=='ICP_CVD'].chemical_formula#{dir}",
-                    #                            )
-                    #                        ],
-                    #                    )
+                    Menu(
+                        title='Filters for ICP_CVD processes',
+                        items=[
+                            MenuItemTerms(
+                                title='formula',
+                                type='terms',
+                                search_quantity=f"data.steps['section_defs.definition_qualified_name': dir1].chemical_formula#{dir}",
+                            )
+                        ],
+                    )
                 ],
             ),
             Menu(
