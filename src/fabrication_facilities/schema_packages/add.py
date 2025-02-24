@@ -86,7 +86,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
         type=np.float64,
         description='Total material deposited as described in the recipe',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
-        unit='um',
+        unit='nm',
     )
     duration_from_recipe = Quantity(
         type=np.float64,
@@ -98,7 +98,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
         type=np.float64,
         description='Deposition rate provided in the recipe',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
-        unit='um/minute',
+        unit='nm/minute',
     )
     short_name = Quantity(
         type=str,
@@ -114,7 +114,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
         type=np.float64,
         description='Amount of material to be deposited',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
-        unit='um',
+        unit='nm',
     )
     chamber_pressure = Quantity(
         type=np.float64,
@@ -144,7 +144,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
         type=np.float64,
         description='Amount of material deposited efefctively in the process',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
-        unit='um',
+        unit='nm',
     )
     duration_effective = Quantity(
         type=np.float64,
@@ -156,7 +156,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
         type=np.float64,
         description='Deposition rate as output',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
-        unit='um/minute',
+        unit='nm/minute',
     )
     fluximeters = SubSection(
         section_def=Massflow_controller,
@@ -432,6 +432,7 @@ class Spin_Coating(Chemical, FabricationProcessStep, ArchiveSection):
                 print('No elements provided')
             self.resist_elemental_composition = elementality
 
+
 class Bonding(FabricationProcessStep, ArchiveSection):
     m_def = Section(
         a_eln={
@@ -485,10 +486,7 @@ class Bonding(FabricationProcessStep, ArchiveSection):
     )
     alignment_max_error = Quantity(
         type=np.float64,
-        a_eln={
-            'component': 'NumberEditQuantity',
-            'defaultDisplayUnit': 'um'
-        },
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
         unit='um',
     )
     wafer_stack_1_name = Quantity(
@@ -517,5 +515,6 @@ class Bonding(FabricationProcessStep, ArchiveSection):
         type=str,
         a_eln={'component': 'StringEditQuantity'},
     )
+
 
 m_package.__init_metainfo__()

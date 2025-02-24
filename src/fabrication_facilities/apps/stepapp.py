@@ -90,24 +90,33 @@ stepapp = App(
                                     title='thickness (nm)',
                                 ),
                             ),
-                            #                          MenuItemHistogram(
-                            #                               title='Chuck temperature',
-                            #                                type='histogram',
-                            #                                n_bins=10,
-                            #                                search_quantity=f'data.chuck_temperature#{dir1}',
-                            #                            ),
-                            #                            MenuItemHistogram(
-                            #                                title='Bias',
-                            #                                type='histogram',
-                            #                                n_bins=10,
-                            #                                search_quantity=f'data.bias#{dir1}',
-                            #                            ),
-                            #                            MenuItemHistogram(
-                            #                                title='Chamber pressure',
-                            #                                type='histogram',
-                            #                                n_bins=10,
-                            #                                search_quantity=f'data.chamber_pressure#{dir1}',
-                            #                            ),
+                            MenuItemHistogram(
+                                title='Chuck temperature',
+                                type='histogram',
+                                n_bins=10,
+                                x=Axis(
+                                    search_quantity=f'data.chuck_temperature#{dir1}',
+                                    title='chuck_temperature (°C)',
+                                ),
+                            ),
+                            MenuItemHistogram(
+                                title='Bias',
+                                type='histogram',
+                                n_bins=10,
+                                x=Axis(
+                                    search_quantity=f'data.bias#{dir1}',
+                                    title='bias (V)',
+                                ),
+                            ),
+                            MenuItemHistogram(
+                                title='Chamber pressure',
+                                type='histogram',
+                                n_bins=10,
+                                x=Axis(
+                                    search_quantity=f'data.chamber_pressure#{dir1}',
+                                    title='chamber_pressure (mbar)',
+                                ),
+                            ),
                         ],
                     ),
                 ],
