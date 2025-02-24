@@ -20,7 +20,8 @@ equipmentapp = App(
     readme="""
     This app allows to navigate through the equipments and techniques available in a
     clean room system. You can search the techniques available and than the availability
-    of each instrument that has that technique included and the instrument's location
+    of each instrument that has the desired technique included. At the end also the
+    instrument's location is findable.
     """,
     search_quantities=SearchQuantities(
         include=['*#fabrication_facilities.schema_packages.equipment.Equipment'],

@@ -8,13 +8,17 @@ from nomad.config.models.ui import (
 )
 
 dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcessStep'
+schemas = [
+    '*#fabrication_facilities.schema_packages.add.ICP_CVD',
+    '*#fabrication_facilities.schema_packages.add.Spin_Coating',
+]
 stepapp = App(
     label='Fabrcation steps',
     path='stepapp',
     category='Fabrication facilities',
     description='App to search fabrication processes.',
     readme=' The findability reach the level of the step.',
-    search_quantities=SearchQuantities(include=[f'*#{dir}']),
+    search_quantities=SearchQuantities(include=schemas),
     columns=[
         Column(quantity='entry_name', selected=True),
         Column(quantity='entry_type', selected=True),
