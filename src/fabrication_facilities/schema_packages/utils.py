@@ -15,7 +15,7 @@ from nomad.metainfo import (
     Section,
     SubSection,
 )
-from fabrication_facilities.schema_packages.fabrication_steps import (
+from fabrication_facilities.schema_packages.fabrication import (
     FabricationProcessStep,
 )
 
