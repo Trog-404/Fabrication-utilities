@@ -8,6 +8,7 @@ from nomad.config.models.ui import (
 )
 
 dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcess'
+dir1 = 'fabrication_facilities.schema_packages.add.ICP_CVD'
 processapp = App(
     label='Processes',
     path='processesapp',
@@ -51,6 +52,21 @@ processapp = App(
                         type='terms',
                         search_quantity=f'data.id_item_processed#{dir}',
                     ),
+                ],
+            ),
+            Menu(
+                title='synthesis',
+                items=[
+                    Menu(
+                        title='Filters for ICP_CVD processes',
+                        items=[
+                            MenuItemTerms(
+                                title='formula',
+                                type='terms',
+                                search_quantity=f'data.chemical_formula#{dir1}',
+                            )
+                        ],
+                    )
                 ],
             ),
             Menu(
