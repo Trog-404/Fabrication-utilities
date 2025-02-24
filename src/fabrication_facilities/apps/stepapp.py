@@ -100,7 +100,7 @@ stepapp = App(
                             ),
                             MenuItemHistogram(
                                 title='Chamber pressure',
-                                type='histrogram',
+                                type='histogram',
                                 n_bins=10,
                                 search_quantity=f'data.chamber_pressure#{dir1}',
                             ),
