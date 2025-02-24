@@ -35,7 +35,6 @@ stepapp = App(
     ],
     filters_locked={'section_defs.definition_qualified_name': dir},
     menu=Menu(
-        size='l',
         items=[
             Menu(
                 title='General informations',
@@ -59,7 +58,7 @@ stepapp = App(
                 items=[
                     Menu(
                         title='Integration',
-                        size='l',
+                        size='xl',
                         items=[],
                     ),
                     Menu(
@@ -87,7 +86,8 @@ stepapp = App(
                                 n_bins=10,
                                 x=Axis(
                                     search_quantity=f'data.thickness_target#{dir1}',
-                                    title='thickness (nm)',
+                                    title='thickness',
+                                    unit='nm',
                                 ),
                             ),
                             MenuItemHistogram(
@@ -96,7 +96,8 @@ stepapp = App(
                                 n_bins=10,
                                 x=Axis(
                                     search_quantity=f'data.chuck_temperature#{dir1}',
-                                    title='chuck_temperature (°C)',
+                                    title='chuck_temperature',
+                                    unit='celsius',
                                 ),
                             ),
                             MenuItemHistogram(
@@ -105,7 +106,8 @@ stepapp = App(
                                 n_bins=10,
                                 x=Axis(
                                     search_quantity=f'data.bias#{dir1}',
-                                    title='bias (V)',
+                                    title='bias',
+                                    unit='volt',
                                 ),
                             ),
                             MenuItemHistogram(
@@ -114,7 +116,18 @@ stepapp = App(
                                 n_bins=10,
                                 x=Axis(
                                     search_quantity=f'data.chamber_pressure#{dir1}',
-                                    title='chamber_pressure (mbar)',
+                                    title='chamber_pressure',
+                                    unit='mbar',
+                                ),
+                            ),
+                            MenuItemHistogram(
+                                title='Power',
+                                type='histogram',
+                                n_bins=10,
+                                x=Axis(
+                                    search_quantity=f'data.power#{dir1}',
+                                    title='chamber_pressure',
+                                    unit='watt',
                                 ),
                             ),
                         ],

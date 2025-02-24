@@ -85,7 +85,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
     thickness_from_recipe = Quantity(
         type=np.float64,
         description='Total material deposited as described in the recipe',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
         unit='nm',
     )
     duration_from_recipe = Quantity(
@@ -97,7 +97,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
     deposition_rate_from_recipe = Quantity(
         type=np.float64,
         description='Deposition rate provided in the recipe',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm/minute'},
         unit='nm/minute',
     )
     short_name = Quantity(
@@ -113,7 +113,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
     thickness_target = Quantity(
         type=np.float64,
         description='Amount of material to be deposited',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
         unit='nm',
     )
     chamber_pressure = Quantity(
@@ -143,7 +143,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
     thickness_obtained = Quantity(
         type=np.float64,
         description='Amount of material deposited efefctively in the process',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
         unit='nm',
     )
     duration_effective = Quantity(
