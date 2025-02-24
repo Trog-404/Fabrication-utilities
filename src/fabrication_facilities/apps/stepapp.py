@@ -9,11 +9,12 @@ from nomad.config.models.ui import (
 
 dir = 'fabrication_facilities.schema_packages.fabrication_steps.FabricationProcessStep'
 schemas = [
+    '*#fabrication_facilities.schema_packages.fabrication_steps.FabricationProcessStep'
     '*#fabrication_facilities.schema_packages.add.ICP_CVD',
     '*#fabrication_facilities.schema_packages.add.Spin_Coating',
 ]
 stepapp = App(
-    label='Fabrcation steps',
+    label='Fabrication steps',
     path='stepapp',
     category='Fabrication facilities',
     description='App to search fabrication processes.',
@@ -32,7 +33,7 @@ stepapp = App(
     menu=Menu(
         items=[
             Menu(
-                title='General inforamtions',
+                title='General informations',
                 indentation=0,
                 items=[
                     MenuItemTerms(
