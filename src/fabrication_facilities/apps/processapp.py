@@ -63,7 +63,7 @@ processapp = App(
                             MenuItemTerms(
                                 title='formula',
                                 type='terms',
-                                search_quantity=f"data.steps['section_defs.definition_qualified_name': dir1].chemical_formula#{dir}",
+                                search_quantity=f'data.steps[?m_def == {dir1}].chemical_formula#{dir}',
                             )
                         ],
                     )
