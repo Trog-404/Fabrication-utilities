@@ -35,7 +35,7 @@ stepapp = App(
     ],
     filters_locked={'section_defs.definition_qualified_name': dir},
     menu=Menu(
-        size='m',
+        size='l',
         items=[
             Menu(
                 title='General informations',
@@ -64,7 +64,7 @@ stepapp = App(
                     ),
                     Menu(
                         title='Sinthesys',
-                        size='l',
+                        size='xl',
                         items=[
                             MenuItemTerms(
                                 title='Name of the recipe',
