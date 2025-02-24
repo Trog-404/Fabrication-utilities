@@ -34,6 +34,7 @@ stepapp = App(
     ],
     filters_locked={'section_defs.definition_qualified_name': dir},
     menu=Menu(
+        size='m',
         items=[
             Menu(
                 title='General informations',
@@ -57,10 +58,12 @@ stepapp = App(
                 items=[
                     Menu(
                         title='Integration',
+                        width='l',
                         items=[],
                     ),
                     Menu(
                         title='Sinthesys',
+                        width='l',
                         items=[
                             MenuItemTerms(
                                 title='Name of the recipe',
@@ -79,22 +82,22 @@ stepapp = App(
                             ),
                             MenuItemHistogram(
                                 title='Desired thickness',
-                                type='periodic_table',
+                                type='histogram',
                                 search_quantity=f'data.thickness_target#{dir1}',
                             ),
                             MenuItemHistogram(
                                 title='Chuck temperature',
-                                type='periodic_table',
+                                type='histogram',
                                 search_quantity=f'data.chuck_temperature#{dir1}',
                             ),
                             MenuItemHistogram(
                                 title='Bias',
-                                type='periodic_table',
+                                type='histogram',
                                 search_quantity=f'data.bias#{dir1}',
                             ),
                             MenuItemHistogram(
                                 title='Chamber pressure',
-                                type='periodic_table',
+                                type='histrogram',
                                 search_quantity=f'data.chamber_pressure#{dir1}',
                             ),
                         ],
