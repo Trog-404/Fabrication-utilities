@@ -266,7 +266,7 @@ class FabricationProcess(Process, EntryData, ArchiveSection):
         a_eln={'component': 'StringEditQuantity'},
     )
     fabricationProductType = Quantity(
-        type=ListofProductType,
+        type=FabricationProductType,
         a_eln={'component': 'ReferenceEditQuantity'},
     )
     steps = SubSection(

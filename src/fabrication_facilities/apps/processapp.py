@@ -34,7 +34,7 @@ processapp = App(
             selected=True,
         ),
         Column(
-            quantity=f'data.id_processed_item#{dir}',
+            quantity=f'data.id_item_processed#{dir}',
             selected=True,
         ),
         Column(quantity='upload_create_time', selected=True),
