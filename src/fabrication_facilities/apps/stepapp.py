@@ -32,21 +32,10 @@ stepapp = App(
     #    filters_locked={'section_defs.definition_qualified_name': dir},
     menu=Menu(
         items=[
-            Menu(
-                title='General informations',
-                indentation=0,
-                items=[
-                    MenuItemTerms(
-                        title='Lab location',
-                        type='terms',
-                        search_quantity=f'data.location#{dir}',
-                    ),
-                    #                    MenuItemTerms(
-                    #                        title='Step type',
-                    #                        type='terms',
-                    #                        search_quantity=f'data.step_type#{dir}',
-                    #                    ),
-                ],
+            MenuItemTerms(
+                title='Lab location',
+                type='terms',
+                search_quantity=f'data.location#{dir}',
             ),
             Menu(
                 title='User defined quantities',
@@ -60,3 +49,17 @@ stepapp = App(
         ],
     ),
 )
+#            Menu(
+#                title='General informations',
+#                indentation=0,
+#                items=[
+#                    MenuItemTerms(
+#                        title='Step type',
+#                        type='terms',
+#                        search_quantity=f'data.step_type#{dir}',
+#                    ),
+#                ],
+#            ),
+#        ],
+#    ),
+# )
