@@ -8,6 +8,7 @@ from nomad.config.models.ui import (
 )
 
 dir = 'fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep'
+dir1 = 'fabrication_facilities.schema_packages.add.ICP_CVD'
 schemas = [
     '*#fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep',
     '*#fabrication_facilities.schema_packages.add.ICP_CVD',
@@ -45,6 +46,26 @@ stepapp = App(
                         title='Step type',
                         type='terms',
                         search_quantity=f'data.step_type#{dir}',
+                    ),
+                ],
+            ),
+            Menu(
+                title='Add processes',
+                indentation=0,
+                items=[
+                    Menu(
+                        title='Integration',
+                        items=[],
+                    ),
+                    Menu(
+                        title='Sinthesys',
+                        items=[
+                            MenuItemTerms(
+                                title='Name of the recipe',
+                                type='terms',
+                                search_quantity=f'data.recipe_name#{dir1}',
+                            ),
+                        ],
                     ),
                 ],
             ),
