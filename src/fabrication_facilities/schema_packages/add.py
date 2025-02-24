@@ -74,8 +74,8 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
                     'chuck_temperature',
                     'power',
                     'bias',
-                    'thickness_obtained',
-                    'duration_effective',
+                    'thickness_measured',
+                    'duration_measured',
                     'deposition_rate_obtained',
                     'notes',
                 ]

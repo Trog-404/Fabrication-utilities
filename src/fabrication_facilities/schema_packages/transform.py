@@ -499,5 +499,122 @@ class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
                 print('No elements provided')
             self.material_elemental_composition = elementality
 
+class Dicing(FabricationProcessStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'dicing_blade_name',
+                    'dicing_depth',
+                    'dicing_protective_film_required',
+                    'dicing_program_name',
+                    'dicing_spindle_speed',
+                    'dicing_feed_rate',
+                    'dicing_depth_step_1',
+                    'dicing_depth_step_2',
+                    'dicing_depth_step_3',
+                    'dicing_edge_chipping_measured',
+                    'notes',
+                ]
+            },
+        },
+    )
+    dicing_blade_name = Quantity(
+        type=str,
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
+    )
+    dicing_depth = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'um',
+        },
+        unit='um',
+    )
+    dicing_protective_film_required = Quantity(
+        type=bool,
+        a_eln={
+            'label': 'Protective film',
+            'component': 'BoolEditQuantity',
+        },
+    )
+    dicing_program_name = Quantity(
+        type=str,
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
+    )
+    dicing_spindle_speed = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'rpm',
+        },
+        unit='rpm',
+    )
+    dicing_feed_rate = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'mm/s',
+        },
+        unit='mm/s',
+    )
+    dicing_depth_step_1 = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'um',
+        },
+        unit='um',
+    )
+    dicing_depth_step_2 = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'um',
+        },
+        unit='um',
+    )
+    dicing_depth_step_3 = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'um',
+        },
+        unit='um',
+    )
+    dicing_edge_chipping_measured = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'um',
+        },
+        unit='um',
+    )
+
 
 m_package.__init_metainfo__()

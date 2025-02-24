@@ -136,6 +136,7 @@ class FabricationProcessStep(ProcessStep, EntryData, ArchiveSection):
     )
     job_number = Quantity(
         type=int,
+        description = "Log number from the machine"
         a_eln={'component': 'NumberEditQuantity'},
     )
     name = Quantity(

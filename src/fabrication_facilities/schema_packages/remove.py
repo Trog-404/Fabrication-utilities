@@ -82,42 +82,42 @@ class EtchingRIE(Chemical, FabricationProcessStep, ArchiveSection):
                     'step_type',
                     'definition_of_process_step',
                     'recipe_name',
-                    'depth_from_recipe',
-                    'duration_from_recipe',
-                    'etching_rate_from_recipe',
+                    # 'depth_from_recipe',
+                    # 'etching_rate_from_recipe',
                     'short_name',
                     'chemical_formula',
                     'depth_target',
+                    'duration_target',
                     'chamber_pressure',
                     'chuck_temperature',
                     'power',
                     'bias',
-                    'depth_obtained',
-                    'duration_effective',
+                    'depth_measured',
+                    'duration_measured',
                     'etching_rate_obtained',
                     'notes',
                 ]
             },
         },
     )
-    depth_from_recipe = Quantity(
-        type=np.float64,
-        description='Amount of material etched as described in the recipe',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
-        unit='um',
-    )
-    duration_from_recipe = Quantity(
+    # depth_from_recipe = Quantity(
+    #     type=np.float64,
+    #     description='Amount of material etched as described in the recipe',
+    #     a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
+    #     unit='um',
+    # )
+    duration_target = Quantity(
         type=np.float64,
         description='Time prescribed by the recipe',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
         unit='minute',
     )
-    etching_rate_from_recipe = Quantity(
-        type=np.float64,
-        description='Etching rate provided in the recipe',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
-        unit='um/minute',
-    )
+    # etching_rate_from_recipe = Quantity(
+    #     type=np.float64,
+    #     description='Etching rate provided in the recipe',
+    #     a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
+    #     unit='um/minute',
+    # )
     short_name = Quantity(
         type=str,
         description='Material to be etched',
@@ -158,13 +158,13 @@ class EtchingRIE(Chemical, FabricationProcessStep, ArchiveSection):
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'volt'},
         unit='volt',
     )
-    depth_obtained = Quantity(
+    depth_measured = Quantity(
         type=np.float64,
         description='Amount of material ethced effectively in the process',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
         unit='um',
     )
-    duration_effective = Quantity(
+    duration_measured = Quantity(
         type=np.float64,
         description='Real time of the process ad output',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
