@@ -1,6 +1,7 @@
 from nomad.config.models.ui import (
     App,
     Column,
+    Axis,
     Menu,
     MenuItemHistogram,
     MenuItemPeriodicTable,
@@ -84,7 +85,10 @@ stepapp = App(
                                 title='Desired thickness',
                                 type='histogram',
                                 n_bins=10,
-                                search_quantity=f'data.thickness_target#{dir1}',
+                                x=Axis(
+                                    search_quantity=f'data.thickness_target#{dir1}',
+                                    title='thickness (nm)',
+                                ),
                             ),
                             #                          MenuItemHistogram(
                             #                               title='Chuck temperature',
