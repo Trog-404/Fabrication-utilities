@@ -58,12 +58,12 @@ stepapp = App(
                 items=[
                     Menu(
                         title='Integration',
-                        width='l',
+                        size='l',
                         items=[],
                     ),
                     Menu(
                         title='Sinthesys',
-                        width='l',
+                        size='l',
                         items=[
                             MenuItemTerms(
                                 title='Name of the recipe',
