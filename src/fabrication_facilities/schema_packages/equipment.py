@@ -306,7 +306,7 @@ class EquipmentTechnique(ArchiveSection):
         a_eln={'component': 'StringEditQuantity'},
     )
     referencingcategorization = Quantity(
-        type=TechniqueCategories,
+        type=TechniqueSubCategory,
         description='Reference to the taxonomy adopted',
         a_eln={'component': 'ReferenceEditQuantity'},
     )
@@ -474,8 +474,8 @@ class Equipment(Instrument, EntryData, ArchiveSection):
         a_eln={'component': 'NumberEditQuantity'},
     )
     affiliation = Quantity(
-        type=str,
-        a_eln={'component': 'StringEditQuantity'},
+        type=MEnum('NFFA-DI', 'iENTRANCE@ENL'),
+        a_eln={'component': 'EnumEditQuantity'},
     )
     institution = Quantity(
         type=str,

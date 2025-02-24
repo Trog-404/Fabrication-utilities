@@ -13,19 +13,31 @@ Substr = 'data.equipmentTechniques.techniqueSubCategory'
 gen = 'data.equipmentTechniques.genericEquipmentName'
 
 equipmentapp = App(
-    label='Equipments',
+    label='Equipments&Techniques',
     path='equipmentapp',
     category='Fabrication facilities',
-    description='App to search fabrication equipments.',
-    readme=' The findability reach the level of the single technique at disposal.',
+    description='App to search fabrication equipments and useful techniques',
+    readme="""
+    This app allows to navigate through the equipments and techniques available in a
+    clean room system. You can search the techniques available and than the availability
+    of each instrument that has that technique included and the instrument's location
+    """,
     search_quantities=SearchQuantities(
         include=['*#fabrication_facilities.schema_packages.equipment.Equipment'],
     ),
     columns=[
         Column(quantity='entry_name', selected=True),
-        Column(quantity='entry_type', selected=True),
+        Column(quantity='entry_type'),
+        Column(
+            quantity=f'data.affiliation#{dir}',
+            selected=True,
+        ),
         Column(
             quantity=f'data.institution#{dir}',
+            selected=True,
+        ),
+        Column(
+            quantity=f'data.is_bookable#{dir}',
             selected=True,
         ),
         Column(quantity='upload_create_time', selected=True),
