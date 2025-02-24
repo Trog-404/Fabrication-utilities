@@ -2,6 +2,7 @@ from nomad.config.models.ui import (
     App,
     Column,
     Menu,
+    MenuItemHistogram,
     MenuItemPeriodicTable,
     MenuItemCustomQuantities,
     MenuItemTerms,
@@ -69,12 +70,32 @@ stepapp = App(
                             MenuItemTerms(
                                 title='Material to be deposited',
                                 type='terms',
-                                search_quantity=f'data.recipe_name#{dir1}',
+                                search_quantity=f'data.short_name#{dir1}',
                             ),
                             MenuItemPeriodicTable(
                                 title='Elements deposited',
                                 type='periodic_table',
                                 search_quantity=f'data.material_elemental_composition.element#{dir1}',
+                            ),
+                            MenuItemHistogram(
+                                title='Desired thickness',
+                                type='periodic_table',
+                                search_quantity=f'data.thickness_target#{dir1}',
+                            ),
+                            MenuItemHistogram(
+                                title='Chuck temperature',
+                                type='periodic_table',
+                                search_quantity=f'data.chuck_temperature#{dir1}',
+                            ),
+                            MenuItemHistogram(
+                                title='Bias',
+                                type='periodic_table',
+                                search_quantity=f'data.bias#{dir1}',
+                            ),
+                            MenuItemHistogram(
+                                title='Chamber pressure',
+                                type='periodic_table',
+                                search_quantity=f'data.chamber_pressure#{dir1}',
                             ),
                         ],
                     ),
