@@ -6,6 +6,7 @@ import numpy as np
 from nomad.datamodel.data import (
     ArchiveSection,
 )
+from nomad.datamodel.metainfo.basesections import ElementalComposition
 from nomad.datamodel.metainfo.eln import Chemical
 from nomad.metainfo import (
     Package,
@@ -13,7 +14,7 @@ from nomad.metainfo import (
     Section,
     SubSection,
 )
-from nomad.datamodel.metainfo.basesections import ElementalComposition
+
 from fabrication_facilities.schema_packages.fabrication_steps import (
     FabricationProcessStep,
 )

@@ -38,7 +38,7 @@ from nomad.metainfo import (
 )
 
 from fabrication_facilities.schema_packages.equipment import (
-    Equipment,
+    #    Equipment,
     EquipmentReference,
     EquipmentTechnique,
 )
