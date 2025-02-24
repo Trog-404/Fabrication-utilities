@@ -9,15 +9,12 @@ from nomad.datamodel.data import ArchiveSection, EntryData
 from nomad.datamodel.metainfo.basesections import ElementalComposition
 from nomad.datamodel.metainfo.eln import Chemical
 from nomad.metainfo import (
-    Datetime,
     Package,
     Quantity,
     Section,
     SubSection,
 )
-from fabrication_facilities.schema_packages.fabrication import (
-    FabricationProcessStep,
-)
+
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
