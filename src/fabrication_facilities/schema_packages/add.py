@@ -432,5 +432,90 @@ class Spin_Coating(Chemical, FabricationProcessStep, ArchiveSection):
                 print('No elements provided')
             self.resist_elemental_composition = elementality
 
+class Bonding(FabricationProcessStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'wafer_bonding_type',
+                    'alignment_required',
+                    'alignment_max_error',
+                    'wafer_stack_1_name',
+                    'wafer_stack_2_name',
+                    'wafer_space_required',
+                    'alignment_target_mask_name',
+                    'alignment_viewfinder_mask_name',
+                    'wafer_bonded_name',
+                    'notes',
+                ]
+            },
+        },
+    )
+
+    wafer_bonding_type = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    alignment_required = Quantity(
+        type=bool,
+        a_eln={
+            'component': 'BoolEditQuantity',
+        },
+    )
+    alignment_max_error = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'um'
+        },
+        unit='um',
+    )
+    wafer_stack_1_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_stack_2_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_space_required = Quantity(
+        type=bool,
+        a_eln={
+            'component': 'BoolEditQuantity',
+        },
+    )
+    alignment_target_mask_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    alignment_viewfinder_mask_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_bonded_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
 
 m_package.__init_metainfo__()
