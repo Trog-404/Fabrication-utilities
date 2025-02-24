@@ -83,21 +83,25 @@ stepapp = App(
                             MenuItemHistogram(
                                 title='Desired thickness',
                                 type='histogram',
+                                n_bins=10,
                                 search_quantity=f'data.thickness_target#{dir1}',
                             ),
                             MenuItemHistogram(
                                 title='Chuck temperature',
                                 type='histogram',
+                                n_bins=10,
                                 search_quantity=f'data.chuck_temperature#{dir1}',
                             ),
                             MenuItemHistogram(
                                 title='Bias',
                                 type='histogram',
+                                n_bins=10,
                                 search_quantity=f'data.bias#{dir1}',
                             ),
                             MenuItemHistogram(
                                 title='Chamber pressure',
                                 type='histrogram',
+                                n_bins=10,
                                 search_quantity=f'data.chamber_pressure#{dir1}',
                             ),
                         ],
