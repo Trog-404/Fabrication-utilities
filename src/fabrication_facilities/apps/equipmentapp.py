@@ -45,26 +45,20 @@ equipmentapp = App(
     filters_locked={'section_defs.definition_qualified_name': dir},
     menu=Menu(
         items=[
-            Menu(
-                title='Infrastrucure',
-                indentation=0,
-                items=[
-                    MenuItemTerms(
-                        title='Affiliation',
-                        type='terms',
-                        search_quantity=f'data.affiliation#{dir}',
-                    ),
-                    MenuItemTerms(
-                        title='Institution',
-                        type='terms',
-                        search_quantity=f'data.institution#{dir}',
-                    ),
-                    MenuItemTerms(
-                        title='Availability',
-                        type='terms',
-                        search_quantity=f'data.is_bookable#{dir}',
-                    ),
-                ],
+            MenuItemTerms(
+                title='Affiliation',
+                type='terms',
+                search_quantity=f'data.affiliation#{dir}',
+            ),
+            MenuItemTerms(
+                title='Institution',
+                type='terms',
+                search_quantity=f'data.institution#{dir}',
+            ),
+            MenuItemTerms(
+                title='Availability',
+                type='terms',
+                search_quantity=f'data.is_bookable#{dir}',
             ),
             Menu(
                 title='Techniques',
