@@ -63,7 +63,7 @@ processapp = App(
                             MenuItemTerms(
                                 title='formula',
                                 type='terms',
-                                searc_quantity=f"data.steps[?step_type=='ICP_CVD'].chemical_formula#{dir}",
+                                search_quantity=f"data.steps[?step_type=='ICP_CVD'].chemical_formula#{dir}",
                             )
                         ],
                     )
