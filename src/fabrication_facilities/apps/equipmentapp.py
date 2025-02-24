@@ -1,10 +1,8 @@
 from nomad.config.models.ui import (
     App,
-    Axis,
     Column,
     Menu,
     MenuItemCustomQuantities,
-    MenuItemHistogram,
     MenuItemTerms,
     SearchQuantities,
 )
@@ -13,8 +11,6 @@ dir = 'fabrication_facilities.schema_packages.equipment.Equipment'
 Mainstr = 'data.equipmentTechniques.techniqueMainCategory'
 Substr = 'data.equipmentTechniques.techniqueSubCategory'
 gen = 'data.equipmentTechniques.genericEquipmentName'
-cap = 'data.capabilities'
-itp = 'data.permittedItems'
 
 equipmentapp = App(
     label='Equipments',
@@ -76,65 +72,6 @@ equipmentapp = App(
                         title='fabrication step',
                         type='terms',
                         search_quantity=f'{Substr}#{dir}',
-                    ),
-                ],
-            ),
-            Menu(
-                title='Capabilities',
-                indentation=0,
-                items=[
-                    MenuItemTerms(
-                        title='property',
-                        type='terms',
-                        search_quantity=f'{cap}.name#{dir}',
-                    ),
-                    MenuItemHistogram(
-                        title='min value',
-                        x=Axis(
-                            search_quantity=f'{cap}.value_min#{dir}',
-                            title='Min value',
-                        ),
-                        nbins=10,
-                    ),
-                    MenuItemHistogram(
-                        title='max value',
-                        x=Axis(
-                            search_quantity=f'{cap}.value_max#{dir}',
-                            title='Min value',
-                        ),
-                        nbins=10,
-                    ),
-                ],
-            ),
-            Menu(
-                title='Items allowed',
-                indentation=0,
-                items=[
-                    MenuItemTerms(
-                        title='items shape',
-                        type='terms',
-                        search_quantity=f'{itp}.itemShapeType#{dir}',
-                    ),
-                    MenuItemTerms(
-                        title='items property',
-                        type='terms',
-                        search_quantity=f'{itp}.properties.name#{dir}',
-                    ),
-                    MenuItemHistogram(
-                        title='min value',
-                        x=Axis(
-                            search_quantity=f'{itp}.properties.value_min#{dir}',
-                            title='Min value',
-                        ),
-                        nbins=10,
-                    ),
-                    MenuItemHistogram(
-                        title='max value',
-                        x=Axis(
-                            search_quantity=f'{itp}.properties.value_max#{dir}',
-                            title='Min value',
-                        ),
-                        nbins=10,
                     ),
                 ],
             ),
