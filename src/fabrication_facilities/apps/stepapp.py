@@ -452,127 +452,127 @@ stepapp = App(
                     Menu(
                         title='Etching',
                         items=[
-                            #          Menu(
-                            #               title='DRIE',
-                            #               size='xl',
-                            #                items=[
-                            #                    MenuItemTerms(
-                            #                         title='Lab location',
-                            #                          type='terms',
-                            #                           search_quantity=f'data.location#{dir5}',
-                            #                        ),
-                            #                                    MenuItemTerms(
-                            #                                        title='ID item processed',
-                            #                                        type='terms',
-                            #                                        search_quantity=f'data.id_item_processed#{dir5}',
-                            #                                    ),
-                            #                         MenuItemTerms(
-                            #                              title='Name of the recipe',
-                            #                               type='terms',
-                            #                                search_quantity=f'data.recipe_name#{dir5}',
-                            #                             ),
-                            #                              MenuItemTerms(
-                            #                                   title='Material to be deposited',
-                            #                                    type='terms',
-                            #                                     search_quantity=f'data.short_name#{dir5}',
-                            #                                  ),
-                            #                                   MenuItemPeriodicTable(
-                            #                                        title='Elements deposited',
-                            #         type='periodic_table',
-                            #          search_quantity=f'data.material_elemental_composition.element#{dir5}',
-                            #       ),
-                            #        MenuItemHistogram(
-                            #             title='Desired depth',
-                            #              type='histogram',
-                            #               n_bins=10,
-                            #                x=Axis(
-                            ##                      search_quantity=f'data.depth_target#{dir5}',
-                            #                       title='depth',
-                            #                        unit='nm',
-                            #                     ),
-                            #                  ),
-                            #                   MenuItemPeriodicTable(
-                            #                        title='Elements of gases employed',
-                            #                         type='periodic_table',
-                            #                          search_quantity=f'data.fluximeters.elemental_composition.element#{dir5}',
-                            #                       ),
-                            #                        MenuItemTerms(
-                            #                             title='Gases formulas',
-                            #                              type='terms',
-                            #                               search_quantity=f'data.fluximeters.name#{dir5}',
-                            #                            ),
-                            #                             MenuItemHistogram(
-                            #                                  title='Chuck temperature',
-                            #                                   type='histogram',
-                            #                                    n_bins=10,
-                            #                                     x=Axis(
-                            #         search_quantity=f'data.chuck_temperature#{dir5}',
-                            #          title='chuck_temperature',
-                            #           unit='celsius',
-                            #        ),
-                            #     ),
-                            #      MenuItemHistogram(
-                            #           title='Bias',
-                            #            type='histogram',
-                            #             n_bins=10,
-                            #              x=Axis(
-                            #                   search_quantity=f'data.bias#{dir5}',
-                            #                    title='bias',
-                            #                     unit='volt',
-                            #                  ),
-                            #               ),
-                            #                MenuItemHistogram(
-                            #                     title='Chamber pressure',
-                            #                      type='histogram',
-                            #                       n_bins=10,
-                            #                        x=Axis(
-                            #                             search_quantity=f'data.chamber_pressure#{dir5}',
-                            #                              title='chamber_pressure',
-                            #                               unit='mbar',
-                            #                            ),
-                            #                         ),
-                            #                          MenuItemHistogram(
-                            #                               title='Power',
-                            #                                type='histogram',
-                            #                                 n_bins=10,
-                            #                                  x=Axis(
-                            #                                       search_quantity=f'data.power#{dir5}',
-                            #                                        title='chamber_pressure',
-                            #                                         unit='watt',
-                            #                                      ),
-                            #                                   ),
-                            #                                    MenuItemHistogram(
-                            #                                        title='Effective duration',
-                            #                                        type='histogram',
-                            #                                        n_bins=10,
-                            #                                        x=Axis(
-                            #                                            search_quantity=f'data.duration_effective#{dir5}',
-                            #                                            title='effective duration',
-                            #                                            unit='nm',
-                            #                                        ),
-                            #                                    ),
-                            #                                    MenuItemHistogram(
-                            #                                        title='Depth obtained',
-                            #                                        type='histogram',
-                            #                                        n_bins=10,
-                            #                                        x=Axis(
-                            #                                            search_quantity=f'data.depth_obtained#{dir5}',
-                            #                                            title='depth obtained',
-                            #                                            unit='nm',
-                            #                                        ),
-                            #                                    ),
-                            #                                    MenuItemHistogram(
-                            #                                        title='Etching rate obtained',
-                            #                                        type='histogram',
-                            #                                        n_bins=10,
-                            #                                        x=Axis(
-                            #                                            search_quantity=f'data.etching_rate_obtained#{dir5}',
-                            #                                            title='etching rate obtained',
-                            #                                            unit='nm/minute',
-                            #                                        ),
-                            #                                    ),
-                            #                                ],
-                            #                            ),
+                            Menu(
+                                title='DRIE',
+                                size='xl',
+                                items=[
+                                    MenuItemTerms(
+                                        title='Lab location',
+                                        type='terms',
+                                        search_quantity=f'data.location#{dir5}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='ID item processed',
+                                        type='terms',
+                                        search_quantity=f'data.id_item_processed#{dir5}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='Name of the recipe',
+                                        type='terms',
+                                        search_quantity=f'data.recipe_name#{dir5}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='Material to be deposited',
+                                        type='terms',
+                                        search_quantity=f'data.short_name#{dir5}',
+                                    ),
+                                    MenuItemPeriodicTable(
+                                        title='Elements deposited',
+                                        type='periodic_table',
+                                        search_quantity=f'data.material_elemental_composition.element#{dir5}',
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Desired depth',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.depth_target#{dir5}',
+                                            title='depth',
+                                            unit='nm',
+                                        ),
+                                    ),
+                                    MenuItemPeriodicTable(
+                                        title='Elements of gases employed',
+                                        type='periodic_table',
+                                        search_quantity=f'data.fluximeters.elemental_composition.element#{dir5}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='Gases formulas',
+                                        type='terms',
+                                        search_quantity=f'data.fluximeters.name#{dir5}',
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Chuck temperature',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.chuck_temperature#{dir5}',
+                                            title='chuck_temperature',
+                                            unit='celsius',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Bias',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.bias#{dir5}',
+                                            title='bias',
+                                            unit='volt',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Chamber pressure',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.chamber_pressure#{dir5}',
+                                            title='chamber_pressure',
+                                            unit='mbar',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Power',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.power#{dir5}',
+                                            title='chamber_pressure',
+                                            unit='watt',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Effective duration',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.duration_effective#{dir5}',
+                                            title='effective duration',
+                                            unit='nm',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Depth obtained',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.depth_obtained#{dir5}',
+                                            title='depth obtained',
+                                            unit='nm',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Etching rate obtained',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.etching_rate_obtained#{dir5}',
+                                            title='etching rate obtained',
+                                            unit='nm/minute',
+                                        ),
+                                    ),
+                                ],
+                            ),
                             Menu(
                                 title='Wet cleaning',
                                 size='xl',
