@@ -10,6 +10,12 @@ from nomad.config.models.ui import (
     SearchQuantities,
 )
 
+from fabrication_facilities.apps.menu_steps import (
+    menuadd_icpcvd,
+    menuadd_spincoat,
+    menuetchwetclean,
+)
+
 dir = 'fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep'
 dir1 = 'fabrication_facilities.schema_packages.add.ICP_CVD'
 dir2 = 'fabrication_facilities.schema_packages.add.Spin_Coating'
@@ -577,6 +583,7 @@ stepapp = App(
                                     ),
                                 ],
                             ),
+                            menuetchwetclean,
                             Menu(
                                 title='Wet cleaning',
                                 size='xl',
