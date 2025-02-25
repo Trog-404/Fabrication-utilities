@@ -616,5 +616,132 @@ class Dicing(FabricationProcessStep, ArchiveSection):
         unit='um',
     )
 
+class Doping(FabricationProcessStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'doping_type',
+                    'doping_temperature',
+                    'doping_duration',
+                    'doping_surfaceresistance_measured',
+                    'notes',
+                ]
+            },
+        },
+    )
+    doping_type = Quantity(
+        type=str,
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
+    )
+    doping_temperature = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
+        unit='celsius',
+    )
+    doping_duration = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
+        unit='minute',
+    )
+    doping_surfaceresistance_measured = Quantity(
+        type=np.float64,
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'ohm',
+        },
+        unit='ohm',
+    )
+
+class LabelingCleaning(FabricationProcessStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'wafer_label_position',
+                    'wafer_label_name',
+                    'wafer_cleaning_DI_ultrasound_required',
+                    'wafer_cleaning_rca_required',
+                    'wafer_cleaning_piranha_required',
+                    'wafer_cleaning_dipHF_required',
+                    'wafer_cleaning_rinse_spin__driyer_required',
+                    'notes',
+                ]
+            },
+        },
+    )
+    wafer_label_position = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_label_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_cleaning_DI_ultrasound_required = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_cleaning_rca_required = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_cleaning_piranha_required = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_cleaning_dipHF_required = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_cleaning_rinse_spin__driyer_required = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+
 
 m_package.__init_metainfo__()

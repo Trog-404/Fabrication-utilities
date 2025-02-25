@@ -478,9 +478,9 @@ class Bonding(FabricationProcessStep, ArchiveSection):
         a_eln={'component': 'StringEditQuantity'},
     )
     alignment_required = Quantity(
-        type=bool,
+        type=str,
         a_eln={
-            'component': 'BoolEditQuantity',
+            'component': 'StringEditQuantity',
         },
     )
     alignment_max_error = Quantity(
@@ -516,6 +516,91 @@ class Bonding(FabricationProcessStep, ArchiveSection):
     wafer_bonded_name = Quantity(
         type=str,
         a_eln={'component': 'StringEditQuantity'},
+    )
+
+class ElectronGun(FabricationProcessStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'wafer_stack_1_name',
+                    'wafer_stack_2_name',
+                    'wafer_space_required',
+                    'deposition_thickness_target',
+                    'deposition_duration',
+                    'deposition_chamber_pressure',
+                    'deposition_thickness_measured',
+                    'gun_voltage_measured',
+                    'gun_current_measured',
+                    'notes',
+                ]
+            },
+        },
+    )
+    wafer_stack_1_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_stack_2_name = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    wafer_space_required = Quantity(
+        type=bool,
+        a_eln={
+            'component': 'BoolEditQuantity',
+        },
+    )
+    deposition_thickness_target = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
+        unit='nm',
+    )
+    deposition_duration = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 's'},
+        unit='s',
+    )
+    deposition_chamber_pressure = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mbar'},
+        unit='mbar',
+    )
+    deposition_thickness_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
+        unit='nm',
+    )
+    gun_voltage_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'V'},
+        unit='V',
+    )
+    gun_current_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'A'},
+        unit='A',
     )
 
 m_package.__init_metainfo__()
