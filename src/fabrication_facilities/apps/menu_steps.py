@@ -343,7 +343,7 @@ menutrans_ebl = Menu(
             n_bins=10,
             x=Axis(
                 title='writing field dimension',
-                #                unit='um^2',
+                unit='um^2',
                 search_quantity=f'data.writing_field_dimension#{dir3}',
             ),
         ),
@@ -353,7 +353,7 @@ menutrans_ebl = Menu(
             n_bins=10,
             x=Axis(
                 title='address size',
-                #                unit='nm',
+                unit='nm',
                 search_quantity=f'data.address_size#{dir3}',
             ),
         ),
@@ -363,7 +363,7 @@ menutrans_ebl = Menu(
             n_bins=10,
             x=Axis(
                 title='clock',
-                #                unit='MHz',
+                unit='MHz',
                 search_quantity=f'data.clock#{dir3}',
             ),
         ),
@@ -373,7 +373,7 @@ menutrans_ebl = Menu(
             n_bins=10,
             x=Axis(
                 title='current',
-                #                unit='pA',
+                unit='pA',
                 search_quantity=f'data.current#{dir3}',
             ),
         ),
@@ -383,7 +383,7 @@ menutrans_ebl = Menu(
             n_bins=10,
             x=Axis(
                 title='chamber pressure',
-                #                unit='mbar',
+                unit='mbar',
                 search_quantity=f'data.chamber_pressure#{dir3}',
             ),
         ),
@@ -393,7 +393,7 @@ menutrans_ebl = Menu(
             n_bins=10,
             x=Axis(
                 title='tension',
-                #                unit='V',
+                unit='V',
                 search_quantity=f'data.tension#{dir3}',
             ),
         ),
@@ -408,123 +408,123 @@ menutrans_ebl = Menu(
             n_bins=10,
             x=Axis(
                 title='max alignment error',
-                #                unit='nm',
-                search_quantity=f'data.max_alignment_error#{dir3}',
+                unit='nm',
+                search_quantity=f'data.alignment_max_error#{dir3}',
             ),
         ),
     ],
 )
-# menutrans_fib = Menu(
-#    title='Focused I-Beam Lithography',
-#    size='xl',
-#    items=[
-#        MenuItemTerms(
-#            title='Lab location',
-#            type='terms',
-#            search_quantity=f'data.location#{dir4}',
-#        ),
-#        MenuItemTerms(
-#            title='ID item processed',
-#            type='terms',
-#            search_quantity=f'data.id_item_processed#{dir4}',
-#        ),
-#        MenuItemTerms(
-#            title='Name of the recipe',
-#            type='terms',
-#            search_quantity=f'data.recipe_name#{dir4}',
-#        ),
-#        MenuItemHistogram(
-#            title='Dose',
-#            type='histogram',
-#            n_bins=10,
-#            x=Axis(title='dose', unit='uC/cm^2', search_quantity=f'data.dose#{dir4}'),
-#        ),
-#        MenuItemHistogram(
-#            title='Writing field dimension',
-#            type='histogram',
-#            n_bins=10,
-#            x=Axis(
-#                title='writing field dimension',
-#                unit='um^2',
-#                search_quantity=f'data.writing_field_dimension#{dir4}',
-#            ),
-#        ),
-#        MenuItemHistogram(
-#            title='Address size',
-#            type='histogram',
-#            n_bins=10,
-#            x=Axis(
-#                title='address size',
-#                unit='nm',
-#                search_quantity=f'data.address_size#{dir4}',
-#            ),
-#        ),
-#        MenuItemHistogram(
-#            title='Clock',
-#            type='histogram',
-#            n_bins=10,
-#            x=Axis(
-#                title='clock',
-#               unit='MHz',
-#                search_quantity=f'data.clock#{dir4}',
-#            ),
-#        ),
-#        MenuItemHistogram(
-#            title='Current',
-#            type='histogram',
-#           n_bins=10,
-#            x=Axis(
-#                title='current',
-#                unit='pA',
-#                search_quantity=f'data.current#{dir4}',
-#            ),
-#        ),
-#        MenuItemHistogram(
-#            title='Chamber pressure',
-#            type='histogram',
-#            n_bins=10,
-#            x=Axis(
-#                title='chamber pressure',
-#                unit='mbar',
-#                search_quantity=f'data.chamber_pressure#{dir4}',
-#            ),
-#        ),
-#        MenuItemHistogram(
-#            title='Tension',
-#            type='histogram',
-#            n_bins=10,
-#            x=Axis(
-#                title='tension',
-#                unit='V',
-#                search_quantity=f'data.tension#{dir4}',
-#            ),
-#        ),
-#       MenuItemTerms(
-#            title='Alignment required',
-#            type='terms',
-#            search_quantity=f'data.alignment_required#{dir4}',
-#        ),
-#        MenuItemHistogram(
-#            title='Max alignment error',
-#            type='histogram',
-#            n_bins=10,
-#            x=Axis(
-#                title='max alignment error',
-#                unit='nm',
-#                search_quantity=f'data.max_alignment_error#{dir4}',
-#            ),
-#        ),
-#        MenuItemHistogram(
-#            title='N° of loops',
-#            type='histogram',
-#            n_bins=10,
-#            x=Axis(
-#                title='n° of loops',
-#                search_quantity=f'data.number_of_loops#{dir4}',
-#            ),
-#        ),
-#    ],
-# )
+menutrans_fib = Menu(
+    title='Focused I-Beam Lithography',
+    size='xl',
+    items=[
+        MenuItemTerms(
+            title='Lab location',
+            type='terms',
+            search_quantity=f'data.location#{dir4}',
+        ),
+        MenuItemTerms(
+            title='ID item processed',
+            type='terms',
+            search_quantity=f'data.id_item_processed#{dir4}',
+        ),
+        MenuItemTerms(
+            title='Name of the recipe',
+            type='terms',
+            search_quantity=f'data.recipe_name#{dir4}',
+        ),
+        MenuItemHistogram(
+            title='Dose',
+            type='histogram',
+            n_bins=10,
+            x=Axis(title='dose', unit='uC/cm^2', search_quantity=f'data.dose#{dir4}'),
+        ),
+        MenuItemHistogram(
+            title='Writing field dimension',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='writing field dimension',
+                unit='um^2',
+                search_quantity=f'data.writing_field_dimension#{dir4}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Address size',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='address size',
+                unit='nm',
+                search_quantity=f'data.address_size#{dir4}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Clock',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='clock',
+                unit='MHz',
+                search_quantity=f'data.clock#{dir4}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Current',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='current',
+                unit='pA',
+                search_quantity=f'data.current#{dir4}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Chamber pressure',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='chamber pressure',
+                unit='mbar',
+                search_quantity=f'data.chamber_pressure#{dir4}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Tension',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='tension',
+                unit='V',
+                search_quantity=f'data.tension#{dir4}',
+            ),
+        ),
+        MenuItemTerms(
+            title='Alignment required',
+            type='terms',
+            search_quantity=f'data.alignment_required#{dir4}',
+        ),
+        MenuItemHistogram(
+            title='Max alignment error',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='max alignment error',
+                unit='nm',
+                search_quantity=f'data.alignment_max_error#{dir3}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='N° of loops',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='n° of loops',
+                search_quantity=f'data.number_of_loops#{dir4}',
+            ),
+        ),
+    ],
+)
 menutrans_develop = Menu(
     title='Resist development',
     size='xl',
