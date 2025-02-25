@@ -312,6 +312,108 @@ menuadd_spincoat = Menu(
         ),
     ],
 )
+menutrans_ebl = Menu(
+    title='E-Beam Lithography',
+    size='xl',
+    items=[
+        MenuItemTerms(
+            title='Lab location',
+            type='terms',
+            search_quantity=f'data.location#{dir3}',
+        ),
+        MenuItemTerms(
+            title='ID item processed',
+            type='terms',
+            search_quantity=f'data.id_item_processed#{dir3}',
+        ),
+        MenuItemTerms(
+            title='Name of the recipe',
+            type='terms',
+            search_quantity=f'data.recipe_name#{dir3}',
+        ),
+        MenuItemHistogram(
+            title= 'Dose',
+            type= 'histogram',
+            n_bins=10,
+            x=Axis(
+                title= 'dose',
+                unit= 'uC/cm^2',
+                search_quantity=f'data.dose#{dir3}'
+            )
+        )
+    ],
+)
+menutrans_develop = Menu(
+    title='Resist development',
+    size='xl',
+    items=[
+        MenuItemTerms(
+            title='Lab location',
+            type='terms',
+            search_quantity=f'data.location#{dir7}',
+        ),
+        MenuItemTerms(
+            title='ID item processed',
+            type='terms',
+            search_quantity=f'data.id_item_processed#{dir7}',
+        ),
+        MenuItemTerms(
+            title='Name of the recipe',
+            type='terms',
+            search_quantity=f'data.recipe_name#{dir7}',
+        ),
+        MenuItemTerms(
+            title='Developing solution',
+            type='terms',
+            search_quantity=f'data.developing_solution#{dir7}',
+        ),
+        MenuItemTerms(
+            title='Removing solution proportions',
+            type='terms',
+            search_quantity=f'data.developing_solution_proportions#{dir7}',
+        ),
+        MenuItemHistogram(
+            title='Developing duration',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.developing_duration#{dir7}',
+                title='developing duration',
+                unit='minute',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Developing temperature',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.developing_temperature#{dir7}',
+                title='developing temperature',
+                unit='celsius',
+            ),
+        ),
+        MenuItemTerms(
+            title='Cleaning solution',
+            type='terms',
+            search_quantity=f'data.cleaning_solution#{dir7}',
+        ),
+        MenuItemTerms(
+            title='Cleaning solution proportions',
+            type='terms',
+            search_quantity=f'data.cleaning_solution_proportions#{dir7}',
+        ),
+        MenuItemHistogram(
+            title='Cleaning duration',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.cleaning_duration#{dir7}',
+                title='cleaning duration',
+                unit='minute',
+            ),
+        ),
+    ],
+)
 
 menuetchdrie = Menu(
     title='DRIE',
