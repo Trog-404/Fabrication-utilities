@@ -583,6 +583,7 @@ stepapp = App(
                                     ),
                                 ],
                             ),
+                            menuetchwetclean,
                             Menu(
                                 title='Wet cleaning',
                                 size='xl',
