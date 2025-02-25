@@ -691,6 +691,7 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
                     'job_number',
                     'name',
                     'description',
+                    'affiliation',
                     'location',
                     'operator',
                     'room',
@@ -715,6 +716,9 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
     description = Quantity(
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
+    )
+    affiliation = Quantity(
+        type=MEnum('NFFA-DI', 'iENTRANCE@ENL'), a_eln={'component': 'EnumEditQuantity'}
     )
     operator = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     location = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
