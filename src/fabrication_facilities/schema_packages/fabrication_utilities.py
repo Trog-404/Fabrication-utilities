@@ -694,7 +694,7 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
                     'location',
                     'operator',
                     'room',
-                    'starting_date',
+                    'id_item_processedstarting_date',
                     'ending_date',
                     'step_type',
                     'definition_of_process_step',
@@ -719,6 +719,7 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
     operator = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     location = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     room = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    id_item_processed = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     starting_date = Quantity(
         type=Datetime,
         a_eln={'component': 'DateTimeEditQuantity'},
