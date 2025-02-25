@@ -254,7 +254,7 @@ class Spin_Coating(Chemical, FabricationProcessStep, ArchiveSection):
     short_name = Quantity(
         type=str,
         description='Material to be deposited',
-        a_eln={'component': 'StringEditQuantity', 'label': 'photoresist name'},
+        a_eln={'component': 'StringEditQuantity', 'label': 'resist name'},
     )
     chemical_formula = Quantity(
         type=str,
