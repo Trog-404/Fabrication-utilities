@@ -55,25 +55,29 @@ stepapp = App(
                         title='Integration',
                         items=[],
                     ),
+                    Menu(
+                        title='Sinthesys',
+                        items=[
+                            Menu(
+                                title='ICP-CVD',
+                                size='xl',
+                                items=[
+                                    MenuItemTerms(
+                                        title='Lab location',
+                                        type='terms',
+                                        search_quantity=f'data.location#{dir1}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='ID item processed',
+                                        type='terms',
+                                        search_quantity=f'data.id_item_processed#{dir1}',
+                                    ),
+                                ],
+                            )
+                        ],
+                    ),
                 ],
             )
-            #            Menu(
-            #              title='Sinthesys',
-            #               items=[
-            #                    Menu(
-            #                         title='ICP-CVD',
-            #                          size='xl',
-            #                           items=[
-            #                                MenuItemTerms(
-            #                                     title='Lab location',
-            #                                      type='terms',
-            #                                       search_quantity=f'data.location#{dir1}',
-            #                                    ),
-            #                                    MenuItemTerms(
-            #                                        title='ID item processed',
-            #                                        type='terms',
-            #                                        search_quantity=f'data.id_item_processed#{dir1}',
-            #                                    ),
             #                                   MenuItemTerms(
             #                                        title='Name of the recipe',
             #       type='terms',
