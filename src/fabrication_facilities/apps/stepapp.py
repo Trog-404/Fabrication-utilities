@@ -426,7 +426,7 @@ stepapp = App(
                                     MenuItemTerms(
                                         title='Cleaning solution',
                                         type='terms',
-                                        search_quantity=f'data.rising_solution#{dir7}',
+                                        search_quantity=f'data.cleaning_solution#{dir7}',
                                     ),
                                     MenuItemTerms(
                                         title='Cleaning solution proportions',
