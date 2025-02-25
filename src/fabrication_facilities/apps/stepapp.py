@@ -374,71 +374,71 @@ stepapp = App(
                                 title='Resist development',
                                 size='xl',
                                 items=[
-                                    MenuItemTerms(
-                                        title='Lab location',
-                                        type='terms',
-                                        search_quantity=f'data.location#{dir7}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='ID item processed',
-                                        type='terms',
-                                        search_quantity=f'data.id_item_processed#{dir7}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='Name of the recipe',
-                                        type='terms',
-                                        search_quantity=f'data.recipe_name#{dir7}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='Developing solution',
-                                        type='terms',
-                                        search_quantity=f'data.developing_solution#{dir7}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='Removing solution proportions',
-                                        type='terms',
-                                        search_quantity=f'data.developing_solution_proportions#{dir7}',
-                                    ),
-                                    MenuItemHistogram(
-                                        title='Developing duration',
-                                        type='histogram',
-                                        n_bins=10,
-                                        x=Axis(
-                                            search_quantity=f'data.developing_duration#{dir7}',
-                                            title='developing duration',
-                                            unit='minute',
-                                        ),
-                                    ),
-                                    MenuItemHistogram(
-                                        title='Developing temperature',
-                                        type='histogram',
-                                        n_bins=10,
-                                        x=Axis(
-                                            search_quantity=f'data.developing_temperature#{dir7}',
-                                            title='developing temperature',
-                                            unit='celsius',
-                                        ),
-                                    ),
-                                    MenuItemTerms(
-                                        title='Cleaning solution',
-                                        type='terms',
-                                        search_quantity=f'data.rising_solution#{dir7}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='Cleaning solution proportions',
-                                        type='terms',
-                                        search_quantity=f'data.cleaning_solution_proportions#{dir7}',
-                                    ),
-                                    MenuItemHistogram(
-                                        title='Cleaning duration',
-                                        type='histogram',
-                                        n_bins=10,
-                                        x=Axis(
-                                            search_quantity=f'data.cleaning_duration#{dir7}',
-                                            title='cleaning duration',
-                                            unit='minute',
-                                        ),
-                                    ),
+                                    #                MenuItemTerms(
+                                    #                    title='Lab location',
+                                    #                    type='terms',
+                                    #                    search_quantity=f'data.location#{dir7}',
+                                    #                ),
+                                    #                MenuItemTerms(
+                                    #                    title='ID item processed',
+                                    #                    type='terms',
+                                    #                    search_quantity=f'data.id_item_processed#{dir7}',
+                                    #                ),
+                                    #                MenuItemTerms(
+                                    #                    title='Name of the recipe',
+                                    #                    type='terms',
+                                    #                    search_quantity=f'data.recipe_name#{dir7}',
+                                    #                ),
+                                    #                MenuItemTerms(
+                                    #                    title='Developing solution',
+                                    #                    type='terms',
+                                    #                    search_quantity=f'data.developing_solution#{dir7}',
+                                    #                ),
+                                    #                MenuItemTerms(
+                                    #                    title='Removing solution proportions',
+                                    #                   type='terms',
+                                    #                    search_quantity=f'data.developing_solution_proportions#{dir7}',
+                                    #                ),
+                                    #                MenuItemHistogram(
+                                    #                    title='Developing duration',
+                                    #                    type='histogram',
+                                    #                    n_bins=10,
+                                    #                    x=Axis(
+                                    #                        search_quantity=f'data.developing_duration#{dir7}',
+                                    #                        title='developing duration',
+                                    #                        unit='minute',
+                                    #                    ),
+                                    #                ),
+                                    #                MenuItemHistogram(
+                                    #                    title='Developing temperature',
+                                    #                    type='histogram',
+                                    #                    n_bins=10,
+                                    #                    x=Axis(
+                                    #                        search_quantity=f'data.developing_temperature#{dir7}',
+                                    #                        title='developing temperature',
+                                    #                         unit='celsius',
+                                    #                    ),
+                                    #                ),
+                                    #                MenuItemTerms(
+                                    #                    title='Cleaning solution',
+                                    #                    type='terms',
+                                    #                    search_quantity=f'data.rising_solution#{dir7}',
+                                    #                ),
+                                    #                MenuItemTerms(
+                                    #                    title='Cleaning solution proportions',
+                                    #                    type='terms',
+                                    #                   search_quantity=f'data.cleaning_solution_proportions#{dir7}',
+                                    #                ),
+                                    #                 MenuItemHistogram(
+                                    #                    title='Cleaning duration',
+                                    #                    type='histogram',
+                                    #                    n_bins=10,
+                                    #                    x=Axis(
+                                    #                        search_quantity=f'data.cleaning_duration#{dir7}',
+                                    #                        title='cleaning duration',
+                                    #                        unit='minute',
+                                    #                    ),
+                                    #                ),
                                 ],
                             )
                         ],
@@ -577,71 +577,71 @@ stepapp = App(
                                 title='Wet cleaning',
                                 size='xl',
                                 items=[
-                                    MenuItemTerms(
-                                        title='Lab location',
-                                        type='terms',
-                                        search_quantity=f'data.location#{dir6}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='ID item processed',
-                                        type='terms',
-                                        search_quantity=f'data.id_item_processed#{dir6}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='Name of the recipe',
-                                        type='terms',
-                                        search_quantity=f'data.recipe_name#{dir6}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='Removing solution',
-                                        type='terms',
-                                        search_quantity=f'data.removing_solution#{dir6}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='Removing solution proportions',
-                                        type='terms',
-                                        search_quantity=f'data.removing_solution_proportions#{dir6}',
-                                    ),
-                                    MenuItemHistogram(
-                                        title='Removing duration',
-                                        type='histogram',
-                                        n_bins=10,
-                                        x=Axis(
-                                            search_quantity=f'data.removing_duration#{dir6}',
-                                            title='removing duration',
-                                            unit='minute',
-                                        ),
-                                    ),
-                                    MenuItemHistogram(
-                                        title='Removing temperature',
-                                        type='histogram',
-                                        n_bins=10,
-                                        x=Axis(
-                                            search_quantity=f'data.removing_temperature#{dir6}',
-                                            title='removing temperature',
-                                            unit='celsius',
-                                        ),
-                                    ),
-                                    MenuItemTerms(
-                                        title='Rising solution',
-                                        type='terms',
-                                        search_quantity=f'data.rising_solution#{dir6}',
-                                    ),
-                                    MenuItemTerms(
-                                        title='Rising solution proportions',
-                                        type='terms',
-                                        search_quantity=f'data.rising_solution_proportions#{dir6}',
-                                    ),
-                                    MenuItemHistogram(
-                                        title='Rising duration',
-                                        type='histogram',
-                                        n_bins=10,
-                                        x=Axis(
-                                            search_quantity=f'data.rising_duration#{dir6}',
-                                            title='rising duration',
-                                            unit='minute',
-                                        ),
-                                    ),
+                                    #                                   MenuItemTerms(
+                                    #                                       title='Lab location',
+                                    #                                       type='terms',
+                                    #                                       search_quantity=f'data.location#{dir6}',
+                                    #                                   ),
+                                    #                                   MenuItemTerms(
+                                    #                                       title='ID item processed',
+                                    #                                       type='terms',
+                                    #                                       search_quantity=f'data.id_item_processed#{dir6}',
+                                    #                                   ),
+                                    #                                   MenuItemTerms(
+                                    #                                       title='Name of the recipe',
+                                    #                                       type='terms',
+                                    #                                       search_quantity=f'data.recipe_name#{dir6}',
+                                    #                                   ),
+                                    #                                   MenuItemTerms(
+                                    #                                       title='Removing solution',
+                                    #                                       type='terms',
+                                    #                                       search_quantity=f'data.removing_solution#{dir6}',
+                                    #                                   ),
+                                    #                                   MenuItemTerms(
+                                    #                                       title='Removing solution proportions',
+                                    #                                       type='terms',
+                                    #                                       search_quantity=f'data.removing_solution_proportions#{dir6}',
+                                    #                                   ),
+                                    #                                   MenuItemHistogram(
+                                    #                                       title='Removing duration',
+                                    #                                       type='histogram',
+                                    #                                       n_bins=10,
+                                    #                                       x=Axis(
+                                    #                                           search_quantity=f'data.removing_duration#{dir6}',
+                                    #                                           title='removing duration',
+                                    #                                           unit='minute',
+                                    #                                       ),
+                                    #                                    ),
+                                    #                                    MenuItemHistogram(
+                                    #                                        title='Removing temperature',
+                                    #                                        type='histogram',
+                                    #                                        n_bins=10,
+                                    #                                        x=Axis(
+                                    #                                            search_quantity=f'data.removing_temperature#{dir6}',
+                                    #                                            title='removing temperature',
+                                    #                                            unit='celsius',
+                                    #                                        ),
+                                    #                                    ),
+                                    #                                    MenuItemTerms(
+                                    #                                        title='Rising solution',
+                                    #                                        type='terms',
+                                    #                                        search_quantity=f'data.rising_solution#{dir6}',
+                                    #                                    ),
+                                    #                                    MenuItemTerms(
+                                    #                                        title='Rising solution proportions',
+                                    #                                        type='terms',
+                                    #                                        search_quantity=f'data.rising_solution_proportions#{dir6}',
+                                    #                                    ),
+                                    #                                    MenuItemHistogram(
+                                    #                                        title='Rising duration',
+                                    #                                        type='histogram',
+                                    #                                        n_bins=10,
+                                    #                                        x=Axis(
+                                    #                                            search_quantity=f'data.rising_duration#{dir6}',
+                                    #                                            title='rising duration',
+                                    #                                            unit='minute',
+                                    #                                        ),
+                                    #                                    ),
                                 ],
                             ),
                         ],
