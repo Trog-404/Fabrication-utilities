@@ -17,7 +17,8 @@ from fabrication_facilities.apps.menu_steps import (
     menutrans_fib,
 )
 
-dir = 'fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep'
+fps = 'FabricationProcessStep'
+dir = f'fabrication_facilities.schema_packages.fabrication_utilities.{fps}'
 dir1 = 'fabrication_facilities.schema_packages.add.ICP_CVD'
 dir2 = 'fabrication_facilities.schema_packages.add.Spin_Coating'
 dir3 = 'fabrication_facilities.schema_packages.transform.EBL'
