@@ -244,7 +244,7 @@ stepapp = App(
                                         type='histogram',
                                         n_bins=10,
                                         x=Axis(
-                                            search_quantity=f'data.thickness_target#{dir5}',
+                                            search_quantity=f'data.depth_target#{dir5}',
                                             title='thickness',
                                             unit='nm',
                                         ),
