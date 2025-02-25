@@ -12,10 +12,17 @@ from nomad.config.models.ui import (
 
 dir = 'fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep'
 dir1 = 'fabrication_facilities.schema_packages.add.ICP_CVD'
+dir2 = 'fabrication_facilities.schema_packages.add.Spin_Coating'
+dir3 = 'fabrication_facilities.schema_packages.transform.EBL'
+dir4 = 'fabrication_facilities.schema_packages.transform.FIB'
+dir5 = 'fabrication_facilities.schema_packages.remove.DRIE'
 schemas = [
-    '*#fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep',
-    '*#fabrication_facilities.schema_packages.add.ICP_CVD',
-    '*#fabrication_facilities.schema_packages.add.Spin_Coating',
+    f'*#{dir}',
+    f'*#{dir1}',
+    f'*#{dir2}',
+    f'*#{dir3}',
+    f'*#{dir4}',
+    f'*#{dir5}',
 ]
 stepapp = App(
     label='Fabrication steps',
@@ -129,6 +136,160 @@ stepapp = App(
                                     title='chamber_pressure',
                                     unit='watt',
                                 ),
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+            Menu(
+                title='Transform processes',
+                indentation=0,
+                items=[
+                    Menu(
+                        title='Lithography',
+                        items=[
+                            #                            Menu(
+                            #                                title='EBL',
+                            #                                size='xl',
+                            #                                items=[
+                            #                                    MenuItemTerms(
+                            #                                        title='Name of the recipe',
+                            #                                        type='terms',
+                            #                                        search_quantity=f'data.recipe_name#{dir1}',
+                            #                                    ),
+                            #                                    MenuItemHistogram(
+                            #                                        title='Desired thickness',
+                            #                                        type='histogram',
+                            #                                        n_bins=10,
+                            #                                        x=Axis(
+                            #                                            search_quantity=f'data.thickness_target#{dir1}',
+                            #                                            title='thickness',
+                            #                                            unit='nm',
+                            #                                        ),
+                            #                                    ),
+                            #                                    MenuItemHistogram(
+                            #                                        title='Chuck temperature',
+                            #                                        type='histogram',
+                            #                                        n_bins=10,
+                            #                                        x=Axis(
+                            #                                            search_quantity=f'data.chuck_temperature#{dir1}',
+                            #                                            title='chuck_temperature',
+                            #                                            unit='celsius',
+                            #                                        ),
+                            #                                    ),
+                            #                                    MenuItemHistogram(
+                            #                                        title='Bias',
+                            #                                        type='histogram',
+                            #                                        n_bins=10,
+                            #                                        x=Axis(
+                            #                                            search_quantity=f'data.bias#{dir1}',
+                            #                                            title='bias',
+                            #                                            unit='volt',
+                            #                                        ),
+                            #                                    ),
+                            #                                    MenuItemHistogram(
+                            #                                        title='Chamber pressure',
+                            #                                        type='histogram',
+                            #                                        n_bins=10,
+                            #                                        x=Axis(
+                            #                                            search_quantity=f'data.chamber_pressure#{dir1}',
+                            #                                            title='chamber_pressure',
+                            #                                            unit='mbar',
+                            #                                        ),
+                            #                                    ),
+                            #                                    MenuItemHistogram(
+                            #                                        title='Power',
+                            #                                        type='histogram',
+                            #                                        n_bins=10,
+                            #                                        x=Axis(
+                            #                                            search_quantity=f'data.power#{dir1}',
+                            #                                            title='chamber_pressure',
+                            #                                            unit='watt',
+                            #                                        ),
+                            #                                    ),
+                            #                                ],
+                            #                            ),
+                        ],
+                    ),
+                ],
+            ),
+            Menu(
+                title='Remove processes',
+                indentation=0,
+                items=[
+                    Menu(
+                        title='Etching',
+                        items=[
+                            Menu(
+                                title='DRIE',
+                                size='xl',
+                                items=[
+                                    MenuItemTerms(
+                                        title='Name of the recipe',
+                                        type='terms',
+                                        search_quantity=f'data.recipe_name#{dir5}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='Material to be deposited',
+                                        type='terms',
+                                        search_quantity=f'data.short_name#{dir5}',
+                                    ),
+                                    MenuItemPeriodicTable(
+                                        title='Elements deposited',
+                                        type='periodic_table',
+                                        search_quantity=f'data.material_elemental_composition.element#{dir5}',
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Desired thickness',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.thickness_target#{dir5}',
+                                            title='thickness',
+                                            unit='nm',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Chuck temperature',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.chuck_temperature#{dir5}',
+                                            title='chuck_temperature',
+                                            unit='celsius',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Bias',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.bias#{dir5}',
+                                            title='bias',
+                                            unit='volt',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Chamber pressure',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.chamber_pressure#{dir5}',
+                                            title='chamber_pressure',
+                                            unit='mbar',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Power',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.power#{dir5}',
+                                            title='chamber_pressure',
+                                            unit='watt',
+                                        ),
+                                    ),
+                                ],
                             ),
                         ],
                     ),
