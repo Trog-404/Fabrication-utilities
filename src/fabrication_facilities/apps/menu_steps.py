@@ -331,16 +331,87 @@ menutrans_ebl = Menu(
             type='terms',
             search_quantity=f'data.recipe_name#{dir3}',
         ),
-        #        MenuItemHistogram(
-        #            title= 'Dose',
-        #            type= 'histogram',
-        #            n_bins=10,
-        #            x=Axis(
-        #                title= 'dose',
-        #                unit= 'uC/cm^2',
-        #                search_quantity=f'data.dose#{dir3}'
-        #            )
-        #        )
+        MenuItemHistogram(
+            title='Dose',
+            type='histogram',
+            n_bins=10,
+            x=Axis(title='dose', unit='uC/cm^2', search_quantity=f'data.dose#{dir3}'),
+        ),
+        MenuItemHistogram(
+            title='Writing field dimension',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='writing field dimension',
+                unit='um^2',
+                search_quantity=f'data.writing_field_dimension#{dir3}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Address size',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='address size',
+                unit='nm',
+                search_quantity=f'data.address_size#{dir3}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Clock',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='clock',
+                unit='MHz',
+                search_quantity=f'data.clock#{dir3}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Current',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='current',
+                unit='pA',
+                search_quantity=f'data.current#{dir3}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Chamber pressure',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='chamber pressure',
+                unit='mbar',
+                search_quantity=f'data.chamber_pressure#{dir3}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Tension',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='tension',
+                unit='V',
+                search_quantity=f'data.tension#{dir3}',
+            ),
+        ),
+        MenuItemTerms(
+            title='Alignment required',
+            type='terms',
+            search_quantity=f'data.alignment_required#{dir3}',
+        ),
+        MenuItemHistogram(
+            title='Max alignment error',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='max alignment error',
+                unit='nm',
+                search_quantity=f'data.max_alignment_error#{dir3}',
+            ),
+        ),
     ],
 )
 menutrans_develop = Menu(

@@ -100,7 +100,7 @@ class EBL(FabricationProcessStep, ArchiveSection):
     writing_field_dimension = Quantity(
         type=np.float64,
         description='Area covered globally in the process',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um*um'},
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um^2'},
         unit='um^2',
     )
     address_size = Quantity(
@@ -227,8 +227,8 @@ class FIB(FabricationProcessStep, ArchiveSection):
     writing_field_dimension = Quantity(
         type=np.float64,
         description='Area covered globally in the process',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um*um'},
-        unit='um*um',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um^2'},
+        unit='um^2',
     )
     address_size = Quantity(
         type=np.float64,
