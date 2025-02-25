@@ -65,15 +65,14 @@ stepapp = App(
                 items=[
                     Menu(
                         title='Integration',
-                        size='xl',
                         items=[],
                     ),
                     Menu(
                         title='Sinthesys',
-                        size='xl',
                         items=[
                             Menu(
                                 title='ICP_CVD',
+                                size='xl',
                                 items=[
                                     MenuItemTerms(
                                         title='Name of the recipe',
