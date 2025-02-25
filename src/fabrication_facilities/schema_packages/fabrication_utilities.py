@@ -660,8 +660,8 @@ class EquipmentReference(Link, ArchiveSection):
     m_def = Section()
 
     id = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     notes = Quantity(
         type=str,

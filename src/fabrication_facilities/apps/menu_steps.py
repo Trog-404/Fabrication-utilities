@@ -135,6 +135,16 @@ menuadd_icpcvd = Menu(
                 unit='nm/minute',
             ),
         ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir1}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir1}',
+        ),
     ],
 )
 
@@ -312,6 +322,16 @@ menuadd_spincoat = Menu(
                 unit='nm',
             ),
         ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir2}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir2}',
+        ),
     ],
 )
 menuadd_bonding = Menu(title='Bonding', size='xl', items=[])
@@ -414,6 +434,16 @@ menutrans_ebl = Menu(
                 unit='nm',
                 search_quantity=f'data.alignment_max_error#{dir3}',
             ),
+        ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir3}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir3}',
         ),
     ],
 )
@@ -526,6 +556,16 @@ menutrans_fib = Menu(
                 search_quantity=f'data.number_of_loops#{dir4}',
             ),
         ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir4}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir4}',
+        ),
     ],
 )
 menutrans_develop = Menu(
@@ -596,6 +636,16 @@ menutrans_develop = Menu(
                 title='cleaning duration',
                 unit='minute',
             ),
+        ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir7}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir7}',
         ),
     ],
 )
@@ -719,6 +769,16 @@ menuetchdrie = Menu(
                 unit='nm/minute',
             ),
         ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir5}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir5}',
+        ),
     ],
 )
 menuetchwetclean = Menu(
@@ -789,6 +849,16 @@ menuetchwetclean = Menu(
                 title='rising duration',
                 unit='minute',
             ),
+        ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir6}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir6}',
         ),
     ],
 )
