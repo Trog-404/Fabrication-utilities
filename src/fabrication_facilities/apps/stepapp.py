@@ -67,11 +67,11 @@ stepapp = App(
                                         type='terms',
                                         search_quantity=f'data.location#{dir1}',
                                     ),
-                                    MenuItemTerms(
-                                        title='ID item processed',
-                                        type='terms',
-                                        search_quantity=f'data.id_item_processed#{dir1}',
-                                    ),
+                                    #                                    MenuItemTerms(
+                                    #                                        title='ID item processed',
+                                    #                                        type='terms',
+                                    #                                        search_quantity=f'data.id_item_processed#{dir1}',
+                                    #                                    ),
                                     MenuItemTerms(
                                         title='Name of the recipe',
                                         type='terms',
@@ -153,8 +153,8 @@ stepapp = App(
                                         n_bins=10,
                                         x=Axis(
                                             search_quantity=f'data.duration_effective#{dir1}',
-                                            title='thickness obtained',
-                                            unit='nm',
+                                            title='effective duration',
+                                            unit='minute',
                                         ),
                                     ),
                                     MenuItemHistogram(
@@ -188,11 +188,11 @@ stepapp = App(
                                         type='terms',
                                         search_quantity=f'data.location#{dir2}',
                                     ),
-                                    MenuItemTerms(
-                                        title='ID item processed',
-                                        type='terms',
-                                        search_quantity=f'data.id_item_processed#{dir2}',
-                                    ),
+                                    #                        MenuItemTerms(
+                                    #                            title='ID item processed',
+                                    #                            type='terms',
+                                    #                            search_quantity=f'data.id_item_processed#{dir2}',
+                                    #                        ),
                                     MenuItemTerms(
                                         title='Name of the recipe',
                                         type='terms',
@@ -461,11 +461,11 @@ stepapp = App(
                                         type='terms',
                                         search_quantity=f'data.location#{dir5}',
                                     ),
-                                    MenuItemTerms(
-                                        title='ID item processed',
-                                        type='terms',
-                                        search_quantity=f'data.id_item_processed#{dir5}',
-                                    ),
+                                    #                                    MenuItemTerms(
+                                    #                                        title='ID item processed',
+                                    #                                        type='terms',
+                                    #                                        search_quantity=f'data.id_item_processed#{dir5}',
+                                    #                                    ),
                                     MenuItemTerms(
                                         title='Name of the recipe',
                                         type='terms',
