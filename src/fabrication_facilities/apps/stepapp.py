@@ -26,6 +26,7 @@ schemas = [
     f'*#{dir4}',
     f'*#{dir5}',
     f'*#{dir6}',
+    f'*#{dir7}',
 ]
 stepapp = App(
     label='Fabrication steps',
@@ -364,74 +365,7 @@ stepapp = App(
                 items=[
                     Menu(
                         title='Lithography',
-                        items=[
-                            #                            Menu(
-                            #                                title='EBL',
-                            #                                size='xl',
-                            #                                items=[
-                            #                                    MenuItemTerms(
-                            #                                        title='Lab location',
-                            #                                        type='terms',
-                            #                                        search_quantity=f'data.location#{dir}',
-                            #                                    ),
-                            #                                    MenuItemTerms(
-                            #                                        title='Name of the recipe',
-                            #                                        type='terms',
-                            #                                        search_quantity=f'data.recipe_name#{dir1}',
-                            #                                    ),
-                            #                                    MenuItemHistogram(
-                            #                                        title='Desired thickness',
-                            #                                        type='histogram',
-                            #                                        n_bins=10,
-                            #                                        x=Axis(
-                            #                                            search_quantity=f'data.thickness_target#{dir1}',
-                            #                                            title='thickness',
-                            #                                            unit='nm',
-                            #                                        ),
-                            #                                    ),
-                            #                                    MenuItemHistogram(
-                            #                                        title='Chuck temperature',
-                            #                                        type='histogram',
-                            #                                        n_bins=10,
-                            #                                        x=Axis(
-                            #                                            search_quantity=f'data.chuck_temperature#{dir1}',
-                            #                                            title='chuck_temperature',
-                            #                                            unit='celsius',
-                            #                                        ),
-                            #                                    ),
-                            #                                    MenuItemHistogram(
-                            #                                        title='Bias',
-                            #                                        type='histogram',
-                            #                                        n_bins=10,
-                            #                                        x=Axis(
-                            #                                            search_quantity=f'data.bias#{dir1}',
-                            #                                            title='bias',
-                            #                                            unit='volt',
-                            #                                        ),
-                            #                                    ),
-                            #                                    MenuItemHistogram(
-                            #                                        title='Chamber pressure',
-                            #                                        type='histogram',
-                            #                                        n_bins=10,
-                            #                                        x=Axis(
-                            #                                            search_quantity=f'data.chamber_pressure#{dir1}',
-                            #                                            title='chamber_pressure',
-                            #                                            unit='mbar',
-                            #                                        ),
-                            #                                    ),
-                            #                                    MenuItemHistogram(
-                            #                                        title='Power',
-                            #                                        type='histogram',
-                            #                                        n_bins=10,
-                            #                                        x=Axis(
-                            #                                            search_quantity=f'data.power#{dir1}',
-                            #                                            title='chamber_pressure',
-                            #                                            unit='watt',
-                            #                                        ),
-                            #                                    ),
-                            #                                ],
-                            #                            ),
-                        ],
+                        items=[],
                     ),
                     Menu(
                         title='Solution modification',
