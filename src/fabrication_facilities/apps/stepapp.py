@@ -673,7 +673,7 @@ stepapp = App(
                                         type='histogram',
                                         n_bins=10,
                                         x=Axis(
-                                            search_quantity=f'data.dewetting_duration#{dir6}',
+                                            search_quantity=f'data.removing_duration#{dir6}',
                                             title='removing duration',
                                             unit='minute',
                                         ),
