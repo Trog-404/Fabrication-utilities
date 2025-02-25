@@ -13,6 +13,7 @@ from nomad.config.models.ui import (
 from fabrication_facilities.apps.menu_steps import (
     menuadd_icpcvd,
     menuadd_spincoat,
+    menuadd_bonding,
     menutrans_develop,
     menutrans_ebl,
     menutrans_fib,
@@ -28,6 +29,9 @@ dir4 = 'fabrication_facilities.schema_packages.transform.FIB'
 dir5 = 'fabrication_facilities.schema_packages.remove.DRIE'
 dir6 = 'fabrication_facilities.schema_packages.remove.WetCleaning'
 dir7 = 'fabrication_facilities.schema_packages.transform.ResistDevelopment'
+dir8 = 'fabrication_facilities.schema_packages.add.Bonding'
+dir9 = 'fabrication_facilities.schema_packages.transform.Annealing'
+
 schemas = [
     f'*#{dir}',
     f'*#{dir1}',
@@ -37,6 +41,8 @@ schemas = [
     f'*#{dir5}',
     f'*#{dir6}',
     f'*#{dir7}',
+    f'*#{dir8}',
+    f'*#{dir9}',
 ]
 stepapp = App(
     label='Fabrication steps',
@@ -66,6 +72,10 @@ stepapp = App(
                 indentation=0,
                 items=[
                     Menu(
+                        title='Bonding',
+                        items=[menuadd_bonding],
+                    ),
+                    Menu(
                         title='Integration',
                         items=[],
                     ),
@@ -83,6 +93,14 @@ stepapp = App(
                 indentation=0,
                 items=[
                     Menu(
+                        title='Dicing',
+                        items=[],
+                    ),
+                    Menu(
+                        title='Doping',
+                        items=[],
+                    ),
+                    Menu(
                         title='Lithography',
                         items=[
                             menutrans_ebl,
@@ -94,6 +112,10 @@ stepapp = App(
                         items=[
                             menutrans_develop,
                         ],
+                    ),
+                    Menu(
+                        title='Thermal processing',
+                        items=[],
                     ),
                 ],
             ),
