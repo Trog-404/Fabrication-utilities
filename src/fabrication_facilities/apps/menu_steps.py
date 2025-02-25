@@ -331,16 +331,16 @@ menutrans_ebl = Menu(
             type='terms',
             search_quantity=f'data.recipe_name#{dir3}',
         ),
-        MenuItemHistogram(
-            title= 'Dose',
-            type= 'histogram',
-            n_bins=10,
-            x=Axis(
-                title= 'dose',
-                unit= 'uC/cm^2',
-                search_quantity=f'data.dose#{dir3}'
-            )
-        )
+        #        MenuItemHistogram(
+        #            title= 'Dose',
+        #            type= 'histogram',
+        #            n_bins=10,
+        #            x=Axis(
+        #                title= 'dose',
+        #                unit= 'uC/cm^2',
+        #                search_quantity=f'data.dose#{dir3}'
+        #            )
+        #        )
     ],
 )
 menutrans_develop = Menu(
