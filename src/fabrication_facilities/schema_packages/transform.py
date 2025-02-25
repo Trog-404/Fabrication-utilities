@@ -428,7 +428,7 @@ class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
     short_name = Quantity(
         type=str, a_eln={'component': 'StringEditQuantity', 'label': 'target material'}
     )
-    recipe_name = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    #recipe_name = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
     temperature_start = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
@@ -439,11 +439,11 @@ class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
         unit='celsius',
     )
-    oxigen_percentage = Quantity(
+    oxygen_percentage = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity'},
     )
-    oxigen_flow = Quantity(
+    oxygen_flow = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity'},
     )
@@ -498,6 +498,185 @@ class Annealing(Chemical, FabricationProcessStep, ArchiveSection):
             else:
                 print('No elements provided')
             self.material_elemental_composition = elementality
+
+class LTODensification(Chemical, FabricationProcessStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'densification_type',
+                    #'chemical_formula',
+                    'densification_temperature',
+                    'duration_effective',
+                    'densification_gas',
+                    'gas_flow',
+                    'notes',
+                ]
+            },
+        },
+    )
+
+    densification_type = Quantity(
+        type=str, a_eln={'component': 'StringEditQuantity', 'label': 'target material'}
+    )
+    densification_gas = Quantity(
+        type=str, a_eln={'component': 'StringEditQuantity', 'label': 'target material'}
+    )
+    #recipe_name = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    densification_temperature = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
+        unit='celsius',
+    )
+    gas_flow = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+    duration_effective = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
+        unit='minute',
+    )
+
+
+    # material_elemental_composition = SubSection(
+    #     section_def=ElementalComposition, repeats=True
+    # )
+
+    # def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+    #     super().normalize(archive, logger)
+    #     if self.chemical_formula:
+    #         elements, counts = parse_chemical_formula(self.chemical_formula)
+    #         total = 0
+    #         for token in counts:
+    #             total += int(token)
+    #         if total != 0:
+    #             elemental_fraction = np.array(counts) / total
+    #             elementality = []
+    #             i = 0
+    #             for entry in elements:
+    #                 elemental_try = ElementalComposition()
+    #                 elemental_try.element = entry
+    #                 elemental_try.atomic_fraction = elemental_fraction[i]
+    #                 i += 1
+    #                 elementality.append(elemental_try)
+    #         else:
+    #             print('No elements provided')
+    #         self.material_elemental_composition = elementality
+
+class ThermalOxidation(Chemical, FabricationProcessStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'short_name',
+                    #'chemical_formula',
+                    'temperature_final_target',
+                    'thickness_target',
+                    'duration_measured',
+                    'thickness_measured',
+                    'thermal_oxidation_gas',
+                    'gas_flow','
+                    'notes',
+                ]
+            },
+        },
+    )
+
+    short_name = Quantity(
+        type=str, a_eln={'component': 'StringEditQuantity', 'label': 'target material'}
+    )
+    thermal_oxidation_gas = Quantity(
+        type=str, a_eln={'component': 'StringEditQuantity', 'label': 'target material'}
+    )
+    #recipe_name = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    temperature_final_target = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
+        unit='celsius',
+    )
+    thickness_target = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
+        unit='nm',
+    )
+    thickness_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
+        unit='nm',
+    )
+    duration_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 's'},
+        unit='s',
+    )
+
+    # material_elemental_composition = SubSection(
+    #     section_def=ElementalComposition, repeats=True
+    # )
+
+    # def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+    #     super().normalize(archive, logger)
+    #     if self.chemical_formula:
+    #         elements, counts = parse_chemical_formula(self.chemical_formula)
+    #         total = 0
+    #         for token in counts:
+    #             total += int(token)
+    #         if total != 0:
+    #             elemental_fraction = np.array(counts) / total
+    #             elementality = []
+    #             i = 0
+    #             for entry in elements:
+    #                 elemental_try = ElementalComposition()
+    #                 elemental_try.element = entry
+    #                 elemental_try.atomic_fraction = elemental_fraction[i]
+    #                 i += 1
+    #                 elementality.append(elemental_try)
+    #         else:
+    #             print('No elements provided')
+    #         self.material_elemental_composition = elementality
 
 class Dicing(FabricationProcessStep, ArchiveSection):
     m_def = Section(
@@ -743,5 +922,140 @@ class LabelingCleaning(FabricationProcessStep, ArchiveSection):
         a_eln={'component': 'StringEditQuantity'},
     )
 
+class SOD(Chemical, FabricationProcessStep, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'description',
+                'lab_id',
+                'datetime',
+                'comment',
+                'duration',
+                'end_time',
+                'start_time',
+            ],
+            'properties': {
+                'order': [
+                    'job_number',
+                    'name',
+                    'description',
+                    'location',
+                    'operator',
+                    'room',
+                    'id_item_processed',
+                    'starting_date',
+                    'ending_date',
+                    'step_type',
+                    'definition_of_process_step',
+                    'recipe_name',
+                    'short_name',
+                    'spin_dipHF_required',
+                    'water_rinse_required',
+                    'spin_dryer_required',
+                    'peb_duration',
+                    'peb_temperature',
+                    'spin_dispensed_volume',
+                    'spin_frequency',
+                    'notes',
+                ]
+            },
+        },
+    )
+    short_name = Quantity(
+        type=str,
+        description='dopant solution',
+        a_eln={'component': 'StringEditQuantity', 'label': 'dopant solution'},
+    )
+    spin_dipHF_required = Quantity(
+        type=str,
+        description='The recipe use the hdms?',
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
+    )
+    water_rinse_required = Quantity(
+        type=str,
+        description='The recipe use the hdms?',
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
+    )
+    spin_dryer_required = Quantity(
+        type=str,
+        description='The recipe use the hdms?',
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
+    )
+    peb_duration = Quantity(
+        type=np.float64,
+        description='The duration of the peb',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'sec',
+        },
+        unit='sec',
+    )
+    peb_temperature = Quantity(
+        type=np.float64,
+        description='The temperature of the peb',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'celsius',
+        },
+        unit='celsius',
+    )
+    spin_dispensed_volume = Quantity(
+        type=np.float64,
+        description='Solution dispensed',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'milliliter',
+        },
+        unit='milliliter',
+    )
+    spin_frequency = Quantity(
+        type=np.float64,
+        description='Velocity of the spinner',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'revolutions_per_minute',
+        },
+        unit='revolutions_per_minute',
+    )
+    # resist_elemental_composition = SubSection(
+    #     section_def=ElementalComposition, repeats=True
+    # )
+
+    # def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+    #     super().normalize(archive, logger)
+    #     if self.exposure_required:
+    #         self.exposure_duration = Quantity(
+    #             type=np.float64,
+    #             description='The duration of the exposure',
+    #             a_eln={
+    #                 'component': 'NumberEditQuantity',
+    #                 'defaultDisplayUnit': 'minute',
+    #             },
+    #             unit='minute',
+    #         )
+    #     if self.chemical_formula:
+    #         elements, counts = parse_chemical_formula(self.chemical_formula)
+    #         total = 0
+    #         for token in counts:
+    #             total += int(token)
+    #         if total != 0:
+    #             elemental_fraction = np.array(counts) / total
+    #             elementality = []
+    #             i = 0
+    #             for entry in elements:
+    #                 elemental_try = ElementalComposition()
+    #                 elemental_try.element = entry
+    #                 elemental_try.atomic_fraction = elemental_fraction[i]
+    #                 i += 1
+    #                 elementality.append(elemental_try)
+    #         else:
+    #             print('No elements provided')
+    #         self.resist_elemental_composition = elementality
 
 m_package.__init_metainfo__()
