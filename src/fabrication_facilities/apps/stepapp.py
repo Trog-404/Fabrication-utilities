@@ -1,27 +1,25 @@
 from nomad.config.models.ui import (
     App,
     Column,
-    Axis,
     Menu,
-    MenuItemHistogram,
-    MenuItemPeriodicTable,
     MenuItemCustomQuantities,
-    MenuItemTerms,
     SearchQuantities,
 )
 
 from fabrication_facilities.apps.menu_steps import (
+    menuadd_bonding,
     menuadd_icpcvd,
     menuadd_spincoat,
-    menuadd_bonding,
+    menuetchdrie,
+    menuetchwetclean,
     menutrans_develop,
     menutrans_ebl,
     menutrans_fib,
-    menuetchdrie,
-    menuetchwetclean,
 )
 
-dir = 'fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep'
+dir = """
+fabrication_facilities.schema_packages.fabrication_utilities.FabricationProcessStep
+"""
 dir1 = 'fabrication_facilities.schema_packages.add.ICP_CVD'
 dir2 = 'fabrication_facilities.schema_packages.add.Spin_Coating'
 dir3 = 'fabrication_facilities.schema_packages.transform.EBL'

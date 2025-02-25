@@ -15,7 +15,6 @@ from nomad.metainfo import (
     SubSection,
 )
 
-
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
         EntryArchive,

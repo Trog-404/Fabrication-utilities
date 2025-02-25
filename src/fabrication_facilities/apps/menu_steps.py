@@ -13,8 +13,8 @@ dir4 = 'fabrication_facilities.schema_packages.transform.FIB'
 dir5 = 'fabrication_facilities.schema_packages.remove.DRIE'
 dir6 = 'fabrication_facilities.schema_packages.remove.WetCleaning'
 dir7 = 'fabrication_facilities.schema_packages.transform.ResistDevelopment'
-dir8= 'fabrication_facilities.schema_packages.add.Bonding'
-dir9= 'fabrication_facilities.schema_packages.transform.Annealing'
+dir8 = 'fabrication_facilities.schema_packages.add.Bonding'
+dir9 = 'fabrication_facilities.schema_packages.transform.Annealing'
 
 menuadd_icpcvd = Menu(
     title='ICP-CVD',
@@ -314,11 +314,7 @@ menuadd_spincoat = Menu(
         ),
     ],
 )
-menuadd_bonding=Menu(
-    title='Bonding',
-    size='xl',
-    items=[]
-)
+menuadd_bonding = Menu(title='Bonding', size='xl', items=[])
 menutrans_ebl = Menu(
     title='E-Beam Lithography',
     size='xl',

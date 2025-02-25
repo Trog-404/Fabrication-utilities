@@ -32,7 +32,9 @@ Items_entry_point = ItemsEntryPoint(
 
 class UtilitiesEntryPoint(SchemaPackageEntryPoint):
     def load(self):
-        from fabrication_facilities.schema_packages.fabrication_utilities import m_package
+        from fabrication_facilities.schema_packages.fabrication_utilities import (
+            m_package,
+        )
 
         return m_package
 
