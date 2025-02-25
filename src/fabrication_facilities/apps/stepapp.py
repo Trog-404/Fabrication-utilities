@@ -179,190 +179,186 @@ stepapp = App(
                                     ),
                                 ],
                             ),
+                            Menu(
+                                title='Spin Coating',
+                                size='xl',
+                                items=[
+                                    MenuItemTerms(
+                                        title='Lab location',
+                                        type='terms',
+                                        search_quantity=f'data.location#{dir2}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='ID item processed',
+                                        type='terms',
+                                        search_quantity=f'data.id_item_processed#{dir2}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='Name of the recipe',
+                                        type='terms',
+                                        search_quantity=f'data.recipe_name#{dir2}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='Resist to be deposited',
+                                        type='terms',
+                                        search_quantity=f'data.short_name#{dir2}',
+                                    ),
+                                    MenuItemPeriodicTable(
+                                        title='Elements of the resist deposited',
+                                        type='periodic_table',
+                                        search_quantity=f'data.resist_elemental_composition.element#{dir2}',
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Desired thickness',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.thickness_target#{dir2}',
+                                            title='thickness',
+                                            unit='nm',
+                                        ),
+                                    ),
+                                    MenuItemTerms(
+                                        title='HDMS',
+                                        type='terms',
+                                        search_quantity=f'data.hdms_required#{dir2}',
+                                    ),
+                                    MenuItemTerms(
+                                        title='PEB',
+                                        type='terms',
+                                        search_quantity=f'data.peb_required#{dir2}',
+                                    ),
+                                    MenuItemHistogram(
+                                        title='PEB duration',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.peb_duration#{dir2}',
+                                            title='peb duration',
+                                            unit='minute',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='PEB temperature',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.peb_temperature#{dir2}',
+                                            title='peb temperature',
+                                            unit='celsius',
+                                        ),
+                                    ),
+                                    MenuItemTerms(
+                                        title='Exposure',
+                                        type='terms',
+                                        search_quantity=f'data.exposure_required#{dir2}',
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Exposure duration',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.exposure_duration#{dir2}',
+                                            title='exposure duration',
+                                            unit='sec',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='De-wetting duration',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.dewetting_duration#{dir2}',
+                                            title='de-wetting duration',
+                                            unit='minute',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='De-wetting temperature',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.dewetting_temperature#{dir2}',
+                                            title='De-wetting temperature',
+                                            unit='celsius',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Spinned volume',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.spin_dispensed_volume#{dir2}',
+                                            title='volume dispensed',
+                                            unit='milliliter',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Spin duration',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.spin_duration#{dir2}',
+                                            title='spin duration',
+                                            unit='sec',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Spin frequency',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.spin_frequency#{dir2}',
+                                            title='frequency',
+                                            unit='rpm',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Spin angular acceleration',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.spin_angular_acceleration#{dir2}',
+                                            title='angular acceleration',
+                                            unit='rpm/sec',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Baking duration',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.baking_duration#{dir2}',
+                                            title='baking duration',
+                                            unit='minute',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Baking temperature',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.baking_temperature#{dir2}',
+                                            title='baking temperature',
+                                            unit='celsius',
+                                        ),
+                                    ),
+                                    MenuItemHistogram(
+                                        title='Thickness obtained',
+                                        type='histogram',
+                                        n_bins=10,
+                                        x=Axis(
+                                            search_quantity=f'data.thickness_obtained#{dir2}',
+                                            title='thickness obtained',
+                                            unit='nm',
+                                        ),
+                                    ),
+                                ],
+                            ),
                         ],
                     ),
                 ],
-            )
-            #                         Menu(
-            #                             title='Spin Coating',
-            #                             size='xl',
-            #                             items=[
-            #                                 MenuItemTerms(
-            # à                                      title='Lab location',
-            #                                      type='terms',
-            #                                       search_quantity=f'data.location#{dir2}',
-            #                                    ),
-            #                        MenuItemTerms(
-            #                            title='ID item processed',
-            #                            type='terms',
-            #                            search_quantity=f'data.id_item_processed#{dir2}',
-            #  #                        ),
-            #  MenuItemTerms(
-            #       title='Name of the recipe',
-            #        type='terms',
-            #         search_quantity=f'data.recipe_name#{dir2}',
-            #      ),
-            #       MenuItemTerms(
-            #            title='Resist to be deposited',
-            #             type='terms',
-            #              search_quantity=f'data.short_name#{dir2}',
-            #           ),
-            #            MenuItemPeriodicTable(
-            #                 title='Elements of the resist deposited',
-            #                  type='periodic_table',
-            #                   search_quantity=f'data.resist_elemental_composition.element#{dir2}',
-            #                ),
-            #                 MenuItemHistogram(
-            #                      title='Desired thickness',
-            #                       type='histogram',
-            #                        n_bins=10,
-            #                         x=Axis(
-            #                              search_quantity=f'data.thickness_target#{dir2}',
-            #                               title='thickness',
-            #                                unit='nm',
-            #                             ),
-            #                          ),
-            #                           MenuItemTerms(
-            #                                title='HDMS',
-            #                                 type='terms',
-            #                                  search_quantity=f'data.hdms_required#{dir2}',
-            #                               ),
-            #                                MenuItemTerms(
-            #                                     title='PEB',
-            #                                      type='terms',
-            #                                       search_quantity=f'data.peb_required#{dir2}',
-            #                                    ),
-            #     MenuItemHistogram(
-            #          title='PEB duration',
-            #           type='histogram',
-            #            n_bins=10,
-            #             x=Axis(
-            #                  search_quantity=f'data.peb_duration#{dir2}',
-            #                   title='peb duration',
-            #                    unit='minute',
-            ##                  ),
-            #               ),
-            #                MenuItemHistogram(
-            #                     title='PEB temperature',
-            #                      type='histogram',
-            #                       n_bins=10,
-            #                        x=Axis(
-            #                             search_quantity=f'data.peb_temperature#{dir2}',
-            #                              title='peb temperature',
-            #                               unit='celsius',
-            #                            ),
-            #                         ),
-            #                          MenuItemTerms(
-            #                               title='Exposure',
-            #                                type='terms',
-            #                                 search_quantity=f'data.exposure_required#{dir2}',
-            #                              ),
-            #                               MenuItemHistogram(
-            #                                    title='Exposure duration',
-            #                                     type='histogram',
-            #                                      n_bins=10,
-            #                                       x=Axis(
-            #                                            search_quantity=f'data.exposure_duration#{dir2}',
-            ##            title='exposure duration',
-            #             unit='sec',
-            #          ),
-            #       ),
-            #        MenuItemHistogram(
-            #             title='De-wetting duration',
-            #              type='histogram',
-            #               n_bins=10,
-            #                x=Axis(
-            #                    search_quantity=f'data.dewetting_duration#{dir2}',
-            #                    title='de-wetting duration',
-            #                     unit='minute',
-            #                  ),
-            #               ),
-            #                MenuItemHistogram(
-            #                     title='De-wetting temperature',
-            #                      type='histogram',
-            #                       n_bins=10,
-            #                        x=Axis(
-            ##                              search_quantity=f'data.dewetting_temperature#{dir2}',
-            #                               title='De-wetting temperature',
-            #                                unit='celsius',
-            #                             ),
-            #                          ),
-            #                           MenuItemHistogram(
-            #                                title='Spinned volume',
-            #                                 type='histogram',
-            #                                  n_bins=10,
-            #                                   x=Axis(
-            #                                        search_quantity=f'data.spin_dispensed_volume#{dir2}',
-            #                                         title='volume dispensed',
-            #                                          unit='milliliter',
-            #                                       ),
-            #                                    ),
-            #     MenuItemHistogram(
-            #          title='Spin duration',
-            #           type='histogram',
-            #            n_bins=10,
-            #             x=Axis(
-            #                  search_quantity=f'data.spin_duration#{dir2}',
-            #                   title='spin duration',
-            #                    unit='sec',
-            #                 ),
-            #              ),
-            #               MenuItemHistogram(
-            #                    title='Spin frequency',
-            #                     type='histogram',
-            #                      n_bins=10,
-            #                       x=Axis(
-            #                            search_quantity=f'data.spin_frequency#{dir2}',
-            #                             title='frequency',
-            #                              unit='rpm',
-            #                           ),
-            #                        ),
-            #                         MenuItemHistogram(
-            #                              title='Spin angular acceleration',
-            #                               type='histogram',
-            #                                n_bins=10,
-            #                                 x=Axis(
-            #                                      search_quantity=f'data.spin_angular_acceleration#{dir2}',
-            #                                       title='angular acceleration',
-            #                                        unit='rpm/sec',
-            #                                     ),
-            #                                  ),
-            #                                   MenuItemHistogram(
-            #                                        title='Baking duration',
-            #      type='histogram',
-            #       n_bins=10,
-            #        x=Axis(
-            #             search_quantity=f'data.baking_duration#{dir2}',
-            #              title='baking duration',
-            #               unit='minute',
-            #            ),
-            #         ),
-            #          MenuItemHistogram(
-            #               title='Baking temperature',
-            #                type='histogram',
-            #                 n_bins=10,
-            #                  x=Axis(
-            #                       search_quantity=f'data.baking_temperature#{dir2}',
-            #                        title='baking temperature',
-            #                         unit='celsius',
-            #                      ),
-            #                   ),
-            #                    MenuItemHistogram(
-            #                         title='Thickness obtained',
-            #                          type='histogram',
-            #                           n_bins=10,
-            #                            x=Axis(
-            #                                 search_quantity=f'data.thickness_obtained#{dir2}',
-            #                                  title='thickness obtained',
-            #                                   unit='nm',
-            #                                ),
-            #                             ),
-            #                          ],
-            #                       ),
-            #                    ],
-            #                 ),
-            ##               ],
-            #            ),
+            ),
             #            Menu(
             #               title='Transform processes',
             #              indentation=0,
