@@ -46,7 +46,12 @@ stepapp = App(
     path='stepapp',
     category='Fabrication facilities',
     description='App to search fabrication processes.',
-    readme=' The findability reach the level of the step.',
+    readme="""
+    This app is intended to navigate around the ecosystem of clean room fabrication
+    possible steps. At the beginning you can see all the fabrication steps available
+    in nomad and than through the filters you can specialize the research per single
+    technique. Navigation that consists in multiple technique is not allowed.
+    """,
     search_quantities=SearchQuantities(include=schemas),
     columns=[
         Column(quantity='entry_name', selected=True),
