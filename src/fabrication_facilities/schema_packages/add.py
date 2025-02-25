@@ -155,7 +155,7 @@ class ICP_CVD(Chemical, FabricationProcessStep, ArchiveSection):
     deposition_rate_obtained = Quantity(
         type=np.float64,
         description='Deposition rate as output',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um/minute'},
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm/minute'},
         unit='nm/minute',
     )
     fluximeters = SubSection(
@@ -242,8 +242,8 @@ class Spin_Coating(Chemical, FabricationProcessStep, ArchiveSection):
     thickness_from_recipe = Quantity(
         type=np.float64,
         description='Amount of material deposited as described in the recipe',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
-        unit='um',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
+        unit='nm',
     )
     duration_from_recipe = Quantity(
         type=np.float64,
@@ -266,8 +266,8 @@ class Spin_Coating(Chemical, FabricationProcessStep, ArchiveSection):
     thickness_target = Quantity(
         type=np.float64,
         description='Amount of material to be deposited',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
-        unit='um',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
+        unit='nm',
     )
     hdms_required = Quantity(
         type=bool,
@@ -393,8 +393,8 @@ class Spin_Coating(Chemical, FabricationProcessStep, ArchiveSection):
     thickness_obtained = Quantity(
         type=np.float64,
         description='Amount of material deposited as described in the recipe',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'um'},
-        unit='um',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'nm'},
+        unit='nm',
     )
 
     resist_elemental_composition = SubSection(
