@@ -96,7 +96,7 @@ stepapp = App(
                                     MenuItemTerms(
                                         title='Gases formulas',
                                         type='terms',
-                                        search_quantity=f'data.fluximeters.short_name#{dir1}',
+                                        search_quantity=f'data.fluximeters.name#{dir1}',
                                     ),
                                     MenuItemHistogram(
                                         title='Chuck temperature',
@@ -145,8 +145,8 @@ stepapp = App(
                                         x=Axis(
                                             search_quantity=f'data.duration_effective#{dir1}',
                                             title='thickness obtained',
-                                            unit= 'nm',
-                                        )
+                                            unit='nm',
+                                        ),
                                     ),
                                     MenuItemHistogram(
                                         title='Thickness obtained',
@@ -155,8 +155,8 @@ stepapp = App(
                                         x=Axis(
                                             search_quantity=f'data.thickness_obtained#{dir1}',
                                             title='thickness obtained',
-                                            unit= 'nm',
-                                        )
+                                            unit='nm',
+                                        ),
                                     ),
                                     MenuItemHistogram(
                                         title='Deposition rate obtained',
@@ -165,8 +165,8 @@ stepapp = App(
                                         x=Axis(
                                             search_quantity=f'data.deposition_rate_obtained#{dir1}',
                                             title='deposition rate obtained',
-                                            unit= 'nm/minute',
-                                        )
+                                            unit='nm/minute',
+                                        ),
                                     ),
                                 ],
                             ),
@@ -336,8 +336,8 @@ stepapp = App(
                                         x=Axis(
                                             search_quantity=f'data.thickness_obtained#{dir2}',
                                             title='thickness obtained',
-                                            unit= 'nm',
-                                        )
+                                            unit='nm',
+                                        ),
                                     ),
                                 ],
                             ),
@@ -436,7 +436,7 @@ stepapp = App(
                                     MenuItemTerms(
                                         title='Lab location',
                                         type='terms',
-                                        search_quantity=f'data.location#{dir}',
+                                        search_quantity=f'data.location#{dir5}',
                                     ),
                                     MenuItemTerms(
                                         title='Name of the recipe',
@@ -466,12 +466,12 @@ stepapp = App(
                                     MenuItemPeriodicTable(
                                         title='Elements of gases employed',
                                         type='periodic_table',
-                                        search_quantity=f'data.fluximeters.elemental_composition.element#{dir1}',
+                                        search_quantity=f'data.fluximeters.elemental_composition.element#{dir5}',
                                     ),
                                     MenuItemTerms(
                                         title='Gases formulas',
                                         type='terms',
-                                        search_quantity=f'data.fluximeters.short_name#{dir1}',
+                                        search_quantity=f'data.fluximeters.name#{dir5}',
                                     ),
                                     MenuItemHistogram(
                                         title='Chuck temperature',
@@ -520,8 +520,8 @@ stepapp = App(
                                         x=Axis(
                                             search_quantity=f'data.duration_effective#{dir5}',
                                             title='effective duration',
-                                            unit= 'nm',
-                                        )
+                                            unit='nm',
+                                        ),
                                     ),
                                     MenuItemHistogram(
                                         title='Depth obtained',
@@ -530,8 +530,8 @@ stepapp = App(
                                         x=Axis(
                                             search_quantity=f'data.depth_obtained#{dir5}',
                                             title='depth obtained',
-                                            unit= 'nm',
-                                        )
+                                            unit='nm',
+                                        ),
                                     ),
                                     MenuItemHistogram(
                                         title='Etching rate obtained',
@@ -540,8 +540,8 @@ stepapp = App(
                                         x=Axis(
                                             search_quantity=f'data.etching_rate_obtained#{dir5}',
                                             title='etching rate obtained',
-                                            unit= 'nm/minute',
-                                        )
+                                            unit='nm/minute',
+                                        ),
                                     ),
                                 ],
                             ),
