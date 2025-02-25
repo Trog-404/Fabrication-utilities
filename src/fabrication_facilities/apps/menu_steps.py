@@ -14,128 +14,126 @@ dir5 = 'fabrication_facilities.schema_packages.remove.DRIE'
 dir6 = 'fabrication_facilities.schema_packages.remove.WetCleaning'
 dir7 = 'fabrication_facilities.schema_packages.transform.ResistDevelopment'
 
-menuadd_icpcvd = (
-    Menu(
-        title='ICP-CVD',
-        size='xl',
-        items=[
-            MenuItemTerms(
-                title='Lab location',
-                type='terms',
-                search_quantity=f'data.location#{dir1}',
+menuadd_icpcvd = Menu(
+    title='ICP-CVD',
+    size='xl',
+    items=[
+        MenuItemTerms(
+            title='Lab location',
+            type='terms',
+            search_quantity=f'data.location#{dir1}',
+        ),
+        MenuItemTerms(
+            title='ID item processed',
+            type='terms',
+            search_quantity=f'data.id_item_processed#{dir1}',
+        ),
+        MenuItemTerms(
+            title='Name of the recipe',
+            type='terms',
+            search_quantity=f'data.recipe_name#{dir1}',
+        ),
+        MenuItemTerms(
+            title='Material to be deposited',
+            type='terms',
+            search_quantity=f'data.short_name#{dir1}',
+        ),
+        MenuItemPeriodicTable(
+            title='Elements deposited',
+            type='periodic_table',
+            search_quantity=f'data.material_elemental_composition.element#{dir1}',
+        ),
+        MenuItemHistogram(
+            title='Desired thickness',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.thickness_target#{dir1}',
+                title='thickness',
+                unit='nm',
             ),
-            MenuItemTerms(
-                title='ID item processed',
-                type='terms',
-                search_quantity=f'data.id_item_processed#{dir1}',
+        ),
+        MenuItemPeriodicTable(
+            title='Elements of gases employed',
+            type='periodic_table',
+            search_quantity=f'data.fluximeters.elemental_composition.element#{dir1}',
+        ),
+        MenuItemTerms(
+            title='Gases formulas',
+            type='terms',
+            search_quantity=f'data.fluximeters.name#{dir1}',
+        ),
+        MenuItemHistogram(
+            title='Chuck temperature',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.chuck_temperature#{dir1}',
+                title='chuck_temperature',
+                unit='celsius',
             ),
-            MenuItemTerms(
-                title='Name of the recipe',
-                type='terms',
-                search_quantity=f'data.recipe_name#{dir1}',
+        ),
+        MenuItemHistogram(
+            title='Bias',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.bias#{dir1}',
+                title='bias',
+                unit='volt',
             ),
-            MenuItemTerms(
-                title='Material to be deposited',
-                type='terms',
-                search_quantity=f'data.short_name#{dir1}',
+        ),
+        MenuItemHistogram(
+            title='Chamber pressure',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.chamber_pressure#{dir1}',
+                title='chamber_pressure',
+                unit='mbar',
             ),
-            MenuItemPeriodicTable(
-                title='Elements deposited',
-                type='periodic_table',
-                search_quantity=f'data.material_elemental_composition.element#{dir1}',
+        ),
+        MenuItemHistogram(
+            title='Power',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.power#{dir1}',
+                title='chamber_pressure',
+                unit='watt',
             ),
-            MenuItemHistogram(
-                title='Desired thickness',
-                type='histogram',
-                n_bins=10,
-                x=Axis(
-                    search_quantity=f'data.thickness_target#{dir1}',
-                    title='thickness',
-                    unit='nm',
-                ),
+        ),
+        MenuItemHistogram(
+            title='Effective duration',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.duration_effective#{dir1}',
+                title='effective duration',
+                unit='minute',
             ),
-            MenuItemPeriodicTable(
-                title='Elements of gases employed',
-                type='periodic_table',
-                search_quantity=f'data.fluximeters.elemental_composition.element#{dir1}',
+        ),
+        MenuItemHistogram(
+            title='Thickness obtained',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.thickness_obtained#{dir1}',
+                title='thickness obtained',
+                unit='nm',
             ),
-            MenuItemTerms(
-                title='Gases formulas',
-                type='terms',
-                search_quantity=f'data.fluximeters.name#{dir1}',
+        ),
+        MenuItemHistogram(
+            title='Deposition rate obtained',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.deposition_rate_obtained#{dir1}',
+                title='deposition rate obtained',
+                unit='nm/minute',
             ),
-            MenuItemHistogram(
-                title='Chuck temperature',
-                type='histogram',
-                n_bins=10,
-                x=Axis(
-                    search_quantity=f'data.chuck_temperature#{dir1}',
-                    title='chuck_temperature',
-                    unit='celsius',
-                ),
-            ),
-            MenuItemHistogram(
-                title='Bias',
-                type='histogram',
-                n_bins=10,
-                x=Axis(
-                    search_quantity=f'data.bias#{dir1}',
-                    title='bias',
-                    unit='volt',
-                ),
-            ),
-            MenuItemHistogram(
-                title='Chamber pressure',
-                type='histogram',
-                n_bins=10,
-                x=Axis(
-                    search_quantity=f'data.chamber_pressure#{dir1}',
-                    title='chamber_pressure',
-                    unit='mbar',
-                ),
-            ),
-            MenuItemHistogram(
-                title='Power',
-                type='histogram',
-                n_bins=10,
-                x=Axis(
-                    search_quantity=f'data.power#{dir1}',
-                    title='chamber_pressure',
-                    unit='watt',
-                ),
-            ),
-            MenuItemHistogram(
-                title='Effective duration',
-                type='histogram',
-                n_bins=10,
-                x=Axis(
-                    search_quantity=f'data.duration_effective#{dir1}',
-                    title='effective duration',
-                    unit='minute',
-                ),
-            ),
-            MenuItemHistogram(
-                title='Thickness obtained',
-                type='histogram',
-                n_bins=10,
-                x=Axis(
-                    search_quantity=f'data.thickness_obtained#{dir1}',
-                    title='thickness obtained',
-                    unit='nm',
-                ),
-            ),
-            MenuItemHistogram(
-                title='Deposition rate obtained',
-                type='histogram',
-                n_bins=10,
-                x=Axis(
-                    search_quantity=f'data.deposition_rate_obtained#{dir1}',
-                    title='deposition rate obtained',
-                    unit='nm/minute',
-                ),
-            ),
-        ],
-    ),
+        ),
+    ],
 )
 
 menuadd_spincoat = Menu(
@@ -314,6 +312,7 @@ menuadd_spincoat = Menu(
         ),
     ],
 )
+
 menuetchdrie = Menu(
     title='DRIE',
     size='xl',
