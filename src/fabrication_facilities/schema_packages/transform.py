@@ -72,7 +72,8 @@ class ElectronBeamLithography(FabricationProcessStep, ArchiveSection):
                     'chamber_pressure',
                     'chuck_temperature',
                     'tension',
-                    'currentalignment_required',
+                    'current',
+                    'alignment_required',
                     'alignment_max_error',
                     'notes',
                 ]
