@@ -2,4 +2,4 @@ def test_importing_app():
     # this will raise an exception if pydantic model validation fails for th app
     from fabrication_facilities.apps import app_entry_point
 
-    assert app_entry_point.app.label == 'Equipments'
+    assert app_entry_point.app.label == 'Equipments&Techniques'
