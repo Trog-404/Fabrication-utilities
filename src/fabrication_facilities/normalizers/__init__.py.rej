@@ -1,0 +1,10 @@
+diff a/src/fabrication_facilities/normalizers/__init__.py b/src/fabrication_facilities/normalizers/__init__.py	(rejected hunks)
+@@ -8,7 +8,7 @@ class NewNormalizerEntryPoint(NormalizerEntryPoint):
+     def load(self):
+         from fabrication_facilities.normalizers.normalizer import NewNormalizer
+ 
+-        return NewNormalizer(**self.dict())
++        return NewNormalizer(**self.model_dump())
+ 
+ 
+ normalizer_entry_point = NewNormalizerEntryPoint(
