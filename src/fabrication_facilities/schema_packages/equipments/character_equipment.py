@@ -44,7 +44,7 @@ m_package = Package(name='Characterization equipment specific definitions ')
 #######################################################################################
 ################################ AFM ##################################################
 #######################################################################################
-class CharctEquipmentBase(Equipment):
+class CharactEquipmentBase(Equipment):
     m_def = Section(
         a_eln={
             'hide': [
@@ -106,7 +106,6 @@ class CharctEquipmentBase(Equipment):
         description='Level of quality of the environment in the equipment',
         a_eln={'component': 'NumberEditQuantity'},
     )
-
     notes = Quantity(
         type=str,
         a_eln={
@@ -119,7 +118,7 @@ class CharctEquipmentBase(Equipment):
     )
 
 
-class AFM_System(CharctEquipmentBase, ArchiveSection):
+class AFM_System(CharactEquipmentBase, ArchiveSection):
     m_def = Section(
         a_eln={
             'hide': [
@@ -128,19 +127,25 @@ class AFM_System(CharctEquipmentBase, ArchiveSection):
             ],
             'properties': {
                 'order': [
+                    'name',
+                    'lab_id',
+                    'description',
+                    'affiliation',
+                    'institution',
+                    'product_model',
+                    'manufacturer_name',
+                    'inventary_code',
+                    'is_bookable',
+                    'automatic_loading',
+                    'contamination_class',
+                    'notes',
                     'afm_tip',
                     'afm_mode',
                     'afm_setpoint',
-                    'afm_fb_gain',
-                    'afm_tip_resonance',
-                    'afm_tip_phase',
-                    'afm_laser_intensity',
-                    'afm_fb_gain_o',
                 ],
             },
         }
     )
-
     afm_tip = Quantity(
         type=str,
         description='the model of the probing tip',
@@ -148,7 +153,6 @@ class AFM_System(CharctEquipmentBase, ArchiveSection):
             'component': 'StringEditQuantity',
         },
     )
-
     afm_mode = Quantity(
         type=str,
         description='if proxy or in contact, if linear or scanning',
@@ -156,52 +160,136 @@ class AFM_System(CharctEquipmentBase, ArchiveSection):
             'component': 'StringEditQuantity',
         },
     )
-
     afm_setpoint = Quantity(
         type=np.float64,
-        description='ask to Erica Iacob',
-        a_eln={
-            'component': 'NumberEditQuantity',
-        },
-        unit='nm',
-    )
-    afm_fb_gain = Quantity(
-        type=np.float64,
-        description='ask to Erica Iacob',
-        a_eln={
-            'component': 'NumberEditQuantity',
-        },
-        unit='nm',
-    )
-    afm_tip_resonance = Quantity(
-        type=np.float64,
-        description='ask to Erica Iacob',
-        a_eln={
-            'component': 'NumberEditQuantity',
-        },
-        unit='MHz',
-    )
-    afm_tip_phase = Quantity(
-        type=np.float64,
-        description='ask to Erica Iacob',
-        a_eln={
-            'component': 'NumberEditQuantity',
-        },
-        unit='nm',
-    )
-    afm_laser_intensity = Quantity(
-        type=np.float64,
-        description='ask to Erica Iacob',
+        description='applied force',
         a_eln={
             'component': 'NumberEditQuantity',
         },
         unit='mA',
     )
-    afm_fb_gain_o = Quantity(
+
+class FourPointProbe_System(CharactEquipmentBase, ArchiveSection):
+    m_def = Section(
+        a_eln={
+            'hide': [
+                'lab_id',
+                'datetime',
+            ],
+            'properties': {
+                'order': [
+                    'name',
+                    'lab_id',
+                    'description',
+                    'affiliation',
+                    'institution',
+                    'product_model',
+                    'manufacturer_name',
+                    'inventary_code',
+                    'is_bookable',
+                    'automatic_loading',
+                    'contamination_class',
+                    'notes',
+                    'measured_sheet_resistance_min',
+                    'measured_sheet_resistance_max',
+                    'measured_resistivity_min',
+                    'measured_resistivity_max',
+                    'current_source_min',
+                    'current_source_max',
+                    'probe_head_pin_spacing',
+                    'probe_head_pin_load',
+                    'probe_head_pin_radius',
+                    'needles_composition',
+                    'needles_radius',
+                ],
+            },
+        }
+    )
+    measured_sheet_resistance_min = Quantity(
         type=np.float64,
-        description='ask to Erica Iacob',
+        description='minimum mesaurable sheet resistence',
         a_eln={
             'component': 'NumberEditQuantity',
         },
-        unit='nm',
+        #unit='Ohm/sq',
     )
+    measured_sheet_resistance_max = Quantity(
+        type=np.float64,
+        description='maximum mesaurable sheet resistence',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        #unit='Ohm/sq',
+    )
+    measured_resistivity_min = Quantity(
+        type=np.float64,
+        description='minimum mesaurable resistivity',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        #unit='Ohm*cm',
+    )
+    measured_resistivity_max = Quantity(
+        type=np.float64,
+        description='maximinimum mesaurable resistivity',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        #unit='Ohm*cm',
+    )
+    current_source_min = Quantity(
+        type=np.float64,
+        description='minimum applied current',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        unit='A',
+    )
+    current_source_max = Quantity(
+        type=np.float64,
+        description='maximum applied current',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        unit='A',
+    )
+    probe_head_pin_spacing = Quantity(
+        type=np.float64,
+        description='distance among needles',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        #unit='mils',
+    )
+    probe_head_pin_load_min = Quantity(
+        type=np.float64,
+        description='minumum applied pin load',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        #unit='g',
+    )
+    probe_head_pin_load_max = Quantity(
+        type=np.float64,
+        description='maximum applied pin load',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        #unit='g',
+    )
+    needles_composition = Quantity(
+        type=str,
+        description='needle materials',
+        a_eln={
+            'component': 'StringEditQuantity',
+        },
+    )
+    needles_radius = Quantity(
+        type=np.float64,
+        description='needle tip diameter',
+        a_eln={
+            'component': 'NumberEditQuantity',
+        },
+        unit='mm',
+    )
+
