@@ -233,11 +233,7 @@ class WetCleaning(FabricationProcessStep):
         impurities of previous steps.
         """,
         a_eln={
-            'hide': [
-                'duration',
-                'tag',
-                'operator'
-            ],
+            'hide': ['duration', 'tag', 'operator'],
             'properties': {
                 'order': [
                     'job_number',

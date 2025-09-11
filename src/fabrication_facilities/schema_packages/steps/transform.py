@@ -334,11 +334,7 @@ class EBLbase(FabricationProcessStepBase):
 class EBL(FabricationProcessStep):
     m_def = Section(
         a_eln={
-            'hide': [
-                'duration',
-                'tag',
-                'operator'
-            ],
+            'hide': ['duration', 'tag', 'operator'],
             'properties': {
                 'order': [
                     'job_number',
@@ -446,7 +442,7 @@ class FIBbase(FabricationProcessStepBase):
 class FIB(FabricationProcessStep):
     m_def = Section(
         a_eln={
-            'hide':['tag', 'operator', 'duration'],
+            'hide': ['tag', 'operator', 'duration'],
             'properties': {
                 'order': [
                     'job_number',

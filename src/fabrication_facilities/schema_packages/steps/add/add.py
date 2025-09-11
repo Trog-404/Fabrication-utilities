@@ -33,11 +33,7 @@ m_package = Package(name='Add processes schema')
 class ElectronGun(FabricationProcessStep):
     m_def = Section(
         a_eln={
-            'hide': [
-                'tag',
-                'duration',
-                'operator'
-            ],
+            'hide': ['tag', 'duration', 'operator'],
             'properties': {
                 'order': [
                     'job_number',
@@ -138,7 +134,7 @@ class Sputtering(Chemical, FabricationProcessStep):
                 'end_time',
                 'start_time',
                 'tag',
-                'operator'
+                'operator',
             ],
             'properties': {
                 'order': [
@@ -288,11 +284,7 @@ class Sputtering(Chemical, FabricationProcessStep):
 class Bonding(FabricationProcessStep):
     m_def = Section(
         a_eln={
-            'hide': [
-                'tag',
-                'duration',
-                'operator'
-            ],
+            'hide': ['tag', 'duration', 'operator'],
             'properties': {
                 'order': [
                     'job_number',

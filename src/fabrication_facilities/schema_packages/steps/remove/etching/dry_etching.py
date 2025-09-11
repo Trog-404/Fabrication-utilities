@@ -195,11 +195,7 @@ class RIE(FabricationProcessStep):
         normally create a local abundance of radicals that react with the surface.
         """,
         a_eln={
-            'hide': [
-                'duration',
-                'tag',
-                'operator'
-            ],
+            'hide': ['duration', 'tag', 'operator'],
             'properties': {
                 'order': [
                     'job_number',
@@ -294,11 +290,7 @@ class ICP_RIE(RIE):
         using etching based on ions reacting with substrate surface and hitting it
         """,
         a_eln={
-            'hide': [
-                'duration',
-                'tag',
-                'operator'
-            ],
+            'hide': ['duration', 'tag', 'operator'],
             'properties': {
                 'order': [
                     'job_number',
@@ -342,11 +334,7 @@ class ICP_RIE(RIE):
 class DRIE_BOSCH(ICP_RIE):
     m_def = Section(
         a_eln={
-            'hide': [
-                'duration',
-                'tag',
-                'operator'
-            ],
+            'hide': ['duration', 'tag', 'operator'],
             'properties': {
                 'order': [
                     'job_number',

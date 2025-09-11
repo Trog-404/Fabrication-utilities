@@ -39,10 +39,7 @@ from nomad.metainfo import (
     Section,
     SubSection,
 )
-from schema_packages.Items import (
-    Item,
-    ItemsPermitted
-)
+from schema_packages.Items import Item, ItemsPermitted
 from schema_packages.utils import parse_chemical_formula
 
 if TYPE_CHECKING:
@@ -473,43 +470,43 @@ class User(ArchiveSection):
     name = Quantity(
         type=str,
         description='Name of one of the user involved',
-        a_eln={'component':'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
     role = Quantity(
         type=str,
         description='Role of the user in the lab or for the experiment',
-        a_eln={'component':'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
     affiliation = Quantity(
         type=str,
         description='Affiliation of the user',
-        a_eln={'component':'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
     address = Quantity(
         type=str,
         description='Address of the office for the user',
-        a_eln={'component':'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
     telephone_number = Quantity(
         type=str,
         description='Telephone number to contact the user',
-        a_eln={'component':'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
     fax_number = Quantity(
         type=str,
         description='Fax number to contact the user',
-        a_eln={'component':'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
     email = Quantity(
         type=str,
         description='Email address to contact the user',
-        a_eln={'component': 'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
     ORCID = Quantity(
@@ -518,27 +515,23 @@ class User(ArchiveSection):
             an author code, Open Researcher and Contributor ID, defined by
             https://orcid.org and expressed as a URI
         """,
-        a_eln={'component': 'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
     facility_user_id = Quantity(
         type=str,
-        description = """
+        description="""
             facility based unique identifier for this person e.g. the identification
             code on the facility address/contact database
         """,
-        a_eln={'component': 'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
 
 
 class FabricationProcessStep(FabricationProcessStepBase, EntryData):
     m_def = Section(
         a_eln={
-            'hide': [
-                'tag',
-                'duration',
-                'operator'
-            ],
+            'hide': ['tag', 'duration', 'operator'],
             'properties': {
                 'order': [
                     'job_number',
@@ -570,16 +563,16 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
         a_eln={'component': 'NumberEditQuantity'},
     )
     step_id = Quantity(
-        type= str,
-        description = """
+        type=str,
+        description="""
             Unique identifier for the experiment, defined by the facility, possibly
             linked to the proposals.
         """,
-        a_eln={'component': 'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
     description = Quantity(
         type=str,
-        description= 'Brief summary of the experiment, including key objectives',
+        description='Brief summary of the experiment, including key objectives',
         a_eln={'component': 'RichTextEditQuantity'},
     )
     affiliation = Quantity(
@@ -599,12 +592,12 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
     facility = Quantity(
         type=str,
         description='Name of the experimental facility',
-        a_eln={'component': 'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
     laboratory = Quantity(
         type=str,
         description='Name of the laboratory or beamline',
-        a_eln={'component': 'StringEditQuantity'}
+        a_eln={'component': 'StringEditQuantity'},
     )
     step_type = Quantity(
         type=str,
@@ -637,9 +630,7 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
     )
 
     users = SubSection(
-        section_def = User,
-        description='List of users involved in the step',
-        repeats = True
+        section_def=User, description='List of users involved in the step', repeats=True
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:

@@ -216,11 +216,7 @@ class LPCVD(FabricationProcessStep):
         a gaseous precursor or mixture of precursors, commonly initiated by heat.
         """,
         a_eln={
-            'hide': [
-                'tag',
-                'duration',
-                'operator'
-            ],
+            'hide': ['tag', 'duration', 'operator'],
             'properties': {
                 'order': [
                     'job_number',
@@ -303,11 +299,7 @@ class PECVD(LPCVD):
         electrode system on the sample.
         """,
         a_eln={
-            'hide': [
-                'tag',
-                'duration',
-                'operator'
-            ],
+            'hide': ['tag', 'duration', 'operator'],
             'properties': {
                 'order': [
                     'job_number',
@@ -365,11 +357,7 @@ class ICP_CVD(PECVD):
         addition to the lower electrodes to enanche by magnetic field the generation.
         """,
         a_eln={
-            'hide': [
-                'tag',
-                'duration',
-                'operator'
-            ],
+            'hide': ['tag', 'duration', 'operator'],
             'properties': {
                 'order': [
                     'job_number',

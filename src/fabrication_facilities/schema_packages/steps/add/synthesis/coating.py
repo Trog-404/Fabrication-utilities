@@ -113,11 +113,7 @@ class Spin_Coatingbase(FabricationProcessStepBase):
 class Spin_Coating(FabricationProcessStep):
     m_def = Section(
         a_eln={
-            'hide': [
-                'duration',
-                'tag',
-                'operator'
-            ],
+            'hide': ['duration', 'tag', 'operator'],
             'properties': {
                 'order': [
                     'job_number',

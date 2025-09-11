@@ -38,10 +38,15 @@ from nomad.metainfo import (
     Section,
     SubSection,
 )
-
 from schema_packages.utils import FabricationChemical
+
 if TYPE_CHECKING:
-    pass
+    from nomad.datamodel.datamodel import (
+        EntryArchive,
+    )
+    from structlog.stdlib import (
+        BoundLogger,
+    )
 
 m_package = Package(name='Items plugin')
 
@@ -433,32 +438,20 @@ class Item(Entity, ArchiveSection):
     )
 
 
-
 class SampleComponent(FabricationChemical):
+    m_def = Section(a_eln={'hide': ['datetime']})
 
-    m_def=Section(
-        a_eln={
-            'hide':['datetime']
-        }
-    )
-
-    history = SubSection(
-        section_def = Activity,
-        repeats=False
-    )
+    history = SubSection(section_def=Activity, repeats=False)
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
 
+
 class Sample(SampleComponent):
-    m_def = Section(
-        a_eln={
-            'hide':['datetime']
-        }
-    )
+    m_def = Section(a_eln={'hide': ['datetime']})
 
     type = Quantity(
-        type = MEnum(
+        type=MEnum(
             'sample',
             'sample+can',
             'can',
@@ -468,51 +461,48 @@ class Sample(SampleComponent):
             'normalization sample',
             'simulated data',
             'none',
-            'sample environment'
+            'sample environment',
         ),
-        a_eln={'component': 'EnumEditQuantity'}       
+        a_eln={'component': 'EnumEditQuantity'},
     )
 
     physical_form = Quantity(
-        type = MEnum(
-             'crystal',
-             'foil',
-             'pellet',
-             'powder',
-             'thin film',
-             'disc',
-             'foam',
-             'gas',
-             'liquid',
-             'amorphous'   
+        type=MEnum(
+            'crystal',
+            'foil',
+            'pellet',
+            'powder',
+            'thin film',
+            'disc',
+            'foam',
+            'gas',
+            'liquid',
+            'amorphous',
         ),
-        a_eln={'component': 'EnumEditQuantity'}
+        a_eln={'component': 'EnumEditQuantity'},
     )
 
     situation = Quantity(
-        type = MEnum(
+        type=MEnum(
             'air',
             'vacuum',
             'inert atmosphere',
             'oxidising atmosphere',
             'reducing atmosphere',
             'sealed can',
-            'other'  
+            'other',
         ),
-        a_eln={'component': 'EnumEditQuantity'}       
+        a_eln={'component': 'EnumEditQuantity'},
     )
 
     temperature = Quantity(
         type=np.float64,
         description='Sample temperature. This could be a scanned variable',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
-        unit='celsius'
+        unit='celsius',
     )
 
-    component = SubSection(
-        section_def=SampleComponent,
-        repeats=True
-    )
+    component = SubSection(section_def=SampleComponent, repeats=True)
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)

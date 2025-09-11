@@ -153,11 +153,7 @@ class ResistDevelopment(FabricationProcessStep):
 class SpinResistDevelopment(ResistDevelopment):
     m_def = Section(
         a_eln={
-            'hide': [
-                'tag',
-                'duration',
-                'operator'
-            ],
+            'hide': ['tag', 'duration', 'operator'],
             'properties': {
                 'order': [
                     'job_number',

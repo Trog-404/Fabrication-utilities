@@ -56,11 +56,7 @@ class Rinsing_Drying(FabricationProcessStep):
         also both heating is possible in principle).
         """,
         a_eln={
-            'hide': [
-                'tag',
-                'duration',
-                'operator'
-            ],
+            'hide': ['tag', 'duration', 'operator'],
             'properties': {
                 'order': [
                     'job_number',
