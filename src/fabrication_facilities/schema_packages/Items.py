@@ -1,21 +1,3 @@
-#
-# Copyright The NOMAD Authors.
-#
-# This file is part of NOMAD. See https://nomad-lab.eu for further info.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-# import datetime
 from typing import (
     TYPE_CHECKING,
 )
@@ -32,6 +14,7 @@ from nomad.datamodel.metainfo.basesections import (
 from nomad.datamodel.metainfo.basesections.v2 import Activity
 from nomad.datamodel.metainfo.plot import PlotlyFigure, PlotSection
 from nomad.metainfo import (
+    Datetime,
     MEnum,
     Package,
     Quantity,
@@ -320,85 +303,153 @@ class ItemPlacement(PlotSection, EntryData):
 class ItemsPermitted(ArchiveSection):
     m_def = Section()
 
-    type_of_material = Quantity(
-        type=MEnum(['dielectric', 'metal', 'other (specify in notes)']),
+    item_shape = Quantity(
+        description= 'Intended as the way of presenting of the sample processable.',
+        type=MEnum(
+            'Wafer with flat standard',
+            'Wafer with flat JEIDA',
+            'Rectangle shape',
+            '1/2 wafer',
+            '1/4 wafer',
+            'Fragment',
+            'Square shape',
+            'Powder',
+            'Wafer with Notch standard',
+            'Other (specify in notes)',
+        ),
+        shape=['*'],
         a_eln={'component': 'EnumEditQuantity'},
     )
-
-    minimum_dimensions = Quantity(
+    min_length = Quantity(
         type=np.float64,
         description="""
-        Is intended as the minimum diameter for a circle allowed in the chamber on the
-        chuck.
+        Is intended as on of the edge of a parallelepipedum shape allowed.
         """,
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'cm'},
-        unit='cm',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mm'},
+        unit='mm',
     )
 
-    maximum_dimensions = Quantity(
+    max_length = Quantity(
         type=np.float64,
         description="""
-        Is intended as the maximum diameter for a circle allowed in the chamber on the
-        chuck.
+        Is intended as one of the edge of a parallelepipedum shape allowed.
         """,
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'cm'},
-        unit='cm',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mm'},
+        unit='mm',
+    )
+    min_width = Quantity(
+        type=np.float64,
+        description="""
+            Is intended as one of the edge of a parallelepipedum shape allowed.
+        """,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mm'},
+        unit='mm',
     )
 
-    #     doping_type
+    max_width = Quantity(
+        type=np.float64,
+        description="""
+            Is intended as one of the edge of a parallelepipedum shape allowed.
+        """,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mm'},
+        unit='mm',
+    )
+    min_thickness = Quantity(
+        type=np.float64,
+        description="""
+            Is intended as one of the edge of a parallelepipedum shape allowed.
+        """,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mm'},
+        unit='mm',
+    )
 
-    # item_shape = Quantity(
-    #     description= 'Intended as the way of presenting of the sample processable.',
-    #     type=MEnum(
-    #         [
-    #             'Wafer with flat standard',
-    #             'Wafer with flat JEIDA',
-    #             'Rectangle shape',
-    #             '1/2 wafer',
-    #             '1/4 wafer',
-    #             'Fragment',
-    #             'Square shape',
-    #             'Powder',
-    #             'Wafer with Notch standard',
-    #             'Other (specify in notes)',
-    #         ]
-    #     ),
-    #     a_eln={'component': 'EnumEditQuantity'},
-    # )
-
+    max_thickness = Quantity(
+        type=np.float64,
+        description="""
+            Is intended as one of the height of a parallelepipedum shape allowed.
+        """,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mm'},
+        unit='mm',
+    )
+    min_weight = Quantity(
+        type=np.float64,
+        description="""
+            Minimuum weight of a processable item
+        """,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'g'},
+        unit='g'
+    )
+    max_weight = Quantity(
+        type=np.float64,
+        description="""
+            Maximuum weight of a processable item
+        """,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'g'},
+        unit='g'
+    )
     notes = Quantity(
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
 
 
-class Item(Entity, ArchiveSection):
-    """
-    Class autogenerated from yaml schema.
-    """
-
+class ItemComponent(FabricationChemical):
     m_def = Section(
         a_eln={
-            'hide': ['lab_id', 'name'],
             'properties': {
                 'order': [
-                    'id_wafer_parent',
+                    'name',
+                    'description',
+                    'chemical_formula',
+                    'component_id',
                     'datetime',
-                    'itemShapeType',
-                    'id',
-                    'isAssembly',
-                    'ids_components',
+                ],
+            },
+        }
+    )
+    component_id = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    datetime = Quantity(
+        description='Date reporting the creation of the component',
+        label='date_of_creation'
+    )
+
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
+
+
+class Item(FabricationChemical):
+    m_def = Section(
+        a_eln={
+            'properties': {
+                'order': [
+                    'name',
+                    'description',
+                    'chemical_formula',
+                    'lab_id',
+                    'datetime',
+                    'id_wafer_parent',
+                    'shapeType',
                     'notes',
                 ],
             },
         }
     )
+    lab_id = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    datetime = Quantity(
+        description='Date reporting the creation of the component',
+        label='date_of_creation'
+    )
     id_wafer_parent = Quantity(
         type=str,
         a_eln={'component': 'StringEditQuantity'},
     )
-    datetime = Quantity(a_eln={'label': 'date of creation'})
-    itemShapeType = Quantity(
+    shapeType = Quantity(
         type=MEnum(
             [
                 'Wafer with flat standard',
@@ -415,40 +466,69 @@ class Item(Entity, ArchiveSection):
         ),
         a_eln={'component': 'EnumEditQuantity'},
     )
-    id = Quantity(
-        type=str,
-        a_eln={'component': 'StringEditQuantity'},
-    )
-    isAssembly = Quantity(
-        type=bool,
-        a_eln={'component': 'BoolEditQuantity'},
-    )
-    ids_components = Quantity(
-        type=str,
-        shape=['*'],
-        a_eln={'component': 'StringEditQuantity'},
-    )
     notes = Quantity(
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
-    item_geometric_properties = SubSection(
+    geometric_properties = SubSection(
         section_def=Contour,
         repeats=False,
     )
+    components = SubSection(
+        section_def=ItemComponent,
+        description='If your item is assembly describe here each component',
+        repeats=True
+    )
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
 
 
-class SampleComponent(FabricationChemical):
-    m_def = Section(a_eln={'hide': ['datetime']})
+class SampleComponent(ItemComponent):
+    m_def = Section(
+        a_eln={
+            'properties': {
+                'order': [
+                    'name',
+                    'description',
+                    'chemical_formula',
+                    'datetime'
+                    'component_id',
+                    'datetime',
+                ],
+            },
+        }
+    )
 
-    history = SubSection(section_def=Activity, repeats=False)
+    history = SubSection(
+        section_def=Activity,
+        description='Here you can briefly describe the preparation of the component',
+        repeats=False
+    )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
 
 
-class Sample(SampleComponent):
-    m_def = Section(a_eln={'hide': ['datetime']})
+class Sample(Item):
+    m_def = Section(
+        a_eln={
+            'properties': {
+                'order': [
+                    'name',
+                    'description',
+                    'chemical_formula',
+                    'lab_id',
+                    'datetime',
+                    'id_wafer_parent',
+                    'shapeType',
+                    'type',
+                    'physical_form',
+                    'situation',
+                    'notes',
+                ],
+            },
+        }
+    )
 
     type = Quantity(
         type=MEnum(
@@ -494,15 +574,16 @@ class Sample(SampleComponent):
         ),
         a_eln={'component': 'EnumEditQuantity'},
     )
-
-    temperature = Quantity(
-        type=np.float64,
-        description='Sample temperature. This could be a scanned variable',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
-        unit='celsius',
+    components = SubSection(
+        section_def=SampleComponent,
+        description='If the sample has different compoents you can describe them here',
+        repeats=True
     )
-
-    component = SubSection(section_def=SampleComponent, repeats=True)
+    history = SubSection(
+        section_def=Activity,
+        description='Here you can briefly describe the preparation of the item',
+        repeats=False
+    )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)

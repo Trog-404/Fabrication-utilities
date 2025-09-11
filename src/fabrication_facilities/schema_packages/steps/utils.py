@@ -424,7 +424,11 @@ class ResistivityControl(ArchiveSection):
 
 
 class ResistDescription(FabricationChemical):
-    m_def = Section()
+    m_def = Section(
+        a_eln={
+            'hide':['datetime', 'lab_id']
+        }
+    )
 
     resist_type = Quantity(
         type=MEnum(

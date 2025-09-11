@@ -1,10 +1,10 @@
 data:
-  m_def: schema_packages.steps.add.synthesis.CVD.ICP_CVD
-  name: Test ICP-CVD
-  recipe_name: TESTRECIPE
+  m_def: 'schema_packages.steps.add.synthesis.CVD.ICP_CVD'
+  name: 'Test ICP-CVD'
+  recipe_name: 'TESTRECIPE'
   synthesis_steps:
-    - tag: conditioning
+    - tag: 'conditioning'
       fluximeters:
-        - name: "Gas name"
-          chemical_formula: SF6
+        - name: 'Gas name'
+          chemical_formula: 'SF6'
           massflow: 10
