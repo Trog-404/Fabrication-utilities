@@ -8,13 +8,9 @@ from nomad.datamodel.data import (
     ArchiveSection,
     EntryData,
 )
-from nomad.datamodel.metainfo.basesections import (
-    Entity,
-)
 from nomad.datamodel.metainfo.basesections.v2 import Activity
 from nomad.datamodel.metainfo.plot import PlotlyFigure, PlotSection
 from nomad.metainfo import (
-    Datetime,
     MEnum,
     Package,
     Quantity,
@@ -304,7 +300,7 @@ class ItemsPermitted(ArchiveSection):
     m_def = Section()
 
     item_shape = Quantity(
-        description= 'Intended as the way of presenting of the sample processable.',
+        description='Intended as the way of presenting of the sample processable.',
         type=MEnum(
             'Wafer with flat standard',
             'Wafer with flat JEIDA',
@@ -377,7 +373,7 @@ class ItemsPermitted(ArchiveSection):
             Minimuum weight of a processable item
         """,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'g'},
-        unit='g'
+        unit='g',
     )
     max_weight = Quantity(
         type=np.float64,
@@ -385,7 +381,7 @@ class ItemsPermitted(ArchiveSection):
             Maximuum weight of a processable item
         """,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'g'},
-        unit='g'
+        unit='g',
     )
     notes = Quantity(
         type=str,
@@ -413,7 +409,7 @@ class ItemComponent(FabricationChemical):
     )
     datetime = Quantity(
         description='Date reporting the creation of the component',
-        label='date_of_creation'
+        label='date_of_creation',
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
@@ -443,7 +439,7 @@ class Item(FabricationChemical):
     )
     datetime = Quantity(
         description='Date reporting the creation of the component',
-        label='date_of_creation'
+        label='date_of_creation',
     )
     id_wafer_parent = Quantity(
         type=str,
@@ -477,8 +473,9 @@ class Item(FabricationChemical):
     components = SubSection(
         section_def=ItemComponent,
         description='If your item is assembly describe here each component',
-        repeats=True
+        repeats=True,
     )
+
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
 
@@ -491,8 +488,7 @@ class SampleComponent(ItemComponent):
                     'name',
                     'description',
                     'chemical_formula',
-                    'datetime'
-                    'component_id',
+                    'datetimecomponent_id',
                     'datetime',
                 ],
             },
@@ -502,7 +498,7 @@ class SampleComponent(ItemComponent):
     history = SubSection(
         section_def=Activity,
         description='Here you can briefly describe the preparation of the component',
-        repeats=False
+        repeats=False,
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
@@ -577,12 +573,12 @@ class Sample(Item):
     components = SubSection(
         section_def=SampleComponent,
         description='If the sample has different compoents you can describe them here',
-        repeats=True
+        repeats=True,
     )
     history = SubSection(
         section_def=Activity,
         description='Here you can briefly describe the preparation of the item',
-        repeats=False
+        repeats=False,
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
