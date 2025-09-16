@@ -20,8 +20,12 @@ from schema_packages.fabrication_utilities import (
     FabricationProcessStep,
     FabricationProcessStepBase,
 )
-from schema_packages.steps.utils import Priming, SpinningComponent
-from schema_packages.utils import FabricationChemical
+from schema_packages.steps.utils import (
+    BaseOutputs,
+    Priming,
+    ResistDescription,
+    SpinningComponent,
+)
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
@@ -40,17 +44,11 @@ class Spin_Coatingbase(FabricationProcessStepBase):
         a_eln={
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'tag',
-                    'id_item_processed',
-                    'operator',
                     'starting_date',
                     'ending_date',
                     'duration',
-                    'resist_name',
-                    'chemical_formula',
-                    'resist_type',
                     'dispensing_mode',
                     'dispensing_locus',
                     'dispensed_volume',
@@ -100,7 +98,7 @@ class Spin_Coatingbase(FabricationProcessStepBase):
         """,
         a_eln={'component': 'BoolEditQuantity'},
     )
-    resist_material = SubSection(section_def=FabricationChemical, repeats=True)
+    resist_material = SubSection(section_def=ResistDescription, repeats=True)
 
     priming = SubSection(section_def=Priming, repeats=False)
 
@@ -113,12 +111,10 @@ class Spin_Coatingbase(FabricationProcessStepBase):
 class Spin_Coating(FabricationProcessStep):
     m_def = Section(
         a_eln={
-            'hide': ['duration', 'tag', 'operator'],
+            'hide': ['duration', 'tag'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
-                    'step_id',
                     'description',
                     'affiliation',
                     'location',
@@ -130,6 +126,7 @@ class Spin_Coating(FabricationProcessStep):
                     'starting_date',
                     'ending_date',
                     'step_type',
+                    'step_id',
                     'definition_of_process_step',
                     'keywords',
                     'recipe_name',
@@ -163,5 +160,10 @@ class Spin_Coating(FabricationProcessStep):
 
     spin_coating_steps = SubSection(section_def=Spin_Coatingbase, repeats=True)
 
+    outputs = SubSection(section_def=BaseOutputs, repeats=False)
+
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
+
+
+m_package.__init_metainfo__()

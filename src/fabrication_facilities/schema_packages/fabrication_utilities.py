@@ -266,8 +266,6 @@ class FabricationProcessStepBase(ArchiveSection):
                 'order': [
                     'name',
                     'tag',
-                    'id_item_processed',
-                    'operator',
                     'starting_date',
                     'ending_date',
                     'duration',
@@ -283,14 +281,6 @@ class FabricationProcessStepBase(ArchiveSection):
     tag = Quantity(
         type=str,
         description='Role of the step in fabrication (effective, conditioning, etc.)',
-        a_eln={'component': 'StringEditQuantity'},
-    )
-    id_item_processed = Quantity(
-        type=str,
-        a_eln={'component': 'StringEditQuantity'},
-    )
-    operator = Quantity(
-        type=str,
         a_eln={'component': 'StringEditQuantity'},
     )
     starting_date = Quantity(
@@ -540,10 +530,9 @@ class User(ArchiveSection):
 class FabricationProcessStep(FabricationProcessStepBase, EntryData):
     m_def = Section(
         a_eln={
-            'hide': ['tag', 'duration', 'operator'],
+            'hide': ['tag', 'duration'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'step_id',
                     'description',
@@ -556,6 +545,7 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
                     'starting_date',
                     'ending_date',
                     'step_type',
+                    'step_id',
                     'definition_of_process_step',
                     'keywords',
                     'recipe_name',
@@ -567,9 +557,9 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
         },
     )
 
-    job_number = Quantity(
-        type=int,
-        a_eln={'component': 'NumberEditQuantity'},
+    id_item_processed = Quantity(
+        type=str,
+        a_eln={'component': 'StringEditQuantity'},
     )
     step_id = Quantity(
         type=str,

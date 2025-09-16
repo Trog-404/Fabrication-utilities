@@ -51,11 +51,8 @@ class LPCVDbase(FabricationProcessStepBase):
         a_eln={
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'tag',
-                    'id_item_processed',
-                    'operator',
                     'starting_date',
                     'ending_date',
                     'duration',
@@ -117,11 +114,8 @@ class PECVDbase(FabricationProcessStepBase):
         a_eln={
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'tag',
-                    'id_item_processed',
-                    'operator',
                     'starting_date',
                     'ending_date',
                     'duration',
@@ -183,11 +177,8 @@ class ICP_CVDbase(PECVDbase):
         a_eln={
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'tag',
-                    'id_item_processed',
-                    'operator',
                     'starting_date',
                     'ending_date',
                     'duration',
@@ -216,12 +207,10 @@ class LPCVD(FabricationProcessStep):
         a gaseous precursor or mixture of precursors, commonly initiated by heat.
         """,
         a_eln={
-            'hide': ['tag', 'duration', 'operator'],
+            'hide': ['tag', 'duration'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
-                    'step_id',
                     'description',
                     'affiliation',
                     'location',
@@ -232,6 +221,7 @@ class LPCVD(FabricationProcessStep):
                     'starting_date',
                     'ending_date',
                     'step_type',
+                    'step_id',
                     'definition_of_process_step',
                     'keywords',
                     'recipe_name',
@@ -299,12 +289,10 @@ class PECVD(LPCVD):
         electrode system on the sample.
         """,
         a_eln={
-            'hide': ['tag', 'duration', 'operator'],
+            'hide': ['tag', 'duration'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
-                    'step_id',
                     'description',
                     'affiliation',
                     'location',
@@ -316,6 +304,7 @@ class PECVD(LPCVD):
                     'starting_date',
                     'ending_date',
                     'step_type',
+                    'step_id',
                     'definition_of_process_step',
                     'keywords',
                     'recipe_name',
@@ -357,12 +346,10 @@ class ICP_CVD(PECVD):
         addition to the lower electrodes to enanche by magnetic field the generation.
         """,
         a_eln={
-            'hide': ['tag', 'duration', 'operator'],
+            'hide': ['tag', 'duration'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
-                    'step_id',
                     'description',
                     'affiliation',
                     'location',
@@ -373,6 +360,7 @@ class ICP_CVD(PECVD):
                     'starting_date',
                     'ending_date',
                     'step_type',
+                    'step_id',
                     'definition_of_process_step',
                     'keywords',
                     'recipe_name',
@@ -394,3 +382,6 @@ class ICP_CVD(PECVD):
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
+
+
+m_package.__init_metainfo__()

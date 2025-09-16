@@ -131,7 +131,7 @@ charact_equipmentapp = "apps.characterization:charact_equipment_app_entry_point"
 
 Items_entry_point = "schema_packages:Items_entry_point"
 Utilities_entry_point = "schema_packages:Utilities_entry_point"
-Transform_entry_point = "schema_packages:Transform_entry_point"
+#Transform_entry_point = "schema_packages:Transform_entry_point"
 Equipments_entry_point = "schema_packages:Equipments_entry_point"
 materials_entry_point = "schema_packages:materials_entry_point"
 calculus_entry_point = "schema_packages:calculus_entry_point"
@@ -148,9 +148,19 @@ develop_entry_point = "schema_packages.steps.remove.developing:develop_entry_poi
 
 ## Add steps entry points
 
-Add_entry_point = "schema_packages:Add_entry_point"
-cvds_entry_point = "schema_packages.steps.add.synthesis: CVDs_entry_point"
-coating_entry_point = "schema_packages.steps.add.synthesis: coating_entry_point"
+cvds_entry_point = "schema_packages.steps.add.synthesis:CVDs_entry_point"
+coating_entry_point = "schema_packages.steps.add.synthesis:Coating_entry_point"
+electron_gun_entry_point = "schema_packages.steps.add.synthesis:ElectronGun_entry_point"
+sputtering_entry_point = "schema_packages.steps.add.synthesis:Sputtering_entry_point"
+sog_entry_point = "schema_packages.steps.add.synthesis:SOG_entry_point"
+bonding_entry_point = "schema_packages.steps.add.integration:Bonding_entry_point"
+
+## Transform setps entry points
+
+baking_entry_point = "schema_packages.steps.transform.thermal_process:Baking_entry_point"
+thermal_oxidation_entry_point = "schema_packages.steps.transform.thermal_process:ThermalOxidation_entry_point"
+ebl_entry_point = "schema_packages.steps.transform.lithography:EBL_entry_point"
+fib_entry_point = "schema_packages.steps.transform.lithography:FIB_entry_point"
 
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues

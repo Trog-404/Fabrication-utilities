@@ -1,9 +1,9 @@
-####################################
-# In questo file inserisco tutte le funzionalità e le sezioni che mi saranno utili per
-# la descrizione degli steps istanze particolari di ogni superclasse. Ad esempio qui
-# definirò la sezione contenente tutti i parametri relativi a una colonna ICP utile sia
-# per alcuni processi RIE e alcnui processi CVD.
-####################################
+#######################################################################################
+# In questo file inserisco tutte le funzionalità e le sezioni che mi saranno utili per#
+#  la descrizione degli steps istanze particolari di ogni superclasse. Ad esempio qui #
+#   definirò la sezione contenente tutti i parametri relativi a una colonna ICP utile #
+#                 sia per alcuni processi RIE e alcnui processi CVD.                  #
+#######################################################################################
 
 from typing import (
     TYPE_CHECKING,
@@ -424,12 +424,20 @@ class ResistivityControl(ArchiveSection):
 
 
 class ResistDescription(FabricationChemical):
-    m_def = Section(a_eln={'hide': ['datetime', 'lab_id']})
+    m_def = Section(
+        a_eln={
+            'hide': ['datetime', 'lab_id'],
+            'properties': {
+                'order': ['name', 'chemical_formula', 'resist_type', 'description']
+            },
+        }
+    )
 
     resist_type = Quantity(
         type=MEnum(
             'positive',
             'negative',
+            'lift_off',
         ),
         a_eln={'component': 'EnumEditQuantity'},
     )
@@ -752,16 +760,17 @@ class SpinDryingbase(Dryingbase):
 ################################### OUTPUT SECTIONS ###################################
 
 
+class BaseOutputs(ArchiveSection):
+    m_def = Section(description='Section for simple steps that return only a job id')
+
+    job_number = Quantity(
+        type=int,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+
+
 class SynthesisOutputs(ArchiveSection):
     m_def = Section(
-        a_eln={
-            'properties': {
-                'order': [
-                    'job_number',
-                    'duration_measured',
-                ],
-            }
-        },
         description='Class describing all possible output data in synthesis steps',
     )
 
@@ -851,3 +860,77 @@ class WetEtchingOutputs(ArchiveSection):
         description='Chronological number from the last solution renewal',
         a_eln={'component': 'NumberEditQuantity'},
     )
+
+
+class BondingOutputs(ArchiveSection):
+    m_def = Section()
+
+    job_number = Quantity(
+        type=int,
+        description='Progressive number associated to the process',
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+
+    wafer_bonded_name = Quantity(
+        type=str,
+        description='Name of the bonded item',
+        a_eln={'component': 'StringEditQuantity'},
+    )
+
+    wafer_bonded_id = Quantity(
+        type=str,
+        description='Id of the bonded item',
+        a_eln={'component': 'StringEditQuantity'},
+    )
+
+
+class ElectronGunOutputs(SynthesisOutputs):
+    m_def = Section()
+
+    gun_voltage_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'V'},
+        unit='V',
+    )
+
+    gun_current_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mampere'},
+        unit='mampere',
+    )
+
+
+class OxidationOutputs(ArchiveSection):
+    m_def = Section()
+
+    job_number = Quantity(type=int, a_eln={'component': 'NumberEditQuantity'})
+
+    duration_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 's'},
+        unit='s',
+    )
+
+
+class DirectLitoOutputs(ArchiveSection):
+    m_def = Section()
+
+    job_number = Quantity(type=int, a_eln={'component': 'NumberEditQuantity'})
+
+    current_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'pC'},
+        unit='pC',
+    )
+
+    duration_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
+        unit='minute',
+    )
+
+    # angular_intensity = Quantity(
+    #     type=np.float64,
+    #     a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mampere/sr'},
+    #     unit='mampere/sr',
+    # )
