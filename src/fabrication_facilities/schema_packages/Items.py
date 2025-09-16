@@ -8,7 +8,6 @@ from nomad.datamodel.data import (
     ArchiveSection,
     EntryData,
 )
-from nomad.datamodel.metainfo.basesections.v2 import Activity
 from nomad.datamodel.metainfo.plot import PlotlyFigure, PlotSection
 from nomad.metainfo import (
     MEnum,
@@ -408,6 +407,7 @@ class ItemComponent(FabricationChemical):
         a_eln={'component': 'StringEditQuantity'},
     )
     datetime = Quantity(
+        a_eln={'component': 'DateTimeEditQuantity'},
         description='Date reporting the creation of the component',
         label='date_of_creation',
     )
@@ -438,6 +438,7 @@ class Item(FabricationChemical):
         a_eln={'component': 'StringEditQuantity'},
     )
     datetime = Quantity(
+        a_eln={'component': 'DateTimeEditQuantity'},
         description='Date reporting the creation of the component',
         label='date_of_creation',
     )
@@ -474,111 +475,6 @@ class Item(FabricationChemical):
         section_def=ItemComponent,
         description='If your item is assembly describe here each component',
         repeats=True,
-    )
-
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        super().normalize(archive, logger)
-
-
-class SampleComponent(ItemComponent):
-    m_def = Section(
-        a_eln={
-            'properties': {
-                'order': [
-                    'name',
-                    'description',
-                    'chemical_formula',
-                    'datetimecomponent_id',
-                    'datetime',
-                ],
-            },
-        }
-    )
-
-    history = SubSection(
-        section_def=Activity,
-        description='Here you can briefly describe the preparation of the component',
-        repeats=False,
-    )
-
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        super().normalize(archive, logger)
-
-
-class Sample(Item):
-    m_def = Section(
-        a_eln={
-            'properties': {
-                'order': [
-                    'name',
-                    'description',
-                    'chemical_formula',
-                    'lab_id',
-                    'datetime',
-                    'id_wafer_parent',
-                    'shapeType',
-                    'type',
-                    'physical_form',
-                    'situation',
-                    'notes',
-                ],
-            },
-        }
-    )
-
-    type = Quantity(
-        type=MEnum(
-            'sample',
-            'sample+can',
-            'can',
-            'sample+buffer',
-            'buffer',
-            'calibration sample',
-            'normalization sample',
-            'simulated data',
-            'none',
-            'sample environment',
-        ),
-        a_eln={'component': 'EnumEditQuantity'},
-    )
-
-    physical_form = Quantity(
-        type=MEnum(
-            'crystal',
-            'foil',
-            'pellet',
-            'powder',
-            'thin film',
-            'disc',
-            'foam',
-            'gas',
-            'liquid',
-            'amorphous',
-        ),
-        a_eln={'component': 'EnumEditQuantity'},
-    )
-
-    situation = Quantity(
-        type=MEnum(
-            'air',
-            'vacuum',
-            'inert atmosphere',
-            'oxidising atmosphere',
-            'reducing atmosphere',
-            'sealed can',
-            'other',
-        ),
-        a_eln={'component': 'EnumEditQuantity'},
-    )
-    components = SubSection(
-        section_def=SampleComponent,
-        description='If the sample has different compoents you can describe them here',
-        repeats=True,
-    )
-    history = SubSection(
-        section_def=Activity,
-        description='Here you can briefly describe the preparation of the item',
-        repeats=False,
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:

@@ -16,7 +16,7 @@ classifiers = [
 name = "Fabrication-facilities"
 #suggested description, instead of "Plugin for fabrication processes"
 description = "Plugin for nanofabrication semiconductor cleanroom processes"
-version = "1.10.1"
+version = "1.11.0"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [

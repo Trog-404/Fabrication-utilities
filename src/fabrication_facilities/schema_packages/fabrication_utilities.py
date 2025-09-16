@@ -186,9 +186,18 @@ class EquipmentTechnique(ArchiveSection):
                 'thermal processing',
                 'lithography',
                 'etching',
+                'mechanical testing methods',
+                'microscopy based methods',
+                'spectroscopy based methods',
+                'diffraction based methods',
+                'light scattering techniques for nanoparticle analysis',
+                'tribological characterisation',
+                'thermal analysis methods',
+                'electrical characterisation methods',
+                'magnetic characterisation methods',
             ]
         ),
-        a_eln={'component': 'EnumEditQuantity'},
+        a_eln={'component': 'AutocompleteEditQuantity'},
     )
     techniqueSubCategory = Quantity(
         type=str,
