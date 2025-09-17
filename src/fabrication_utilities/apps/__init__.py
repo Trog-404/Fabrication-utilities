@@ -1,8 +1,8 @@
-from apps.fabrication.addapp import addapp
-from apps.fabrication.equipmentapp import equipmentapp
-from apps.fabrication.processapp import processapp
-from apps.fabrication.removeapp import removeapp
-from apps.fabrication.transapp import transapp
+from apps.addapp import addapp
+from apps.equipmentapp import equipmentapp
+from apps.processapp import processapp
+from apps.removeapp import removeapp
+from apps.transapp import transapp
 from nomad.config.models.plugins import AppEntryPoint
 
 equipment_app_entry_point = AppEntryPoint(
@@ -35,4 +35,4 @@ app_trans_entry_point = AppEntryPoint(
     app=transapp,
 )
 
-app_entry_point = app_trans_entry_point
+app_entry_point_to_test = app_remove_entry_point

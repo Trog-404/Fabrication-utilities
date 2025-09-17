@@ -13,10 +13,10 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: BSD License",
 ]
-name = "Fabrication-facilities"
+name = "Fabrication-utilities"
 #suggested description, instead of "Plugin for fabrication processes"
 description = "Plugin for nanofabrication semiconductor cleanroom processes"
-version = "1.11.0"
+version = "1.12.0"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
@@ -32,7 +32,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/foo/Fabrication-facilities"
+Repository = "https://github.com/Trog-404/Fabrication-utilities"
 
 [project.optional-dependencies]
 dev = ["ruff", "pytest", "structlog"]
@@ -61,7 +61,7 @@ exclude = [
     "dist",
     "node_modules",
     "venv",
-    "src/fabrication_facilities/apps/fabrication/directories.py"
+    "src/fabrication_utilities/apps/directories.py"
 ]
 
 # Same as Black.
@@ -109,23 +109,20 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.setuptools]
-package-dir = { "" = "src/fabrication_facilities" }
+package-dir = { "" = "src/fabrication_utilities" }
 
 [tool.setuptools.packages.find]
-where = ["src/fabrication_facilities"]
+where = ["src/fabrication_utilities"]
 
 [project.entry-points.'nomad.plugin']
 
 # Apps entry point
 
-equipmentapp = "apps.fabrication:equipment_app_entry_point"
-processapp = "apps.fabrication:process_app_entry_point"
-removeapp = "apps.fabrication:app_remove_entry_point"
-addapp = "apps.fabrication:app_add_entry_point"
-transapp = "apps.fabrication:app_trans_entry_point"
-
-characterapp = "apps.characterization:app_character_entry_point"
-charact_equipmentapp = "apps.characterization:charact_equipment_app_entry_point"
+equipmentapp = "apps:equipment_app_entry_point"
+processapp = "apps:process_app_entry_point"
+removeapp = "apps:app_remove_entry_point"
+addapp = "apps:app_add_entry_point"
+transapp = "apps:app_trans_entry_point"
 
 # Schemas entry point
 
@@ -135,8 +132,6 @@ Utilities_entry_point = "schema_packages:Utilities_entry_point"
 Equipments_entry_point = "schema_packages:Equipments_entry_point"
 materials_entry_point = "schema_packages:materials_entry_point"
 calculus_entry_point = "schema_packages:calculus_entry_point"
-Characterization_entry_point="schema_packages:Characterization_entry_point"
-Characterization__Equipment_entry_point="schema_packages:Characterization_Equipment_entry_point"
 
 ## Remove steps entry points
 
@@ -159,8 +154,10 @@ bonding_entry_point = "schema_packages.steps.add.integration:Bonding_entry_point
 
 baking_entry_point = "schema_packages.steps.transform.thermal_process:Baking_entry_point"
 thermal_oxidation_entry_point = "schema_packages.steps.transform.thermal_process:ThermalOxidation_entry_point"
+annealing_oxidation_entry_point = "schema_packages.steps.transform.thermal_process:Annealing_entry_point"
 ebl_entry_point = "schema_packages.steps.transform.lithography:EBL_entry_point"
 fib_entry_point = "schema_packages.steps.transform.lithography:FIB_entry_point"
+dicing_entry_point = "schema_packages.steps.transform.dicing:Dicing_entry_point"
 
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues

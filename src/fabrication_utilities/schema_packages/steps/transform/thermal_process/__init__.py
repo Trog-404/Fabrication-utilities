@@ -27,3 +27,18 @@ ThermalOxidation_entry_point = OxidationEntryPoint(
     name='Thermal oxidation steps definitions',
     description='Schema package for describing thermal oxidation steps in fabrication.',
 )
+
+
+class AnnealingEntryPoint(SchemaPackageEntryPoint):
+    def load(self):
+        from schema_packages.steps.transform.thermal_process.annealing import (
+            m_package,
+        )
+
+        return m_package
+
+
+Annealing_entry_point = AnnealingEntryPoint(
+    name='Annealing steps definitions',
+    description='Schema package for describing annealing steps in fabrication.',
+)

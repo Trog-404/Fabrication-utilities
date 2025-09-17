@@ -884,6 +884,30 @@ class BondingOutputs(ArchiveSection):
     )
 
 
+class DicingOutputs(ArchiveSection):
+    m_def = Section()
+
+    job_number = Quantity(
+        type=int,
+        description='Progressive number associated to the process',
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+
+    wafer_dice_name = Quantity(
+        type=str,
+        shape=['*'],
+        description='Name of the diced item',
+        a_eln={'component': 'StringEditQuantity'},
+    )
+
+    wafer_diced_id = Quantity(
+        type=str,
+        shape=['*'],
+        description='Name of the diced item',
+        a_eln={'component': 'StringEditQuantity'},
+    )
+
+
 class ElectronGunOutputs(SynthesisOutputs):
     m_def = Section()
 

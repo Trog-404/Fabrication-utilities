@@ -1,14 +1,13 @@
-from apps.fabrication.directories import dir_path
-from apps.fabrication.menu_steps import (
-    menuremove_driebosch,
-    menuremove_icprie,
-    menuremove_resistdev,
-    menuremove_rie,
-    menuremove_rinsingdrying,
-    menuremove_spinresist,
-    menuremove_stripping,
-    menuremove_wetclean,
-    menuremove_wetetching,
+from apps.directories import dir_path
+from apps.menu_steps import (
+    menuadd_bonding,
+    menuadd_electrongun,
+    menuadd_icpcvd,
+    menuadd_lpcvd,
+    menuadd_pecvd,
+    menuadd_sog,
+    menuadd_spincoat,
+    menuadd_sputtering,
 )
 from nomad.config.models.ui import (
     App,
@@ -19,22 +18,20 @@ from nomad.config.models.ui import (
 )
 
 schemas = [
-    f'*#{path_value}'
-    for path_value in dir_path.values()
-    if 'steps.remove' in path_value
+    f'*#{path_value}' for path_value in dir_path.values() if 'steps.add' in path_value
 ]
 fps = 'FabricationProcessStep'
 dir0 = f'schema_packages.fabrication_utilities.{fps}'
 schemas.append(f'*#{dir0}')
 
-removeapp = App(
-    label='Remove steps',
-    path='removeapp',
+addapp = App(
+    label='Add steps',
+    path='addapp',
     category='Fabrication utilities',
-    description='App to search remove fabrication steps.',
+    description='App to search add fabrication steps.',
     readme="""
     This app is intended to navigate around the ecosystem of clean room fabrication
-    possible remove steps. At the beginning you will see all the fabrication steps
+    possible add steps. At the beginning you will see all the fabrication steps
     available in nomad and than through the filters on the left you can specialize
     the research per single technique. Navigation across multiple technique is not
     allowed.
@@ -58,23 +55,26 @@ removeapp = App(
     menu=Menu(
         items=[
             Menu(
-                title='Etching',
+                title='Bonding',
                 items=[
-                    menuremove_rie,
-                    menuremove_icprie,
-                    menuremove_driebosch,
-                    menuremove_wetetching,
-                    menuremove_wetclean,
-                    menuremove_stripping,
+                    menuadd_bonding,
                 ],
             ),
             Menu(
-                title='Drying',
-                items=[menuremove_rinsingdrying],
+                title='Integration',
+                items=[],
             ),
             Menu(
-                title='Resist development',
-                items=[menuremove_resistdev, menuremove_spinresist],
+                title='Synthesis',
+                items=[
+                    menuadd_lpcvd,
+                    menuadd_pecvd,
+                    menuadd_icpcvd,
+                    menuadd_spincoat,
+                    menuadd_electrongun,
+                    menuadd_sputtering,
+                    menuadd_sog,
+                ],
             ),
             Menu(
                 title='User defined quantities',

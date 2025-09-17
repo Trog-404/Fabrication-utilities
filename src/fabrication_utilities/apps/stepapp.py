@@ -1,5 +1,5 @@
-from apps.fabrication.directories import dir_path
-from apps.fabrication.menu_steps import (
+from apps.directories import dir_path
+from apps.menu_steps import (
     menuutils_obsmeasurements,
     menuutils_startingmaterial,
 )
