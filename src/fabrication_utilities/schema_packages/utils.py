@@ -8,12 +8,8 @@ import numpy as np
 import plotly.express as px
 from ase.data import atomic_masses as am
 from ase.data import atomic_numbers as an
-from nomad.datamodel.data import ArchiveSection, EntryData
-from nomad.datamodel.metainfo.basesections import (
-    Activity,
-    ElementalComposition,
-    Process,
-)
+from nomad.datamodel.data import ArchiveSection
+from nomad.datamodel.metainfo.basesections import ElementalComposition
 from nomad.datamodel.metainfo.eln import Chemical
 from nomad.datamodel.metainfo.plot import PlotlyFigure, PlotSection
 from nomad.metainfo import Quantity, Section, SubSection
@@ -146,7 +142,7 @@ def make_line_express(list1, list2, labelx, labely, finalist, labelfigure):
 # Capire se se può ingegnerizzare meglio la funzione per ridurre variabili
 
 
-class TimeRampTemperature(PlotSection, EntryData):
+class TimeRampTemperature(PlotSection):
     m_def = Section()
 
     name = Quantity(
@@ -220,7 +216,7 @@ class TimeRampTemperature(PlotSection, EntryData):
             )
 
 
-class TimeRampPressure(PlotSection, EntryData):
+class TimeRampPressure(PlotSection):
     m_def = Section()
 
     name = Quantity(
@@ -294,7 +290,7 @@ class TimeRampPressure(PlotSection, EntryData):
             )
 
 
-class TimeRampMassflow(PlotSection, EntryData):
+class TimeRampMassflow(PlotSection):
     m_def = Section()
 
     name = Quantity(
@@ -371,7 +367,7 @@ class TimeRampMassflow(PlotSection, EntryData):
             )
 
 
-class TimeRampRotation(PlotSection, EntryData):
+class TimeRampRotation(PlotSection):
     m_def = Section()
 
     name = Quantity(
@@ -459,13 +455,3 @@ def double_list_reading(list1, list2, archive, logger):
             chemical.normalize(archive, logger)
             reactives.append(chemical)
     return reactives
-
-
-class ActivityProva(Activity, EntryData):
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        super().normalize(archive, logger)
-
-
-class ProcessProva(Process, EntryData):
-    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        super().normalize(archive, logger)

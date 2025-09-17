@@ -1,2 +1,2 @@
 recursive-include * nomad_plugin.yaml
-graft src/fabrication_facilities/example_uploads
+graft src/fabrication_utilities/example_uploads

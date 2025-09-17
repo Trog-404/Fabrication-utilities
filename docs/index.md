@@ -1,4 +1,4 @@
-# Welcome to the `Fabrication-facilities` documentation
+# Welcome to the `Fabrication-utilities` documentation
 
 Plugin for fabrication processes
 

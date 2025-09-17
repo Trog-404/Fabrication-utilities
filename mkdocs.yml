@@ -1,8 +1,8 @@
-site_name: Fabrication-facilities
+site_name: Fabrication-utilities
 site_description: Plugin for fabrication processes
 site_author: Matteo Bontorno
 
-repo_url: https://github.com/foo/Fabrication-facilities
+repo_url: https://github.com/Trog-404/Fabrication-utilities.git
 edit_uri: ""
 
 nav:
