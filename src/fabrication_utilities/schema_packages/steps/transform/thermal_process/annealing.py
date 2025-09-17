@@ -11,12 +11,8 @@ from schema_packages.fabrication_utilities import (
     FabricationProcessStep,
     FabricationProcessStepBase,
 )
-from schema_packages.steps.utils import BaseOutputs
-from schema_packages.utils import (
-    FabricationChemical,
-    MassflowController,
-    TimeRampTemperature,
-)
+from schema_packages.steps.utils import BaseOutputs, Massflow_controller
+from schema_packages.utils import FabricationChemical, TimeRampTemperature
 
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
@@ -51,7 +47,7 @@ class Annealingbase(FabricationProcessStepBase):
 
     annealed_material = SubSection(section_def=FabricationChemical, repeats=False)
 
-    fluximeters = SubSection(section_def=MassflowController, repeats=True)
+    fluximeters = SubSection(section_def=Massflow_controller, repeats=True)
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
         BoundLogger,
     )
 
-m_package = Package('Schemas to describe dicing steps')
+m_package = Package(name='Schemas to describe dicing steps')
 
 
 class Dicingbase(FabricationProcessStepBase):
