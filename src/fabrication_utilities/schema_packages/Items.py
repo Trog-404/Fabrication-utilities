@@ -409,7 +409,7 @@ class ItemComponent(FabricationChemical):
     datetime = Quantity(
         a_eln={'component': 'DateTimeEditQuantity'},
         description='Date reporting the creation of the component',
-        label='date_of_creation',
+        label='date of creation',
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
@@ -440,7 +440,7 @@ class Item(FabricationChemical):
     datetime = Quantity(
         a_eln={'component': 'DateTimeEditQuantity'},
         description='Date reporting the creation of the component',
-        label='date_of_creation',
+        label='date of creation',
     )
     id_wafer_parent = Quantity(
         type=str,
