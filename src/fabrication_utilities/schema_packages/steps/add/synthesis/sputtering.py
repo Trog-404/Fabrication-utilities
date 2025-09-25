@@ -45,6 +45,14 @@ class Sputteringbase(FabricationProcessStepBase):
             'component': 'StringEditQuantity',
         },
     )
+    movement_frequency = Quantity(
+        type=np.float64,
+        description="""If the movement is not circular fill this field, on the contrary
+        fill the spin_paramters sub-section.
+        """,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'Hz'},
+        unit='Hz',
+    )
     index = Quantity(
         type=int,
         description='Deposition step index',
@@ -74,6 +82,10 @@ class Sputteringbase(FabricationProcessStepBase):
 
 class Sputtering(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Physical vapour deposition  process employing energetic particles to transfer
+        atoms from a target material to a substrate.
+        """,
         a_eln={
             'hide': ['duration', 'tag'],
             'properties': {
@@ -112,13 +124,14 @@ class Sputtering(FabricationProcessStep):
     duration_target = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'sec'},
-        unit='sec',
+        unit='minute',
     )
     deposition_rate_target = Quantity(
         type=np.float64,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'sec'},
-        unit='nm/sec',
+        unit='nm/minute',
     )
+    sputtering_steps = SubSection(section_def=Sputteringbase, repeats=False)
     outputs = SubSection(section_def=SynthesisOutputs, repeats=False)
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:

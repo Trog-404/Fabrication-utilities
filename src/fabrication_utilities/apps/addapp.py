@@ -55,14 +55,10 @@ addapp = App(
     menu=Menu(
         items=[
             Menu(
-                title='Bonding',
+                title='Integration',
                 items=[
                     menuadd_bonding,
                 ],
-            ),
-            Menu(
-                title='Integration',
-                items=[],
             ),
             Menu(
                 title='Synthesis',

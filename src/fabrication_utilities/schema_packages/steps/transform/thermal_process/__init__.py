@@ -16,7 +16,7 @@ Baking_entry_point = BakingEntryPoint(
 
 class OxidationEntryPoint(SchemaPackageEntryPoint):
     def load(self):
-        from schema_packages.steps.transform.thermal_process.thermal_oxidation import (
+        from schema_packages.steps.transform.thermal_process.oxidation import (
             m_package,
         )
 

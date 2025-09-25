@@ -16,12 +16,17 @@ if TYPE_CHECKING:
 
 m_package = Package(name='Schema to describe sog steps')
 
+# In futuro per essere conformi alla tassonomia e allo splitting dei passi nei propri
+# componenti bisgnorebbe descrivere il de wetting con un baking e il precleaning con
+# l'apposito passo.
+
 
 class SOGbase(FabricationProcessStepBase):
     m_def = Section()
 
     pre_cleaning = Quantity(
         type=str,
+        description='Name to understand what kind of precleaning perform',
         a_eln={
             'component': 'StringEditQuantity',
         },

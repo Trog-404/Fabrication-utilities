@@ -3,14 +3,14 @@ from apps.menu_steps import (
     menutrans_annealing,
     menutrans_baking,
     menutrans_dicing,
-    menutrans_doping,
+    # menutrans_doping,
     menutrans_ebl,
     menutrans_fib,
-    menutrans_labelingcleaning,
-    menutrans_ltodensification,
-    menutrans_sod,
+    # menutrans_labelingcleaning,
+    # menutrans_ltodensification,
+    # menutrans_sod,
     menutrans_thermaloxidation,
-    menutrans_track,
+    # menutrans_track,
 )
 from nomad.config.models.ui import (
     App,
@@ -68,8 +68,8 @@ transapp = App(
             Menu(
                 title='Doping',
                 items=[
-                    menutrans_doping,
-                    menutrans_sod,
+                    #    menutrans_doping,
+                    #    menutrans_sod,
                 ],
             ),
             Menu(
@@ -77,22 +77,17 @@ transapp = App(
                 items=[
                     menutrans_ebl,
                     menutrans_fib,
-                    menutrans_track,
+                    #    menutrans_track,
+                    #    menutrans_labelingcleaning,
                 ],
             ),
             Menu(
                 title='Thermal processing',
                 items=[
                     menutrans_annealing,
-                    menutrans_ltodensification,
+                    #   menutrans_ltodensification,
                     menutrans_thermaloxidation,
                     menutrans_baking,
-                ],
-            ),
-            Menu(
-                title='Labeling',
-                items=[
-                    menutrans_labelingcleaning,
                 ],
             ),
             Menu(
