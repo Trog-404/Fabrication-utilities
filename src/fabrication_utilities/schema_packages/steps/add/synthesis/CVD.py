@@ -85,7 +85,11 @@ class LPCVDbase(FabricationProcessStepBase):
         a_eln={'component': 'NumberEditQuantity'},
     )
 
-    material_deposited = SubSection(section_def=FabricationChemical, repeats=True)
+    material_deposited = SubSection(
+        section_def=FabricationChemical,
+        description='In this sections you can describe one or more materials deposited',
+        repeats=True,
+    )
 
     pressure_ramps = SubSection(
         section_def=TimeRampPressure,
@@ -99,10 +103,18 @@ class LPCVDbase(FabricationProcessStepBase):
 
     fluximeters = SubSection(
         section_def=Massflow_controller,
+        description='Through this section you can describe the gases involved.',
         repeats=True,
     )
 
-    item_carrier = SubSection(section_def=Carrier, repeats=False)
+    item_carrier = SubSection(
+        section_def=Carrier,
+        description="""
+        Tipically wafers are loaded by a multiple wafer device which enters into the
+        furnace
+        """,
+        repeats=False,
+    )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
@@ -148,7 +160,11 @@ class PECVDbase(FabricationProcessStepBase):
         a_eln={'component': 'NumberEditQuantity'},
     )
 
-    material_deposited = SubSection(section_def=FabricationChemical, repeats=True)
+    material_deposited = SubSection(
+        section_def=FabricationChemical,
+        description='In this sections you can describe one or more materials deposited',
+        repeats=True,
+    )
 
     pressure_ramps = SubSection(
         section_def=TimeRampPressure,
@@ -162,10 +178,18 @@ class PECVDbase(FabricationProcessStepBase):
 
     fluximeters = SubSection(
         section_def=Massflow_controller,
+        description='Through this section you can describe the gases involved.',
         repeats=True,
     )
 
-    chuck = SubSection(section_def=Chuck, repeats=False)
+    chuck = SubSection(
+        section_def=Chuck,
+        description="""
+        Tipically PECVD is performed on wafer positioned onto a chuck. Here ou can
+        describe its parameters and other features
+        """,
+        repeats=False,
+    )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
@@ -193,6 +217,7 @@ class ICP_CVDbase(PECVDbase):
 
     icp_column = SubSection(
         section_def=ICP_Column,
+        description='Section containing the parameters for the ICP column',
         repeats=False,
     )
 

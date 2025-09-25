@@ -10,7 +10,7 @@ from nomad.config.models.ui import (
 mec = 'data.synthesis_steps.material_elemental_composition.element'
 flux = 'data.synthesis_steps.fluximeters.elemental_composition.element'
 fluxetch = 'data.etching_steps.fluximeters.elemental_composition.element'
-rec = 'data.spin_coating_steps.resist_material.elemental_composition.element'
+rec = 'data.coating_steps.resist_material.elemental_composition.element'
 gec = 'data.gas_elemental_composition.element'
 dmec = 'data.doping_material_elemental_composition.element'
 sec = 'data.substrate_elemental_composition.element'
@@ -592,12 +592,12 @@ menuadd_spincoat = Menu(
         MenuItemTerms(
             title='Resist to be deposited',
             type='terms',
-            search_quantity=f'data.spin_coating_steps.resist_material.name#{dir_path["dir2"]}',
+            search_quantity=f'data.coating_steps.resist_material.name#{dir_path["dir2"]}',
         ),
         MenuItemTerms(
             title='Formulas of the resist',
             type='terms',
-            search_quantity=f'data.spin_coating_steps.resist_material.chemical_formula#{dir_path["dir2"]}',
+            search_quantity=f'data.coating_steps.resist_material.chemical_formula#{dir_path["dir2"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements of the resist deposited',
@@ -617,19 +617,19 @@ menuadd_spincoat = Menu(
         MenuItemTerms(
             title='Primer type',
             type='terms',
-            search_quantity=f'data.spin_coating_steps.priming.primer_type#{dir_path["dir2"]}',
+            search_quantity=f'data.coating_steps.priming.primer_name#{dir_path["dir2"]}',
         ),
         MenuItemTerms(
             title='Primer physical phase',
             type='terms',
-            search_quantity=f'data.spin_coating_steps.priming.primer_physical_phase#{dir_path["dir2"]}',
+            search_quantity=f'data.coating_steps.priming.primer_physical_phase#{dir_path["dir2"]}',
         ),
         MenuItemHistogram(
             title='Primer temperature',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.spin_coating_steps.priming.primer_temperature#{dir_path["dir2"]}',
+                search_quantity=f'data.coating_steps.priming.primer_temperature#{dir_path["dir2"]}',
                 title='primer temperature',
                 unit='celsius',
             ),
@@ -637,14 +637,14 @@ menuadd_spincoat = Menu(
         MenuItemTerms(
             title='Dispening mode',
             type='histogram',
-            search_quantity=f'data.spin_coating_steps.dispensing_mode#{dir_path["dir2"]}',
+            search_quantity=f'data.coating_steps.dispensing_mode#{dir_path["dir2"]}',
         ),
         MenuItemHistogram(
             title='Dispensed volume',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.spin_coating_steps.dispensed_volume#{dir_path["dir2"]}',
+                search_quantity=f'data.coating_steps.dispensed_volume#{dir_path["dir2"]}',
                 title='dispensed volume',
                 unit='milliliter',
             ),
@@ -654,7 +654,7 @@ menuadd_spincoat = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.spin_coating_steps.spin_phase.spin_duration#{dir_path["dir2"]}',
+                search_quantity=f'data.coating_steps.spin_phase.spin_duration#{dir_path["dir2"]}',
                 title='spin duration',
                 unit='sec',
             ),
@@ -664,7 +664,7 @@ menuadd_spincoat = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.spin_coating_steps.spin_phase.spin_frequency#{dir_path["dir2"]}',
+                search_quantity=f'data.coating_steps.spin_phase.spin_frequency#{dir_path["dir2"]}',
                 title='frequency',
                 unit='rpm',
             ),
@@ -674,7 +674,7 @@ menuadd_spincoat = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.spin_coating_steps.spin_phase.spin_angular_acceleration#{dir_path["dir2"]}',
+                search_quantity=f'data.coating_steps.spin_phase.spin_angular_acceleration#{dir_path["dir2"]}',
                 title='angular acceleration',
                 unit='rpm/sec',
             ),
@@ -713,19 +713,19 @@ menuadd_bonding = Menu(
         MenuItemTerms(
             title='Wafer bonding type',
             type='terms',
-            search_quantity=f'data.wafer_bonding_type#{dir_path["dir8"]}',
+            search_quantity=f'data.bonding_steps.wafer_bonding_type#{dir_path["dir8"]}',
         ),
         MenuItemTerms(
             title='Alignment required',
             type='terms',
-            search_quantity=f'data.alignment_required#{dir_path["dir8"]}',
+            search_quantity=f'data.bonding_steps.alignment_required#{dir_path["dir8"]}',
         ),
         MenuItemHistogram(
             title='Alignment max error',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.alignment_max_error#{dir_path["dir8"]}',
+                search_quantity=f'data.bonding_steps.alignment_max_error#{dir_path["dir8"]}',
                 title='alignment error',
                 unit='nm',
             ),
@@ -733,32 +733,37 @@ menuadd_bonding = Menu(
         MenuItemTerms(
             title='Wafer stack 1 name',
             type='terms',
-            search_quantity=f'data.wafer_stack_1_name#{dir_path["dir8"]}',
+            search_quantity=f'data.bonding_steps.wafer_stack_1_name#{dir_path["dir8"]}',
         ),
         MenuItemTerms(
             title='Wafer stack 2 name',
             type='terms',
-            search_quantity=f'data.wafer_stack_2_name#{dir_path["dir8"]}',
+            search_quantity=f'data.bonding_steps.wafer_stack_2_name#{dir_path["dir8"]}',
         ),
         MenuItemTerms(
             title='Wafer space required',
             type='terms',
-            search_quantity=f'data.wafer_space_required#{dir_path["dir8"]}',
+            search_quantity=f'data.bonding_steps.wafer_space_required#{dir_path["dir8"]}',
         ),
         MenuItemTerms(
             title='Alignment target mask name',
             type='terms',
-            search_quantity=f'data.alignment_target_mask_name#{dir_path["dir8"]}',
+            search_quantity=f'data.bonding_steps.alignment_target_mask_name#{dir_path["dir8"]}',
         ),
         MenuItemTerms(
             title='Alignment viewfinder mask name',
             type='terms',
-            search_quantity=f'data.alignment_viewfinder_mask_name#{dir_path["dir8"]}',
+            search_quantity=f'data.bonding_steps.alignment_viewfinder_mask_name#{dir_path["dir8"]}',
         ),
         MenuItemTerms(
             title='Wafer bonded name',
             type='terms',
-            search_quantity=f'data.wafer_bonded_name#{dir_path["dir8"]}',
+            search_quantity=f'data.outputs.wafer_bonded_name#{dir_path["dir8"]}',
+        ),
+        MenuItemTerms(
+            title='Wafer bonded id',
+            type='terms',
+            search_quantity=f'data.outputs.wafer_bonded_id#{dir_path["dir8"]}',
         ),
         MenuItemTerms(
             title='Name equipment used',
@@ -1449,7 +1454,7 @@ menuremove_wetclean = Menu(
             search_quantity=f'data.cleaning_steps.reactives_used_to_etch.elemental_composition.element#{dir_path["dir6"]}',
         ),
         MenuItemHistogram(
-            title='Cleaning reactives final concentration',
+            title='Cleaning reactives concentration',
             type='histogram',
             n_bins=10,
             x=Axis(
@@ -2400,42 +2405,52 @@ menuadd_electrongun = Menu(
             type='terms',
             search_quantity=f'data.recipe_name#{dir_path["dir17"]}',
         ),
-        MenuItemTerms(
-            title='Target material (short name)',
-            type='terms',
-            search_quantity=f'data.short_name#{dir_path["dir17"]}',
-        ),
-        MenuItemTerms(
-            title='Wafer stack name',
-            type='terms',
-            search_quantity=f'data.wafer_stack_name#{dir_path["dir17"]}',
-        ),
         MenuItemHistogram(
-            title='Deposition thickness (target)',
+            title='Thickness target',
             type='histogram',
             n_bins=10,
             x=Axis(
                 search_quantity=f'data.thickness_target#{dir_path["dir17"]}',
-                title='thickness target',
+                title='thickness',
                 unit='nm',
             ),
         ),
         MenuItemHistogram(
-            title='Deposition duration',
+            title='Duration target',
             type='histogram',
             n_bins=10,
             x=Axis(
                 search_quantity=f'data.duration_target#{dir_path["dir17"]}',
                 title='duration',
-                unit='sec',
+                unit='minute',
             ),
+        ),
+        MenuItemTerms(
+            title='Target material',
+            type='terms',
+            search_quantity=f'data.deposition_steps.material_deposited.name#{dir_path["dir17"]}',
+        ),
+        MenuItemTerms(
+            title='Target material formula',
+            type='terms',
+            search_quantity=f'data.deposition_steps.material_deposited.chemical_formula#{dir_path["dir17"]}',
+        ),
+        MenuItemTerms(
+            title='Target material',
+            type='periodic_table',
+            search_quantity=f'data.deposition_steps.material_deposited.elemental_composition.element#{dir_path["dir17"]}',
+        ),
+        MenuItemTerms(
+            title='Wafer stack name',
+            type='terms',
+            search_quantity=f'data.deposition_steps.wafer_stack_name#{dir_path["dir17"]}',
         ),
         MenuItemHistogram(
             title='Deposition chamber pressure',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.chamber_pressure#{dir_path["dir17"]}',
+                search_quantity=f'data.deposition_steps.chamber_pressure#{dir_path["dir17"]}',
                 title='chamber pressure',
                 unit='mbar',
             ),
@@ -2445,19 +2460,19 @@ menuadd_electrongun = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.spin_frequency#{dir_path["dir17"]}',
+                search_quantity=f'data.deposition_steps.spin_parameters.spin_frequency#{dir_path["dir17"]}',
                 title='frequency',
                 unit='rpm',
             ),
         ),
         MenuItemHistogram(
-            title='Deposition thickness (measured)',
+            title='Duration measured',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.thickness_measured#{dir_path["dir17"]}',
-                title='thickness measured',
-                unit='nm',
+                search_quantity=f'data.outputs.duration_measured#{dir_path["dir17"]}',
+                title='duration',
+                unit='minute',
             ),
         ),
         MenuItemHistogram(
@@ -2465,7 +2480,7 @@ menuadd_electrongun = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.gun_voltage_measured#{dir_path["dir17"]}',
+                search_quantity=f'data.outputs.gun_voltage_measured#{dir_path["dir17"]}',
                 title='gun voltage',
                 unit='V',
             ),
@@ -2475,7 +2490,7 @@ menuadd_electrongun = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.gun_current_measured#{dir_path["dir17"]}',
+                search_quantity=f'data.outputs.gun_current_measured#{dir_path["dir17"]}',
                 title='gun current',
                 unit='mampere',
             ),

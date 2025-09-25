@@ -92,9 +92,11 @@ class ElectronGun(FabricationProcessStep):
     )
     duration_target = Quantity(
         type=np.float64,
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'sec'},
-        unit='sec',
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
+        unit='minute',
     )
+
+    deposition_steps = SubSection(section_def=ElectronGunbase, repeats=True)
 
     outputs = SubSection(section_def=ElectronGunOutputs, repeats=False)
 

@@ -41,7 +41,14 @@ class Rinsing_Dryingbase(FabricationProcessStepBase):
 
     initial_rinsing_parameters = SubSection(section_def=SpinRinsingbase, repeats=False)
 
-    drying_parameters = SubSection(section_def=SpinDryingbase, repeats=True)
+    drying_parameters = SubSection(
+        section_def=SpinDryingbase,
+        description="""
+        This section is considered repatable because only the drying steps are meant to
+        be repeatable.
+        """,
+        repeats=True,
+    )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)

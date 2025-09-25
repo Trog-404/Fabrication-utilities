@@ -32,28 +32,12 @@ m_package = Package(name='Wet etching steps shemas definitions for fabrication')
 
 class WetEtchingbase(FabricationProcessStepBase):
     m_def = Section(
-        description="""
-        Wet etching is a material removal process that uses liquid chemicals or etchants
-        to remove materials from a wafer. The specific patters are defined by masks on
-        the wafer. Materials that are not protected by the masks are etched away by
-        liquid chemicals. A wet etching process involves multiple chemical reactions
-        that consume the original reactants and produce new reactants. The wet etch
-        process can be described by three basic steps. (1) Diffusion of the liquid
-        etchant to the structure that is to be removed. (2) The reaction between the
-        liquid etchant and the material being etched away. A reduction-oxidation (redox)
-        reaction usually occurs. This reaction entails the oxidation of the material
-        then dissolving the oxidized material. (3) Diffusion of the byproducts in the
-        reaction from the reacted surface.
-        """,
+        description='Atomistic component of a wet etching or cleaning step',
         a_eln={
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'tag',
-                    'description',
-                    'operator',
-                    'id_item_processed',
                     'starting_date',
                     'ending_date',
                     'duration',
@@ -86,12 +70,14 @@ class WetEtchingbase(FabricationProcessStepBase):
     )
     wetting = Quantity(
         type=bool,
+        description='Is a wetting needed before the etching?',
         a_eln={
             'component': 'BoolEditQuantity',
         },
     )
     wetting_duration = Quantity(
         type=np.float64,
+        description='Duration of the wetting phase',
         a_eln={
             'component': 'NumberEditQuantity',
             'defaultDisplayUnit': 'minute',
@@ -100,6 +86,9 @@ class WetEtchingbase(FabricationProcessStepBase):
     )
     ultrasounds_required = Quantity(
         type=bool,
+        description="""
+        The bath is equipped with an ultrasounds system to speed the process?
+        """,
         a_eln={
             'component': 'BoolEditQuantity',
         },
@@ -123,21 +112,28 @@ class WetEtchingbase(FabricationProcessStepBase):
 
     resistivity_control = SubSection(
         section_def=ResistivityControl,
+        description="""
+        If the bath uses a resistivity control system it can be described here.
+        """,
         repeats=False,
     )
 
     materials_etched = SubSection(
         section_def=FabricationChemical,
+        description='Section to describe the material or the materials etched',
         repeats=True,
     )
-
     reactives_used_to_etch = SubSection(
         section_def=WetReactiveComponents,
+        description="""
+        Section to describe the reactives and their concentrations in the bath
+        """,
         repeats=True,
     )
 
     cleaning_dumping = SubSection(
         section_def=DeIonizedWaterDumping,
+        description='Section to describe dumping in water deio after the etching phase',
         repeats=True,
     )
 
@@ -147,15 +143,23 @@ class WetEtchingbase(FabricationProcessStepBase):
 
 class WetEtching(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Wet etching is a material removal process that uses liquid chemicals or etchants
+        to remove materials from a wafer. The specific patterns are defined by masks on
+        the wafer. Materials that are not protected by the masks are etched away by
+        liquid chemicals. A wet etching process involves multiple chemical reactions
+        that consume the original reactants and produce new reactants. The wet etch
+        process can be described by three basic steps. (1) Diffusion of the liquid
+        etchant to the structure that is to be removed. (2) The reaction between the
+        liquid etchant and the material being etched away. A reduction-oxidation (redox)
+        reaction usually occurs. This reaction entails the oxidation of the material
+        then dissolving the oxidized material. (3) Diffusion of the byproducts in the
+        reaction from the reacted surface.
+        """,
         a_eln={
-            'hide': [
-                'duration',
-                'tag',
-                'operator',
-            ],
+            'hide': ['duration', 'tag'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'step_id',
                     'description',
@@ -180,7 +184,7 @@ class WetEtching(FabricationProcessStep):
                     'notes',
                 ]
             },
-        }
+        },
     )
 
     depth_target = Quantity(
@@ -211,11 +215,15 @@ class WetEtching(FabricationProcessStep):
 
     etching_steps = SubSection(
         section_def=WetEtchingbase,
+        description="""
+        Section to describe single or multiple activities performed in the step
+        """,
         repeats=True,
     )
 
     outputs = SubSection(
         section_def=WetEtchingOutputs,
+        description='Section containing some paremeters obtained as output of the step',
         repeats=False,
     )
 
@@ -233,10 +241,9 @@ class WetCleaning(FabricationProcessStep):
         impurities of previous steps.
         """,
         a_eln={
-            'hide': ['duration', 'tag', 'operator'],
+            'hide': ['duration', 'tag'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'step_id',
                     'description',
@@ -271,11 +278,15 @@ class WetCleaning(FabricationProcessStep):
 
     cleaning_steps = SubSection(
         section_def=WetEtchingbase,
+        description="""
+        Section to describe single or multiple activities performed in the step
+        """,
         repeats=True,
     )
 
     outputs = SubSection(
         section_def=WetEtchingOutputs,
+        description='Section containing some paremeters obtained as output of the step',
         repeats=False,
     )
 

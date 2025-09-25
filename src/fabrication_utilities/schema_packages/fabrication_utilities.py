@@ -276,6 +276,7 @@ class FabricationProcessStepBase(ArchiveSection):
     )
     name = Quantity(
         type=str,
+        description='Title assigned to the step',
         a_eln={'component': 'StringEditQuantity'},
     )
     tag = Quantity(
@@ -299,6 +300,7 @@ class FabricationProcessStepBase(ArchiveSection):
     )
     notes = Quantity(
         type=str,
+        description='Field to save annotations useful for the step.',
         a_eln={'component': 'RichTextEditQuantity'},
     )
 
@@ -545,7 +547,6 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
                     'starting_date',
                     'ending_date',
                     'step_type',
-                    'step_id',
                     'definition_of_process_step',
                     'keywords',
                     'recipe_name',
@@ -600,31 +601,41 @@ class FabricationProcessStep(FabricationProcessStepBase, EntryData):
     )
     step_type = Quantity(
         type=str,
+        description="""
+        More specific definition of the step type performed for example SEM for
+        electron microscopy
+        """,
         a_eln={'component': 'StringEditQuantity'},
     )
     definition_of_process_step = Quantity(
-        type=EquipmentTechnique,
+        type=TechniqueSubCategory,
+        description='Reference to the particular technique type used',
         a_eln={'component': 'ReferenceEditQuantity'},
     )
     keywords = Quantity(
         type=str,
+        description='Some additional words describing the step',
         a_eln={'component': 'StringEditQuantity'},
     )
     recipe_name = Quantity(
         type=str,
+        description='Field containing the name of the recipe used',
         a_eln={'component': 'StringEditQuantity'},
     )
     recipe_file = Quantity(
         type=str,
+        description='If filled it should contain the file of the recipe for download',
         a_eln={'component': 'FileEditQuantity'},
     )
     recipe_preview = Quantity(
         type=str,
+        description='This field could be used to give a preview of the recipe file',
         a_eln={'component': 'RichTextEditQuantity'},
     )
 
     instruments = SubSection(
         section_def=EquipmentReference,
+        description='Reference to the equipments used during the step',
         repeats=True,
     )
 
@@ -655,7 +666,7 @@ class FabricationProcess(EntryData, ArchiveSection):
                     'affiliation',
                     'id_proposal',
                     'id_item_processed',
-                    'locations',
+                    'location',
                     'cost_model',
                     'description',
                     'author',
@@ -665,51 +676,44 @@ class FabricationProcess(EntryData, ArchiveSection):
                     'fabricationProductType',
                     'notes',
                 ]
-            },
-            'hide': [
-                'end_time',
-                'datetime',
-                'lab_id',
-                'method',
-                'location',
-            ],
-        },
+            }
+        }
     )
     id_proposal = Quantity(
         type=str,
+        description='Unique identifier associated to the process',
         a_eln={'component': 'StringEditQuantity'},
     )
     project = Quantity(
         type=str,
+        description='Fill this field if the process is performed in a project',
         a_eln={'component': 'StringEditQuantity'},
     )
     affiliation = Quantity(
-        type=MEnum(
-            [
-                'NFFA-DI',
-                'iENTRANCE@ENL',
-            ],
-        ),
-        a_eln={'component': 'EnumEditQuantity'},
-    )
-    locations = Quantity(
         type=str,
-        shape=['*'],
-        a_eln={
-            'component': 'StringEditQuantity',
-            'label': 'institutions',
-        },
+        description="""
+        Field to describe an eventual association within which the process is performed
+        """,
+        a_eln={'component': 'StringEditQuantity'},
+    )
+    location = Quantity(
+        type=str,
+        description='Where the process is performed',
+        a_eln={'component': 'StringEditQuantity'},
     )
     name = Quantity(
         type=str,
+        description='Denomination for the process',
         a_eln={'component': 'StringEditQuantity'},
     )
     description = Quantity(
         type=str,
+        description='Field to describe the process briefly',
         a_eln={'component': 'RichTextEditQuantity'},
     )
     author = Quantity(
         type=str,
+        description='Intended as who created the process',
         a_eln={'component': 'StringEditQuantity'},
     )
     cost_model = Quantity(
@@ -718,34 +722,46 @@ class FabricationProcess(EntryData, ArchiveSection):
     )
     starting_date = Quantity(
         type=Datetime,
+        description='When the process is effectively started',
         a_eln={'component': 'DateTimeEditQuantity'},
     )
     ending_date = Quantity(
         type=Datetime,
+        description='When the process is effectively finished',
         a_eln={'component': 'DateTimeEditQuantity'},
     )
     notes = Quantity(
         type=str,
+        description='Additional field to save additional information',
         a_eln={'component': 'RichTextEditQuantity'},
     )
     generic_product_name = Quantity(
         type=str,
+        description='Intended as what kind of product for the process is expected',
         a_eln={'component': 'StringEditQuantity'},
     )
     fabricationProductType = Quantity(
         type=ListofProductType,
+        description="""
+        Link to a NOMAD instance (if exist) describing the product expected
+        """,
         a_eln={'component': 'ReferenceEditQuantity'},
     )
     steps = Quantity(
         type=FabricationProcessStep,
         shape=['*'],
+        description="""
+        An array with the references to the entries where the step is described more
+        extensively
+        """,
         a_eln={'component': 'ReferenceEditQuantity'},
     )
-    instruments = SubSection(
-        section_def=EquipmentReference,
-        repeats=True,
+
+    output = SubSection(
+        section_def=FabricationOutput,
+        description='Subsection to save some results of the output obtained.',
+        repeat=False,
     )
-    output = SubSection(section_def=FabricationOutput, repeat=False)
 
 
 class StartingMaterial(Chemical, FabricationProcessStep, ArchiveSection):

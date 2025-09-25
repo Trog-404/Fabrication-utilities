@@ -77,7 +77,7 @@ class Carrier(ArchiveSection):
 class ICP_Column(ArchiveSection):
     m_def = Section(
         description="""
-        Section used to describe component to obtaine inductively coupled plasma
+        Section used to describe component to obtain the inductively coupled plasma
         """
     )
 
@@ -151,7 +151,7 @@ class Chuck(ArchiveSection):
 
     chuck_power = Quantity(
         type=np.float64,
-        description='Power imposed on the chuck',
+        description='Power erogated on the chuck',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'W'},
         unit='W',
     )
@@ -186,6 +186,9 @@ class Chuck(ArchiveSection):
 
     item_placement = SubSection(
         section_def=ItemPlacement,
+        description="""If the placement of the item could be crucial for the outputs, 
+        it can be roughly described here
+        """,
         repeats=False,
     )
 
@@ -410,13 +413,6 @@ class ResistivityControl(ArchiveSection):
         unit='ohm*cm',
     )
 
-    increment_duration = Quantity(
-        type=np.float64,
-        description='Time used in the process to reach the target value',
-        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
-        unit='minute',
-    )
-
 
 #######################################################################################
 # Resist coating utils and SpinningComponent the most widely used also in other utils #
@@ -476,6 +472,7 @@ class SpinningComponent(ArchiveSection):
 
     rotation_ramp = SubSection(
         section_def=TimeRampRotation,
+        description='If a ramp to rotation can be setted describe it here',
         repeats=False,
     )
 
@@ -483,12 +480,18 @@ class SpinningComponent(ArchiveSection):
 class Priming(ArchiveSection):
     m_def = Section()
 
-    primer_type = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+    primer_name = Quantity(
+        type=str,
+        description='Name of the primer used, e.g. hmds',
+        a_eln={'component': 'StringEditQuantity'},
+    )
     primer_physical_phase = Quantity(
         type=MEnum(
             'gas',
             'liquid',
-        )
+        ),
+        description='Form of the primer used tipically liquid or gaseous',
+        a_eln={'component': 'EnumEditQuantity'},
     )
     primer_temperature = Quantity(
         type=np.float64,
@@ -503,6 +506,10 @@ class Priming(ArchiveSection):
     )
     final_cooling_tempereature = Quantity(
         type=np.float64,
+        description="""
+        Due to the typical high temperature of the primer, item could be cooled at the 
+        end of the process
+        """,
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
         unit='celsius',
     )
@@ -640,14 +647,24 @@ class WritingParameters(ArchiveSection):
 
 
 class Rinsingbase(ArchiveSection):
-    m_def = Section()
+    m_def = Section(
+        description="""
+        With ringing is intended an ancillary polishing step tipically used to stop
+        undesired reactions with a bath or lesser quantities of a reactive to wash away
+        impurities or residuals too.
+        """
+    )
 
     rinsing_cycles = Quantity(
         type=int,
+        description='Number of repetitions of the rinsing procedure',
         a_eln={'component': 'NumberEditQuantity'},
     )
     rinsing_mode = Quantity(
         type=MEnum('Auto', 'Manual'),
+        description="""
+        Field to describe if the rinsing is performed manually or automatically
+        """,
         a_eln={'component': 'EnumEditQuantity'},
     )
     rinser_name = Quantity(
@@ -670,52 +687,76 @@ class Rinsingbase(ArchiveSection):
 
     resistivity_control = SubSection(
         section_def=ResistivityControl,
+        description='If the rinsing has a resistivity cut-off can be inserted here',
         repeats=False,
     )
 
 
 class SpinRinsingbase(Rinsingbase):
+    m_def = Section(
+        description="""
+        Rinsing phase imporvede by a rotation of the item to remove the excess of water.
+        It should be also help the successive drying phase if expected.
+        """,
+    )
     spinning_parameters = SubSection(section_def=SpinningComponent, repeats=False)
 
 
-class DeIonizedWaterDumping(Rinsingbase):
-    m_def = Section()
+class DeIonizedWaterDumping(ArchiveSection):
+    m_def = Section(
+        description="""
+        Phase of rinsing, tipically used to stop undesired reactions with a bath in de -
+        ionized water to wash away impurities or residuals.
+        """
+    )
 
-    rinsing_cycles = Quantity(
+    dumping_cycles = Quantity(
         type=int,
-        a_eln={'component': 'NumberEditQuantity', 'label': 'dumping cycles'},
+        description='Number of repetitions of the dumping procedure',
+        a_eln={'component': 'NumberEditQuantity'},
     )
-    rinser_name = Quantity(
-        type=str, a_eln={'component': 'StringEditQuantity', 'label': 'Dumper name'}
+    dumping_mode = Quantity(
+        type=MEnum('Auto', 'Manual'),
+        description="""
+        Field to describe if the dumping is performed manually or automatically
+        """,
+        a_eln={'component': 'EnumEditQuantity'},
     )
-    rinsing_duration = Quantity(
+    dumper_name = Quantity(
+        type=str,
+        description='Name of the species used to dump items, by default deio water',
+        a_eln={'component': 'StringEditQuantity'},
+        default='De ionized water',
+    )
+    dumping_duration = Quantity(
         type=np.float64,
         description='Duration for each cycle',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDispalyUnit': 'sec',
-            'label': 'dumping duration',
+            'defaultDisplayUnit': 'sec',
         },
         unit='sec',
     )
     draining_duration = Quantity(
         type=np.float64,
+        description='Time needed setted to eliminate water by the bath',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
         unit='minute',
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
-        self.rinser_name = 'De ionized water'
 
 
 class DryerGas(Massflow_controller):
     m_def = Section(
+        description='Section to use to describe an hot gas used to dry an item',
         a_eln={'hide': ['lab_id', 'datetime']},
     )
 
     gas_temperature = Quantity(
         type=np.float64,
+        description='Temperature of the gas used to dry',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
         unit='celsius',
     )
@@ -731,6 +772,7 @@ class Dryingbase(ArchiveSection):
 
     drying_mode = Quantity(
         type=MEnum('Auto', 'Manual'),
+        description='How is the drying performed?',
         a_eln={'component': 'EnumEditQuantity'},
     )
 
@@ -748,11 +790,20 @@ class Dryingbase(ArchiveSection):
         unit='sec',
     )
 
-    drying_gas = SubSection(section_def=DryerGas, repeats=False)
+    drying_gas = SubSection(
+        section_def=DryerGas,
+        description='If the drying is enanched by an hot gas can be described here',
+        repeats=False,
+    )
 
 
 class SpinDryingbase(Dryingbase):
-    m_def = Section()
+    m_def = Section(
+        description="""
+        Section describing a drying step where a spinning component is used to remove
+        residuals
+        """,
+    )
 
     spinning_parameters = SubSection(section_def=SpinningComponent, repeats=False)
 

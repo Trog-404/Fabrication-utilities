@@ -143,7 +143,14 @@ def make_line_express(list1, list2, labelx, labely, finalist, labelfigure):
 
 
 class TimeRampTemperature(PlotSection):
-    m_def = Section()
+    m_def = Section(
+        description="""
+        Section useful if a temperature parameter can be setted with an initial rump up
+        or a final rump down profile. It can be ideally used also to plot the behavior
+        of a temperature parameter during the entire process if the values over time are
+        known. 
+        """
+    )
 
     name = Quantity(
         type=str,
@@ -217,7 +224,14 @@ class TimeRampTemperature(PlotSection):
 
 
 class TimeRampPressure(PlotSection):
-    m_def = Section()
+    m_def = Section(
+        description="""
+        Section useful if a pressure parameter can be setted with an initial rump up
+        or a final rump down profile. It can be ideally used also to plot the behavior
+        of a pressure parameter during the entire process if the values over time are
+        known. 
+        """
+    )
 
     name = Quantity(
         type=str,
@@ -291,7 +305,14 @@ class TimeRampPressure(PlotSection):
 
 
 class TimeRampMassflow(PlotSection):
-    m_def = Section()
+    m_def = Section(
+        description="""
+        Section useful if a gaseous flow parameter can be setted with an initial rump up
+        or a final rump down profile. It can be ideally used also to plot the behavior
+        of a gaseous flow parameter during the entire process if the values over time
+        are known. 
+        """
+    )
 
     name = Quantity(
         type=str,
@@ -368,7 +389,14 @@ class TimeRampMassflow(PlotSection):
 
 
 class TimeRampRotation(PlotSection):
-    m_def = Section()
+    m_def = Section(
+        description="""
+        Section useful if a angular valocity parameter can be setted with an initial
+        rump up or a final rump down profile. It can be ideally used also to plot the
+        behavior of a angular parameter during the entire process if the values over
+        time are known. 
+        """
+    )
 
     name = Quantity(
         type=str,
