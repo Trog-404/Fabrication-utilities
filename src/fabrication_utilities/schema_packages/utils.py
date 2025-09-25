@@ -120,6 +120,20 @@ class FabricationChemical(Chemical, ArchiveSection):
             self.elemental_composition = generate_elementality(self.chemical_formula)
 
 
+class BeamSource(ArchiveSection):
+    m_def = Section(
+        description='Class to describe a source for an electrons or ions beam column'
+    )
+
+    emitter_material = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+
+    probe = Quantity(
+        type=str,
+        description='Physical particles which are produced and act as probing.',
+        a_eln={'component': 'StringEditQuantity'},
+    )
+
+
 def make_line_express(list1, list2, labelx, labely, finalist, labelfigure):
     figure1 = px.line(
         x=list1,
@@ -145,7 +159,7 @@ def make_line_express(list1, list2, labelx, labely, finalist, labelfigure):
 class TimeRampTemperature(PlotSection):
     m_def = Section(
         description="""
-        Section useful if a temperature parameter can be setted with an initial rump up
+        Section useful if a temperature parameter can be set with an initial rump up
         or a final rump down profile. It can be ideally used also to plot the behavior
         of a temperature parameter during the entire process if the values over time are
         known. 
@@ -160,7 +174,7 @@ class TimeRampTemperature(PlotSection):
 
     start_value = Quantity(
         type=np.float64,
-        description='Value at the beginning of the increment',
+        description='Value at the beginning of the increment(decrement)',
         a_eln={
             'component': 'NumberEditQuantity',
             'defaultDisplayUnit': 'celsius',
@@ -170,7 +184,7 @@ class TimeRampTemperature(PlotSection):
 
     end_value = Quantity(
         type=np.float64,
-        description='Value at the end of the increment',
+        description='Value at the end of the increment(decrement)',
         a_eln={
             'component': 'NumberEditQuantity',
             'defaultDisplayUnit': 'celsius',
@@ -178,17 +192,27 @@ class TimeRampTemperature(PlotSection):
         unit='celsius',
     )
 
-    increment_duration = Quantity(
+    duration = Quantity(
         type=np.float64,
-        description='Duration of the increment',
+        description='Duration of the increment(decrement)',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'sec'},
         unit='sec',
     )
 
-    increment_behavior = Quantity(
+    behavior = Quantity(
         type=str,
-        description='Is the increment linear(uniform), sigmoidal, etc...?',
+        description='The increment(decrement) is linear(uniform), sigmoidal, etc.?',
         a_eln={'component': 'StringEditQuantity'},
+    )
+
+    rate = Quantity(
+        type=np.float64,
+        description='Rate of increment(decrement) in the process',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'celsius/minute',
+        },
+        unit='celsius/minute',
     )
 
     time = Quantity(
@@ -461,14 +485,6 @@ class TimeRampRotation(PlotSection):
                 self.figures,
                 'Ramp of spin frequency',
             )
-
-
-class BeamSource(ArchiveSection):
-    m_def = Section()
-
-    emitter_material = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
-
-    probe = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
 
 
 def double_list_reading(list1, list2, archive, logger):

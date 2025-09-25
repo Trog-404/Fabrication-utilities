@@ -526,7 +526,9 @@ class Priming(ArchiveSection):
 
 
 class BeamColumn(ArchiveSection):
-    m_def = Section()
+    m_def = Section(
+        description='Class to describe an ion or electron column beam.',
+    )
 
     tension = Quantity(
         type=np.float64,
@@ -552,7 +554,11 @@ class BeamColumn(ArchiveSection):
 
 
 class Alignment(ArchiveSection):
-    m_def = Section()
+    m_def = Section(
+        description="""
+        Section containing minimal information about the alignment employed.
+        """
+    )
 
     alignment_mode = Quantity(
         type=MEnum(
@@ -612,9 +618,18 @@ class WritingParameters(ArchiveSection):
         },
         unit='um^2',
     )
-    address_size = Quantity(
+    address_size_x = Quantity(
         type=np.float64,
-        description='The minimum distance covered per step in the process',
+        description='The minimum horizontal distance covered per step in the process',
+        a_eln={
+            'component': 'NumberEditQuantity',
+            'defaultDisplayUnit': 'nm',
+        },
+        unit='nm',
+    )
+    address_size_y = Quantity(
+        type=np.float64,
+        description='The minimum vertical distance covered per step in the process',
         a_eln={
             'component': 'NumberEditQuantity',
             'defaultDisplayUnit': 'nm',
@@ -630,15 +645,6 @@ class WritingParameters(ArchiveSection):
         },
         unit='us',
     )
-    # clock = Quantity(
-    #     type=np.float64,
-    #     description='Frequency used',
-    #     a_eln={
-    #         'component': 'NumberEditQuantity',
-    #         'defaultDisplayUnit': 'MHz',
-    #     },
-    #     unit='MHz',
-    # )
 
 
 #######################################################################################
@@ -1009,3 +1015,28 @@ class DirectLitoOutputs(ArchiveSection):
     #     a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'mampere/sr'},
     #     unit='mampere/sr',
     # )
+
+
+class AnnealingOutputs(ArchiveSection):
+    m_def = Section(
+        description="""
+        Section for annealing steps that return a job id, duration and final temperature
+        """
+    )
+
+    job_number = Quantity(
+        type=int,
+        a_eln={'component': 'NumberEditQuantity'},
+    )
+
+    duration_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'minute'},
+        unit='minute',
+    )
+
+    final_temperature_measured = Quantity(
+        type=np.float64,
+        a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
+        unit='celsius',
+    )

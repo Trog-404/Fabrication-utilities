@@ -11,7 +11,6 @@ mec = 'data.synthesis_steps.material_elemental_composition.element'
 flux = 'data.synthesis_steps.fluximeters.elemental_composition.element'
 fluxetch = 'data.etching_steps.fluximeters.elemental_composition.element'
 rec = 'data.coating_steps.resist_material.elemental_composition.element'
-gec = 'data.gas_elemental_composition.element'
 dmec = 'data.doping_material_elemental_composition.element'
 wc = 'wafer_cleaning'
 dev = 'developing'
@@ -836,13 +835,23 @@ menutrans_ebl = Menu(
             ),
         ),
         MenuItemHistogram(
-            title='Address size',
+            title='Horizontal address size',
             type='histogram',
             n_bins=10,
             x=Axis(
-                title='address size',
+                title='horizontal address size',
                 unit='nm',
-                search_quantity=f'data.writing_steps.writing_settings.address_size#{dir_path["dir3"]}',
+                search_quantity=f'data.writing_steps.writing_settings.address_size_x#{dir_path["dir3"]}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Vertical address size',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='vertical address size',
+                unit='nm',
+                search_quantity=f'data.writing_steps.writing_settings.address_size_y#{dir_path["dir3"]}',
             ),
         ),
         MenuItemHistogram(
@@ -855,16 +864,6 @@ menutrans_ebl = Menu(
                 search_quantity=f'data.writing_steps.writing_settings.settling_time#{dir_path["dir3"]}',
             ),
         ),
-        # MenuItemHistogram(
-        #     title='Clock',
-        #     type='histogram',
-        #     n_bins=10,
-        #     x=Axis(
-        #         title='clock',
-        #         unit='MHz',
-        #         search_quantity=f'data.clock#{dir_path["dir3"]}',
-        #     ),
-        # ),
         MenuItemHistogram(
             title='Current desired',
             type='histogram',
@@ -884,6 +883,11 @@ menutrans_ebl = Menu(
                 unit='kV',
                 search_quantity=f'data.writing_steps.beam_column.tension#{dir_path["dir3"]}',
             ),
+        ),
+        MenuItemTerms(
+            title='Alignment mode',
+            type='terms',
+            search_quantity=f'data.writing_steps.alignment.alignment_mode#{dir_path["dir3"]}',
         ),
         MenuItemHistogram(
             title='Max alignment error',
@@ -973,13 +977,23 @@ menutrans_fib = Menu(
             ),
         ),
         MenuItemHistogram(
-            title='Address size',
+            title='Horizontal address size',
             type='histogram',
             n_bins=10,
             x=Axis(
-                title='address size',
+                title='horizontal address size',
                 unit='nm',
-                search_quantity=f'data.writing_steps.writing_settings.address_size#{dir_path["dir4"]}',
+                search_quantity=f'data.writing_steps.writing_settings.address_size_x#{dir_path["dir4"]}',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Vertical address size',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                title='vertical address size',
+                unit='nm',
+                search_quantity=f'data.writing_steps.writing_settings.address_size_y#{dir_path["dir4"]}',
             ),
         ),
         MenuItemHistogram(
@@ -992,16 +1006,6 @@ menutrans_fib = Menu(
                 search_quantity=f'data.writing_steps.writing_settings.settling_time#{dir_path["dir4"]}',
             ),
         ),
-        # MenuItemHistogram(
-        #     title='Clock',
-        #     type='histogram',
-        #     n_bins=10,
-        #     x=Axis(
-        #         title='clock',
-        #         unit='MHz',
-        #         search_quantity=f'data.clock#{dir_path["dir4"]}',
-        #     ),
-        # ),
         MenuItemHistogram(
             title='Current desired',
             type='histogram',
@@ -1021,6 +1025,11 @@ menutrans_fib = Menu(
                 unit='kV',
                 search_quantity=f'data.writing_steps.beam_column.tension#{dir_path["dir4"]}',
             ),
+        ),
+        MenuItemTerms(
+            title='Alignment mode',
+            type='terms',
+            search_quantity=f'data.writing_steps.alignment.alignment_mode#{dir_path["dir4"]}',
         ),
         MenuItemHistogram(
             title='Max alignment error',
@@ -1518,21 +1527,51 @@ menutrans_annealing = Menu(
             search_quantity=f'data.recipe_name#{dir_path["dir9"]}',
         ),
         MenuItemTerms(
-            title='Material to be annealed',
+            title='Material annealed',
             type='terms',
-            search_quantity=f'data.short_name#{dir_path["dir9"]}',
+            search_quantity=f'data.annealing_steps.annealed_material.name#{dir_path["dir9"]}',
+        ),
+        MenuItemTerms(
+            title='Material annealed formula',
+            type='terms',
+            search_quantity=f'data.annealing_steps.annealed_material.chemical_formula#{dir_path["dir9"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements of the material',
             type='periodic_table',
-            search_quantity=f'{mec}#{dir_path["dir9"]}',
+            search_quantity=f'data.annealing_steps.annealed_material.elemental_composition.element#{dir_path["dir9"]}',
+        ),
+        MenuItemTerms(
+            title='Gas name',
+            type='terms',
+            search_quantity=f'data.annealing_steps.fluximeters.name#{dir_path["dir9"]}',
+        ),
+        MenuItemTerms(
+            title='Gas formula',
+            type='terms',
+            search_quantity=f'data.annealing_steps.fluximeters.chemical_formula#{dir_path["dir9"]}',
+        ),
+        MenuItemPeriodicTable(
+            title='Elements of the gas',
+            type='periodic_table',
+            search_quantity=f'data.annealing_steps.fluximeters.elemental_composition.element#{dir_path["dir9"]}',
+        ),
+        MenuItemHistogram(
+            title='Gas flow',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.annealing_steps.fluximeters.massflow#{dir_path["dir9"]}',
+                title='gas flow',
+                unit='centimeter^3/minute',
+            ),
         ),
         MenuItemHistogram(
             title='Starting temperature',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.temperature_start#{dir_path["dir9"]}',
+                search_quantity=f'data.annealing_steps.ramp_up.start_value#{dir_path["dir9"]}',
                 title='starting temperature',
                 unit='celsius',
             ),
@@ -1542,58 +1581,9 @@ menutrans_annealing = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.temperature_final_target#{dir_path["dir9"]}',
+                search_quantity=f'data.annealing_steps.ramp_up.end_value#{dir_path["dir9"]}',
                 title='target final temperature',
                 unit='celsius',
-            ),
-        ),
-        MenuItemTerms(
-            title='Gas formula',
-            type='terms',
-            search_quantity=f'data.gas_formula#{dir_path["dir9"]}',
-        ),
-        MenuItemPeriodicTable(
-            title='Elements of the gas',
-            type='periodic_table',
-            search_quantity=f'{gec}#{dir_path["dir9"]}',
-        ),
-        MenuItemHistogram(
-            title='Gas percentage',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.gas_percentage#{dir_path["dir9"]}',
-                title='gas percentage (%)',
-            ),
-        ),
-        MenuItemHistogram(
-            title='Gas flow',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.gas_flow#{dir_path["dir9"]}',
-                title='gas flow',
-                unit='centimeter^3/minute',
-            ),
-        ),
-        MenuItemHistogram(
-            title='Measured final temperature',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.temperature_final_measured#{dir_path["dir9"]}',
-                title='measured final temperature',
-                unit='celsius',
-            ),
-        ),
-        MenuItemHistogram(
-            title='Effective duration',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.duration_measured#{dir_path["dir9"]}',
-                title='duration measured',
-                unit='minute',
             ),
         ),
         MenuItemHistogram(
@@ -1601,7 +1591,7 @@ menutrans_annealing = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.temperature_ramp_up_rate#{dir_path["dir9"]}',
+                search_quantity=f'data.annealing_steps.ramp_up.rate#{dir_path["dir9"]}',
                 title='ramp up rate',
                 unit='celsius/minute',
             ),
@@ -1611,9 +1601,29 @@ menutrans_annealing = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.temperature_ramp_down_rate#{dir_path["dir9"]}',
+                search_quantity=f'data.annealing_steps.ramp_down.rate#{dir_path["dir9"]}',
                 title='ramp down rate',
                 unit='celsius/minute',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Duration measured',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.outputs.duration_measured#{dir_path["dir9"]}',
+                title='duration',
+                unit='minute',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Final temperature measured',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.outputs.final_temperature_measured#{dir_path["dir9"]}',
+                title='temperature',
+                unit='celsius',
             ),
         ),
         MenuItemTerms(
@@ -1723,69 +1733,84 @@ menutrans_thermaloxidation = Menu(
             type='terms',
             search_quantity=f'data.recipe_name#{dir_path["dir11"]}',
         ),
+        MenuItemHistogram(
+            title='Thickness target',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.thickness_target#{dir_path["dir11"]}',
+                title='thickness',
+                unit='nm',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Duration target',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.duration_target#{dir_path["dir11"]}',
+                title='duration',
+                unit='minute',
+            ),
+        ),
+        MenuItemHistogram(
+            title='Oxidation rate target',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.oxidation_rate_target#{dir_path["dir11"]}',
+                title='oxidation rate',
+                unit='nm/minute',
+            ),
+        ),
         MenuItemTerms(
             title='Oxidation type',
             type='terms',
-            search_quantity=f'data.oxidation_type#{dir_path["dir11"]}',
-        ),
-        MenuItemTerms(
-            title='Thermal oxidation gas',
-            type='terms',
-            search_quantity=f'data.short_name#{dir_path["dir11"]}',
-        ),
-        MenuItemPeriodicTable(
-            title='Elements of the gas',
-            type='periodic_table',
-            search_quantity=f'{gec}#{dir_path["dir11"]}',
+            search_quantity=f'data.oxidation_steps.oxidation_type#{dir_path["dir11"]}',
         ),
         MenuItemHistogram(
             title='Target final temperature',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.temperature_final_target#{dir_path["dir11"]}',
-                title='target final temperature',
+                search_quantity=f'data.oxidation_steps.temperature_final_target#{dir_path["dir11"]}',
+                title='temperature',
                 unit='celsius',
             ),
         ),
-        MenuItemHistogram(
-            title='Desired thickness (target)',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.thickness_target#{dir_path["dir11"]}',
-                title='thickness target',
-                unit='nm',
-            ),
+        MenuItemTerms(
+            title='Thermal oxidation gas',
+            type='terms',
+            search_quantity=f'data.oxidation_steps.fluximeters.name#{dir_path["dir11"]}',
+        ),
+        MenuItemTerms(
+            title='Thermal oxidation gas formula',
+            type='terms',
+            search_quantity=f'data.oxidation_steps.fluximeters.chemical_formula#{dir_path["dir11"]}',
         ),
         MenuItemHistogram(
-            title='Process duration (measured)',
+            title='Thermal oxidation gas flow rate',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.duration_measured#{dir_path["dir11"]}',
-                title='duration measured',
-                unit='s',
+                search_quantity=f'data.oxidation_steps.fluximeters.massflow#{dir_path["dir11"]}',
+                title='flow rate',
+                unit='cm^3/minute',
             ),
         ),
-        MenuItemHistogram(
-            title='Thickness obtained',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.thickness_measured#{dir_path["dir11"]}',
-                title='thickness measured',
-                unit='nm',
-            ),
+        MenuItemPeriodicTable(
+            title='Elements of the gas',
+            type='periodic_table',
+            search_quantity=f'data.oxidation_steps.fluximeters.elemental_composition.element#{dir_path["dir11"]}',
         ),
         MenuItemHistogram(
-            title='Gas flow',
+            title='Duration measured',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.gas_flow#{dir_path["dir11"]}',
-                title='gas flow',
-                unit='centimeter^3/minute',
+                search_quantity=f'data.outputs.duration_measured#{dir_path["dir11"]}',
+                title='duration',
+                unit='minute',
             ),
         ),
         MenuItemTerms(
@@ -1837,14 +1862,14 @@ menutrans_dicing = Menu(
         MenuItemTerms(
             title='Protective film required',
             type='terms',
-            search_quantity=f'data.protective_film_required#{dir_path["dir12"]}',
+            search_quantity=f'data.dicing_steps.protective_film_required#{dir_path["dir12"]}',
         ),
         MenuItemHistogram(
             title='Spindle frequency',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.spindle_frequency#{dir_path["dir12"]}',
+                search_quantity=f'data.dicing_steps.spindle_frequency#{dir_path["dir12"]}',
                 title='spindle frequency',
                 unit='rpm',
             ),
@@ -1854,7 +1879,7 @@ menutrans_dicing = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.dicing_feed_rate#{dir_path["dir12"]}',
+                search_quantity=f'data.dicing_steps.dicing_feed_rate#{dir_path["dir12"]}',
                 title='feed rate',
                 unit='mm/s',
             ),
@@ -1864,38 +1889,8 @@ menutrans_dicing = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.depth_step_1#{dir_path["dir12"]}',
+                search_quantity=f'data.dicing_steps.depth_step#{dir_path["dir12"]}',
                 title='depth step 1',
-                unit='um',
-            ),
-        ),
-        MenuItemHistogram(
-            title='Depth step 2',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.depth_step_2#{dir_path["dir12"]}',
-                title='depth step 2',
-                unit='um',
-            ),
-        ),
-        MenuItemHistogram(
-            title='Depth step 3',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.depth_step_3#{dir_path["dir12"]}',
-                title='depth step 3',
-                unit='um',
-            ),
-        ),
-        MenuItemHistogram(
-            title='Dicing edge chipping measured',
-            type='histogram',
-            n_bins=10,
-            x=Axis(
-                search_quantity=f'data.edge_chipping_measured#{dir_path["dir12"]}',
-                title='edge chipping measured',
                 unit='um',
             ),
         ),
@@ -3580,14 +3575,19 @@ menutrans_baking = Menu(
             type='terms',
             search_quantity=f'data.recipe_name#{dir_path["dir25"]}',
         ),
+        MenuItemTerms(
+            title='Baking type',
+            type='terms',
+            search_quantity=f'data.baking_steps.tag#{dir_path["dir25"]}',
+        ),
         MenuItemHistogram(
             title='Chuck temperature',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.chuck_temperature#{dir_path["dir25"]}',
-                title='chuck temperature',
-                unit='K',
+                search_quantity=f'data.baking_steps.baking_temperature#{dir_path["dir25"]}',
+                title='temperature',
+                unit='celsius',
             ),
         ),
         MenuItemHistogram(
@@ -3595,10 +3595,20 @@ menutrans_baking = Menu(
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'data.duration#{dir_path["dir25"]}',
+                search_quantity=f'data.baking_steps.duration#{dir_path["dir25"]}',
                 title='duration',
-                unit='sec',
+                unit='minute',
             ),
+        ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir_path["dir25"]}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir_path["dir25"]}',
         ),
     ],
 )

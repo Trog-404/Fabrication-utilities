@@ -29,6 +29,7 @@ m_package = Package(name='Schemas to describe baking steps in fabrication')
 
 class Bakingbase(FabricationProcessStepBase):
     m_def = Section(
+        description='Atomistic component of a baking step',
         a_eln={
             'properties': {
                 'order': [
@@ -75,6 +76,11 @@ class Bakingbase(FabricationProcessStepBase):
 
 class Baking(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Thermal processing aimed at transforming one or more material layers present on
+        the top of the wafer. Examples are: resist backing, to strengthen it before
+        etching or ion implantation.
+        """,
         a_eln={
             'hide': [
                 'tag',

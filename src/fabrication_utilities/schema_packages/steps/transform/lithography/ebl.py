@@ -33,6 +33,7 @@ m_package = Package(name='Schemas to describe ebl steps')
 
 class EBLbase(FabricationProcessStepBase):
     m_def = Section(
+        description='Atomistic component of an EBL step',
         a_eln={
             'properties': {
                 'order': [
@@ -73,6 +74,10 @@ class EBLbase(FabricationProcessStepBase):
 
 class EBL(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Direct write patterning process that uses a focused, concentrated stream of
+        electrons to modify the solubility of a resist layer.
+        """,
         a_eln={
             'hide': ['duration', 'tag'],
             'properties': {

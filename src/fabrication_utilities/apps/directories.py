@@ -10,7 +10,7 @@ dir_path = {
   'dir9': 'schema_packages.steps.transform.thermal_process.annealing.Annealing',
 #  'dir10': 'schema_packages.steps.transform.LTODensification',
   'dir11': 'schema_packages.steps.transform.thermal_process.oxidation.ThermalOxidation',
-  'dir12': 'schema_packages.steps.transform.dicing.Dicing',
+  'dir12': 'schema_packages.steps.transform.dicing.dicing.Dicing',
 #  'dir13': 'schema_packages.steps.transform.Doping',
 #  'dir14': 'schema_packages.steps.transform.LabelingCleaning',
 #  'dir15': 'schema_packages.steps.transform.SOD',

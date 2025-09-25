@@ -33,6 +33,7 @@ m_package = Package(name='Schemas to describe thermal oxidation steps')
 
 class ThermalOxidationbase(FabricationProcessStepBase):
     m_def = Section(
+        description='Atomistic component of a dry or wet oxidation process step.',
         a_eln={
             'properties': {
                 'order': [
@@ -49,8 +50,11 @@ class ThermalOxidationbase(FabricationProcessStepBase):
         },
     )
 
+    oxidation_type = Quantity(type=str, a_eln={'component': 'StringEditQuantity'})
+
     temperature_final_target = Quantity(
         type=np.float64,
+        description='Operative value of the furnace as set on the equipment',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'celsius'},
         unit='celsius',
     )
@@ -77,6 +81,13 @@ class ThermalOxidationbase(FabricationProcessStepBase):
 
 class ThermalOxidation(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Thermal process step  where the wafer or other silicon item are inserted into an
+        hermetically sealed furnace chamber where a mixture of gases are injected once
+        the internal chamber temperature has reached the target. The O2 reacts with 
+        surface Si generating SiO2. It can be dry if only O2 is transferred in the
+        chamber or wet if also H2 is present.
+        """,
         a_eln={
             'hide': ['tag', 'duration'],
             'properties': {

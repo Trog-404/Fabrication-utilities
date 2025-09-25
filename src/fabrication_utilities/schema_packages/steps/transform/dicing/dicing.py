@@ -23,6 +23,7 @@ m_package = Package(name='Schemas to describe dicing steps')
 
 class Dicingbase(FabricationProcessStepBase):
     m_def = Section(
+        description='Atomistic component of a dicing process step',
         a_eln={
             'properties': {
                 'order': [
@@ -38,7 +39,7 @@ class Dicingbase(FabricationProcessStepBase):
                     'notes',
                 ]
             }
-        }
+        },
     )
 
     protective_film_required = Quantity(
@@ -77,6 +78,10 @@ class Dicingbase(FabricationProcessStepBase):
 
 class Dicing(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Process step by which items are cut with diamond blade systems, with movement
+        driven by computer loading the dicing layout.
+        """,
         a_eln={
             'hide': [
                 'tag',
@@ -109,6 +114,7 @@ class Dicing(FabricationProcessStep):
 
     dicing_blade_name = Quantity(
         type=str,
+        description='Field reporting the name of the blade used in the step',
         a_eln={
             'component': 'StringEditQuantity',
         },

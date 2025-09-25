@@ -34,6 +34,7 @@ m_package = Package(name='Schemas to describe fib steps')
 
 class FIBbase(FabricationProcessStepBase):
     m_def = Section(
+        description='Atomistic component of a FIB lithography step',
         a_eln={
             'properties': {
                 'order': [
@@ -76,6 +77,10 @@ class FIBbase(FabricationProcessStepBase):
 
 class FIB(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Direct write patterning process that uses a focused ion beam to modify the
+        solubility of a resist layer.
+        """,
         a_eln={
             'hide': ['tag', 'duration'],
             'properties': {

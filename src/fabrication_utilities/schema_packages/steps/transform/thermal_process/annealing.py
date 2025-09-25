@@ -11,7 +11,7 @@ from schema_packages.fabrication_utilities import (
     FabricationProcessStep,
     FabricationProcessStepBase,
 )
-from schema_packages.steps.utils import BaseOutputs, Massflow_controller
+from schema_packages.steps.utils import AnnealingOutputs, Massflow_controller
 from schema_packages.utils import FabricationChemical, TimeRampTemperature
 
 if TYPE_CHECKING:
@@ -27,6 +27,7 @@ m_package = Package(name='Schemas to describe annealing steps')
 
 class Annealingbase(FabricationProcessStepBase):
     m_def = Section(
+        description='Atomistic component of an annealing step',
         a_eln={
             'properties': {
                 'order': [
@@ -38,12 +39,12 @@ class Annealingbase(FabricationProcessStepBase):
                     'notes',
                 ]
             }
-        }
+        },
     )
 
-    ramp_up_temperature = SubSection(section_def=TimeRampTemperature, repeats=False)
+    ramp_up = SubSection(section_def=TimeRampTemperature, repeats=False)
 
-    ramp_down_temperature = SubSection(section_def=TimeRampTemperature, repeats=False)
+    ramp_down = SubSection(section_def=TimeRampTemperature, repeats=False)
 
     annealed_material = SubSection(section_def=FabricationChemical, repeats=False)
 
@@ -55,6 +56,12 @@ class Annealingbase(FabricationProcessStepBase):
 
 class Annealing(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Fabrication process step where the wafer or other item are inserted into a
+        hermetically sealed furnace chamber where N2 is injected and the temperature
+        rose until the target. Main aim of this process is recovering of damages
+        induced by previous process steps, mainly ion implantation.
+        """,
         a_eln={
             'hide': [
                 'tag',
@@ -86,7 +93,7 @@ class Annealing(FabricationProcessStep):
 
     annealing_steps = SubSection(section_def=Annealingbase, repeats=True)
 
-    outputs = SubSection(section_def=BaseOutputs, repeats=False)
+    outputs = SubSection(section_def=AnnealingOutputs, repeats=False)
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
