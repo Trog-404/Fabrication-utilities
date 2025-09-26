@@ -1,0 +1,1 @@
+{"data":{"m_def":"schema_packages.steps.transform.thermal_process.baking.Baking","name":"Prova PEB","baking_steps":[{"name":"Post exposure baking","tag":"PEB","baking_temperature":150,"baking_pressure":0.1,"temperature_ramps":[{"start_value":30,"end_value":150,"duration":30,"behavior":"linear"}]}]}}

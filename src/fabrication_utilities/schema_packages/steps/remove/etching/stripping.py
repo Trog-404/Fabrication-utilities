@@ -23,14 +23,12 @@ m_package = Package(name='Stripping steps schema definition')
 
 class Strippingbase(FabricationProcessStepBase):
     m_def = Section(
+        description='Atomistic component of a stripping step',
         a_eln={
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'tag',
-                    'id_item_processed',
-                    'operator',
                     'starting_date',
                     'ending_date',
                     'duration',
@@ -41,16 +39,18 @@ class Strippingbase(FabricationProcessStepBase):
                     'notes',
                 ]
             }
-        }
+        },
     )
     stripping_type = Quantity(
         type=str,
+        description='Method of stripping used',
         a_eln={
             'component': 'StringEditQuantity',
         },
     )
     removing_temperature = Quantity(
         type=np.float64,
+        description='Field useful if the process is enanched with temperature',
         a_eln={
             'component': 'NumberEditQuantity',
             'defaultDisplayUnit': 'celsius',
@@ -58,11 +58,16 @@ class Strippingbase(FabricationProcessStepBase):
         unit='celsius',
     )
     ultrasound_required = Quantity(
-        type=str,
-        a_eln={'component': 'StringEditQuantity'},
+        type=bool,
+        description='Is the process enanched with ultrasounds?',
+        a_eln={'component': 'BoolEditQuantity'},
     )
 
-    number_of_loops = Quantity(type=int, a_eln={'component': 'NumberEditQuantity'})
+    number_of_loops = Quantity(
+        type=int,
+        description='Number of times of the atomistic step',
+        a_eln={'component': 'NumberEditQuantity'},
+    )
 
     resist_to_strip = SubSection(section_def=FabricationChemical, repeats=False)
 
@@ -72,11 +77,14 @@ class Strippingbase(FabricationProcessStepBase):
 
 class Stripping(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Fabrication process step during which a reist layer is removed by the surface
+        of an item with a dry procedure or thanks to wet chemicals.
+        """,
         a_eln={
-            'hide': ['tag', 'duration', 'operator'],
+            'hide': ['tag', 'duration'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'step_id',
                     'description',

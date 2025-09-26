@@ -64,7 +64,6 @@ processapp = App(
                 type='terms',
                 search_quantity=f'data.author#{dir0}',
             ),
-            Menu(title='Materials produced'),
             Menu(
                 title='User defined quantities',
                 items=[

@@ -16,7 +16,7 @@ classifiers = [
 name = "Fabrication-utilities"
 #suggested description, instead of "Plugin for fabrication processes"
 description = "Plugin for nanofabrication semiconductor cleanroom processes"
-version = "1.12.4"
+version = "1.12.7"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
@@ -38,7 +38,7 @@ Repository = "https://github.com/Trog-404/Fabrication-utilities"
 dev = ["ruff", "pytest", "structlog"]
 
 [tool.ruff]
-# Exclude a variety of commonly ignored directories.
+# Exclude a variety of ignored directories or files.
 exclude = [
     ".bzr",
     ".direnv",
@@ -123,6 +123,7 @@ processapp = "apps:process_app_entry_point"
 removeapp = "apps:app_remove_entry_point"
 addapp = "apps:app_add_entry_point"
 transapp = "apps:app_trans_entry_point"
+materialapp = "apps:app_material_entry_point"
 
 # Schemas entry point
 
@@ -157,7 +158,12 @@ thermal_oxidation_entry_point = "schema_packages.steps.transform.thermal_process
 annealing_oxidation_entry_point = "schema_packages.steps.transform.thermal_process:Annealing_entry_point"
 ebl_entry_point = "schema_packages.steps.transform.lithography:EBL_entry_point"
 fib_entry_point = "schema_packages.steps.transform.lithography:FIB_entry_point"
+labeling_entry_point = "schema_packages.steps.transform.lithography:Labeling_entry_point"
 dicing_entry_point = "schema_packages.steps.transform.dicing:Dicing_entry_point"
+
+# Example upload entry points
+
+process_entry_point = "example_uploads:process_upload_entry_point"
 
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues

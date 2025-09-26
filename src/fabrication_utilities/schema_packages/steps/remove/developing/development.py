@@ -13,6 +13,7 @@ from schema_packages.fabrication_utilities import (
     FabricationProcessStepBase,
 )
 from schema_packages.steps.utils import (
+    BaseOutputs,
     DevelopingSolution,
     SpinningComponent,
     SpinRinsingbase,
@@ -29,26 +30,24 @@ m_package = Package(name='Resist development steps schemas definitions')
 
 class ResistDevelopmentbase(FabricationProcessStepBase):
     m_def = Section(
+        description='Atomistic component of a developing step',
         a_eln={
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'tag',
-                    'id_item_processed',
-                    'adhesion_type',
-                    'operator',
                     'starting_date',
                     'ending_date',
                     'duration',
+                    'adhesion_type',
                     'developing_mode',
-                    'developing_duration',
+                    'duration',
                     'developing_temperature',
                     'number of loops',
                     'notes',
                 ]
             }
-        }
+        },
     )
 
     adhesion_type = Quantity(
@@ -57,6 +56,9 @@ class ResistDevelopmentbase(FabricationProcessStepBase):
             'Direct',
             'Suspended',
         ),
+        description="""
+        Sometimes the item could be in direct contact or suspended during the procedure.
+        """,
         a_eln={'component': 'EnumEditQuantity'},
     )
 
@@ -65,18 +67,14 @@ class ResistDevelopmentbase(FabricationProcessStepBase):
             'auto',
             'manual',
         ),
+        description='The step is executed manually or it is automatized?',
         a_eln={'component': 'EnumEditQuantity'},
-    )
-    developing_duration = Quantity(
-        type=np.float64,
-        a_eln={
-            'component': 'NumberEditQuantity',
-            'defaultDisplayUnit': 'minute',
-        },
-        unit='minute',
     )
     developing_temperature = Quantity(
         type=np.float64,
+        description="""
+        Field describing an eventual temperature imposed to enanche the development
+        """,
         a_eln={
             'component': 'NumberEditQuantity',
             'defaultDisplayUnit': 'celsius',
@@ -92,14 +90,21 @@ class ResistDevelopmentbase(FabricationProcessStepBase):
 
     developing_solution = SubSection(section_def=DevelopingSolution, repeats=False)
 
-    final_rinsing = SubSection(section_def=SpinRinsingbase, repeats=True)
+    final_rinsing = SubSection(
+        section_def=SpinRinsingbase,
+        description="""
+        Rinsing phases are usually used to stop undesired reactions due to remaining
+        developers solution on the surface.
+        """,
+        repeats=True,
+    )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)
 
 
 class SpinResistDevelopmentbase(ResistDevelopmentbase):
-    m_def = Section()
+    m_def = Section(description='Atomistic component of a spinned development step')
 
     spin_parameters = SubSection(section_def=SpinningComponent, repeats=False)
 
@@ -109,15 +114,17 @@ class SpinResistDevelopmentbase(ResistDevelopmentbase):
 
 class ResistDevelopment(FabricationProcessStep):
     m_def = Section(
+        description="""
+        Process step, tipically executed after an exposure, which aim to remove the 
+        resist, not more needed for the next steps, using a developer solution.
+        """,
         a_eln={
             'hide': [
                 'tag',
                 'duration',
-                'operator',
             ],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'step_id',
                     'description',
@@ -138,12 +145,17 @@ class ResistDevelopment(FabricationProcessStep):
                     'notes',
                 ]
             },
-        }
+        },
     )
 
     development_steps = SubSection(
         section_def=ResistDevelopmentbase,
         repeats=True,
+    )
+
+    outputs = SubSection(
+        section_def=BaseOutputs,
+        repeats=False,
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
@@ -152,11 +164,15 @@ class ResistDevelopment(FabricationProcessStep):
 
 class SpinResistDevelopment(ResistDevelopment):
     m_def = Section(
+        description="""
+        Process step, tipically executed after an exposure, which aim to remove the 
+        resist not more needed for the next steps. A spinner is used to remove excess
+        of developer solution or resist residual.
+        """,
         a_eln={
-            'hide': ['tag', 'duration', 'operator'],
+            'hide': ['tag', 'duration'],
             'properties': {
                 'order': [
-                    'job_number',
                     'name',
                     'step_id',
                     'description',
@@ -177,7 +193,7 @@ class SpinResistDevelopment(ResistDevelopment):
                     'notes',
                 ]
             },
-        }
+        },
     )
 
     development_steps = SubSection(

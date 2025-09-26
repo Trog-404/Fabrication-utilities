@@ -1,5 +1,6 @@
 from apps.addapp import addapp
 from apps.equipmentapp import equipmentapp
+from apps.material import materialapp
 from apps.processapp import processapp
 from apps.removeapp import removeapp
 from apps.transapp import transapp
@@ -33,6 +34,12 @@ app_trans_entry_point = AppEntryPoint(
     name='Transform steps research app',
     description='App for searching transform steps like lithography, oxydation, etc.',
     app=transapp,
+)
+
+app_material_entry_point = AppEntryPoint(
+    name='Materials research app',
+    description='App for searching materials employed in fabrication',
+    app=materialapp,
 )
 
 app_entry_point_to_test = app_remove_entry_point

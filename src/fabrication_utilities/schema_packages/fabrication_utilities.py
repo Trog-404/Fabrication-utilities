@@ -70,6 +70,9 @@ class TechniqueSubCategory(ArchiveSection):
         a_eln={'component': 'RichTextEditQuantity'},
     )
 
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
+
 
 class TechniqueMainCategory(ArchiveSection):
     m_def = Section(
@@ -92,11 +95,12 @@ class TechniqueMainCategory(ArchiveSection):
         repeats=True,
     )
 
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
+
 
 class TechniqueGeneralCategory(ArchiveSection):
-    m_def = Section(
-        a_eln={'properties': {'order': ['name', 'id', 'description']}},
-    )
+    m_def = Section()
     name = Quantity(
         type=str,
         a_eln={'component': 'StringEditQuantity'},
@@ -113,6 +117,9 @@ class TechniqueGeneralCategory(ArchiveSection):
         section_def=TechniqueMainCategory,
         repeats=True,
     )
+
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
 
 
 class TechniqueCategories(EntryData, ArchiveSection):
@@ -131,6 +138,9 @@ class TechniqueCategories(EntryData, ArchiveSection):
         section_def=TechniqueGeneralCategory,
         repeats=True,
     )
+
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
 
 
 class EquipmentTechnique(ArchiveSection):
@@ -209,8 +219,11 @@ class EquipmentTechnique(ArchiveSection):
         a_eln={'component': 'ReferenceEditQuantity'},
     )
 
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
 
-class FabricationProductType(EntryData, ArchiveSection):
+
+class FabricationProductType(ArchiveSection):
     m_def = Section(
         a_eln={'properties': {'order': ['name', 'description', 'id']}},
     )
@@ -226,6 +239,9 @@ class FabricationProductType(EntryData, ArchiveSection):
         type=str,
         a_eln={'component': 'RichTextEditQuantity'},
     )
+
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
 
 
 class ListofProductType(EntryData, ArchiveSection):
@@ -245,14 +261,6 @@ class ListofProductType(EntryData, ArchiveSection):
     )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
-        """
-        The normalizer for the `FabricationProcessProductType` class.
-
-        Args:
-            archive (EntryArchive): The archive containing the section that is being
-            normalized.
-            logger (BoundLogger): A structlog logger.
-        """
         super().normalize(archive, logger)
 
 
@@ -355,6 +363,9 @@ class Jobdone(ArchiveSection):
 
 class Equipment(Instrument, EntryData, ArchiveSection):
     m_def = Section(
+        description="""
+        Base class to inherit to describe various kind of fabrication equipment
+        """,
         a_eln={
             'hide': [
                 'datetime',
@@ -375,7 +386,7 @@ class Equipment(Instrument, EntryData, ArchiveSection):
                     'notes',
                 ],
             },
-        }
+        },
     )
     lab_id = Quantity(
         type=str,
@@ -466,7 +477,7 @@ class EquipmentReference(Link, ArchiveSection):
 
 
 class User(ArchiveSection):
-    m_def = Section()
+    m_def = Section(description='Section to describe who performed a step')
 
     name = Quantity(
         type=str,
@@ -531,6 +542,11 @@ class User(ArchiveSection):
 
 class FabricationProcessStep(FabricationProcessStepBase, EntryData):
     m_def = Section(
+        description="""
+        With fabrication process step is intended an action upon an item to modify its
+        native shape or in general property. Steps are specilized in specific techinques
+        sub category and technology instances. Combined they form a process.
+        """,
         a_eln={
             'hide': ['tag', 'duration'],
             'properties': {
@@ -658,6 +674,13 @@ class FabricationOutput(ArchiveSection):
 
 class FabricationProcess(EntryData, ArchiveSection):
     m_def = Section(
+        description="""
+        For fabrication process is intended a series of steps within which an item is
+        modified to generate some features useful for future applications. Processes
+        have outputs consisting in particular product type, e.g. wave guides, or also 
+        row materials. To describe fabrication of materials you should use the class
+        MaterialProductionProcess. 
+        """,
         a_eln={
             'properties': {
                 'order': [
@@ -677,7 +700,7 @@ class FabricationProcess(EntryData, ArchiveSection):
                     'notes',
                 ]
             }
-        }
+        },
     )
     id_proposal = Quantity(
         type=str,
@@ -873,7 +896,7 @@ class StartingMaterial(Chemical, FabricationProcessStep, ArchiveSection):
             self.elemental_composition = elementality
 
 
-class SampleParenting(Entity, EntryData, ArchiveSection):
+class ItemParenting(Entity, EntryData, ArchiveSection):
     m_def = Section(
         a_eln={
             'hide': ['lab_id'],
@@ -901,11 +924,11 @@ class SampleParenting(Entity, EntryData, ArchiveSection):
     )
 
 
-class SampleParentingLink(Link, ArchiveSection):
+class ItemParentingLink(Link, ArchiveSection):
     m_def = Section()
 
     Section = Quantity(
-        type=SampleParenting,
+        type=ItemParenting,
         a_eln={'component': 'ReferenceEditQuantity'},
     )
 

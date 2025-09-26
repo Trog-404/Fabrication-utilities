@@ -210,9 +210,9 @@ class TimeRampTemperature(PlotSection):
         description='Rate of increment(decrement) in the process',
         a_eln={
             'component': 'NumberEditQuantity',
-            'defaultDisplayUnit': 'celsius/minute',
+            'defaultDisplayUnit': 'celsius/sec',
         },
-        unit='celsius/minute',
+        unit='celsius/sec',
     )
 
     time = Quantity(

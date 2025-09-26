@@ -12,6 +12,7 @@ from nomad.metainfo import (
     Section,
     SubSection,
 )
+from schema_packages.calculus.calculus import EtchingRate
 from schema_packages.fabrication_utilities import (
     FabricationOutput,
     FabricationProcess,
@@ -20,7 +21,12 @@ from schema_packages.fabrication_utilities import (
 from schema_packages.utils import FabricationChemical
 
 if TYPE_CHECKING:
-    pass
+    from nomad.datamodel.datamodel import (
+        EntryArchive,
+    )
+    from structlog.stdlib import (
+        BoundLogger,
+    )
 
 m_package = Package(
     name='Materials plugin', description='Plugin to describe raw materials properties'
@@ -64,6 +70,21 @@ class EtchingMeasures(ArchiveSection):
         },
         unit='nm/minute',
     )
+
+    etching_calculations = SubSection(
+        section_def=EtchingRate,
+        description="""
+        Instead of using your notebook here you can enter input data to obtain the
+        etching rate needed
+        """,
+        repeats=False,
+    )
+
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        super().normalize(archive, logger)
+        if self.etching_calculations.output.etching_rate_value is not None:
+            result = self.etching_calculations.output.etching_rate_value
+            self.etching_rate_measured = result
 
 
 class EtchingProperties(ArchiveSection):
@@ -200,6 +221,14 @@ class FabricationMaterial(FabricationOutput):
 
 
 class MaterialProductionProcess(FabricationProcess):
-    m_def = Section()
+    m_def = Section(
+        description="""
+        Particular instance of a fabrication process where the output is a raw material
+        on a wafer. Upon this raw material are performed various characterization and
+        trial of steps, e.g. etching to derive the etching rates, to give a list of
+        property for that particular material. At the moment you can describe only
+        etching rates porperly.
+        """,
+    )
 
     output = SubSection(section_def=FabricationMaterial, repeat=False)

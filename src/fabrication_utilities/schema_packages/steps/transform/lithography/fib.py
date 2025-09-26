@@ -86,6 +86,7 @@ class FIB(FabricationProcessStep):
             'properties': {
                 'order': [
                     'name',
+                    'step_id',
                     'description',
                     'affiliation',
                     'location',
@@ -96,7 +97,6 @@ class FIB(FabricationProcessStep):
                     'starting_date',
                     'ending_date',
                     'step_type',
-                    'step_id',
                     'definition_of_process_step',
                     'keywords',
                     'recipe_name',

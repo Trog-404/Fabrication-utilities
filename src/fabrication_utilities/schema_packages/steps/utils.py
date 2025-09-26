@@ -386,16 +386,22 @@ class DevelopingSolution(ArchiveSection):
 
     dispensed_volume = Quantity(
         type=np.float64,
+        description='Amount of volume of the final solution used',
         a_eln={'component': 'NumberEditQuantity', 'defaultDisplayUnit': 'milliliter'},
         unit='milliliter',
     )
 
     developing_solution_components = SubSection(
         section_def=WetReactiveComponents,
+        description='Here you candescribe bruefly each component of the solution',
         repeats=True,
     )
 
-    surfactants = SubSection(section_def=WetReactiveComponents, repeats=True)
+    surfactants = SubSection(
+        section_def=WetReactiveComponents,
+        description='Here you can describe a wet surfactants solution',
+        repeats=True,
+    )
 
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         super().normalize(archive, logger)

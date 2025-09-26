@@ -1,0 +1,95 @@
+{
+	"data":{
+		"m_def":"schema_packages.steps.remove.etching.wet_etching.WetCleaning",
+		"name":"Prova cleaning",
+		"starting_date":"2025-09-21T17:04:00+00:00",
+		"ending_date":"2025-09-21T18:04:00+00:00",
+		"notes":"<p>Eventuali note</p>",
+		"id_item_processed":"ID1",
+		"step_id":"WetCl1",
+		"affiliation":"FBK",
+		"location":"Trento",
+		"institution":"FBK",
+		"facility":"MNF",
+		"laboratory":"CRD",
+		"step_type":"RCA cleaning",
+		"recipe_name":"RCA cleaning",
+		"endpoint":false,
+		"instruments":[{}],
+		"users":[
+			{
+				"name":"User",
+				"role":"Ruolo",
+				"affiliation":"Affiliazione",
+				"address":"Povo(TN), Italy",
+				"facility_user_id":"Id della facility"
+			}
+		],
+		"cleaning_steps":[
+			{
+				"name":"Bagno in acido cloridrico",
+				"tag":"Iniziale cleaning",
+				"starting_date":"2025-09-21T17:08:00+00:00",
+				"ending_date":"2025-09-21T17:09:00+00:00",
+				"duration":1,
+				"pump":true,
+				"tank_temperature":200,
+				"wetting":true,
+				"wetting_duration":1,
+				"ultrasounds_required":true,
+				"ultrasounds_frequency":100,
+				"ultrasounds_duration":1,
+				"resistivity_control":{"resistivity_target":15},
+				"materials_etched":[
+					{
+						"name":"Silicio",
+						"datetime":"2025-09-23T20:03:08.533729+00:00",
+						"chemical_formula":"Si",
+						"elemental_composition":[{"element":"Si","atomic_fraction":1,"mass_fraction":1}]
+					}
+				],
+				"reactives_used_to_etch":[
+					{
+						"name":"acido cloridrico",
+						"datetime":"2025-09-23T20:02:49.481224+00:00",
+						"chemical_formula":"HCl",
+						"solution_concentration":1,
+						"elemental_composition":[
+							{"element":"H","atomic_fraction":0.5,"mass_fraction":0.02764825278402545},
+							{"element":"Cl","atomic_fraction":0.5,"mass_fraction":0.9723517472159745}
+						]
+					},
+					{
+						"name":"acqua ossigenata",
+						"datetime":"2025-09-23T20:02:49.549329+00:00",
+						"chemical_formula":"H2O2",
+						"solution_concentration":5,
+						"elemental_composition":[
+							{"element":"H","atomic_fraction":0.5,"mass_fraction":0.05926971247133533},
+							{"element":"O","atomic_fraction":0.5,"mass_fraction":0.9407302875286646}
+						]
+					}
+				],
+				"cleaning_dumping":[
+					{
+						"rinsing_cycles":1,
+						"rinsing_mode":"Manual",
+						"rinser_name":"De ionized water",
+						"rinsing_duration":30,
+						"draining_duration":30,
+						"resistivity_control":{"resistivity_target":15}
+					}
+				]
+			},
+			{
+				"name":"Bagno in ammoniaca",
+				"tag":"Secondo cleaning"
+			}
+		],
+		"outputs":{
+			"bath_number":1,
+			"duration_measured":200,
+			"job_number":1
+		}
+	}
+}

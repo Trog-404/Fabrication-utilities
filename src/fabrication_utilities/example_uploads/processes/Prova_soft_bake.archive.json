@@ -1,0 +1,1 @@
+{"data":{"m_def":"schema_packages.steps.transform.thermal_process.baking.Baking","name":"Prova soft bake","users":[{"name":"User"}],"baking_steps":[{"name":"Baking post coating","tag":"soft bake","starting_date":"2025-09-25T13:13:00+00:00","ending_date":"2025-09-25T13:13:00+00:00","duration":2,"baking_temperature":200}],"outputs":{"job_number":1}}}

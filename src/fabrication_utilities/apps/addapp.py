@@ -1,6 +1,7 @@
 from apps.directories import dir_path
 from apps.menu_steps import (
     menuadd_bonding,
+    menuadd_coat,
     menuadd_electrongun,
     menuadd_icpcvd,
     menuadd_lpcvd,
@@ -49,6 +50,7 @@ addapp = App(
             selected=True,
         ),
         Column(quantity='upload_create_time', selected=True),
+        Column(quantity=f'data.step_id#{dir0}', selected=True),
         Column(quantity=f'data.recipe_name#{dir0}'),
     ],
     filters_locked={'section_defs.definition_qualified_name': dir0},
@@ -66,6 +68,7 @@ addapp = App(
                     menuadd_lpcvd,
                     menuadd_pecvd,
                     menuadd_icpcvd,
+                    menuadd_coat,
                     menuadd_spincoat,
                     menuadd_electrongun,
                     menuadd_sputtering,

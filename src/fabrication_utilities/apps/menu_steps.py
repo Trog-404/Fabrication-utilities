@@ -7,19 +7,6 @@ from nomad.config.models.ui import (
     MenuItemTerms,
 )
 
-mec = 'data.synthesis_steps.material_elemental_composition.element'
-flux = 'data.synthesis_steps.fluximeters.elemental_composition.element'
-fluxetch = 'data.etching_steps.fluximeters.elemental_composition.element'
-rec = 'data.coating_steps.resist_material.elemental_composition.element'
-dmec = 'data.doping_material_elemental_composition.element'
-wc = 'wafer_cleaning'
-dev = 'developing'
-meec = 'materials_etched.elemental_composition.element'
-rute = 'data.etching_steps.reactives_used_to_etch.elemental_composition.element'
-ru = 'data.etching_steps.reactives_used_to_etch'
-alias = 'data.synthesis_steps.material_deposited.chemical_formula'
-
-
 menuadd_icpcvd = Menu(
     title='ICP-CVD',
     size='xl',
@@ -82,7 +69,7 @@ menuadd_icpcvd = Menu(
         MenuItemTerms(
             title='Formula of the material to be deposited',
             type='terms',
-            search_quantity=f'{alias}#{dir_path["dir1"]}',
+            search_quantity=f'data.synthesis_steps.material_deposited.chemical_formula#{dir_path["dir1"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements deposited',
@@ -92,7 +79,7 @@ menuadd_icpcvd = Menu(
         MenuItemPeriodicTable(
             title='Elements of gases employed',
             type='periodic_table',
-            search_quantity=f'{flux}#{dir_path["dir1"]}',
+            search_quantity=f'data.synthesis_steps.fluximeters.elemental_composition.element#{dir_path["dir1"]}',
         ),
         MenuItemTerms(
             title='Gases formulas',
@@ -303,7 +290,7 @@ menuadd_pecvd = Menu(
         MenuItemTerms(
             title='Formula of the material to be deposited',
             type='terms',
-            search_quantity=f'{alias}#{dir_path["dir27"]}',
+            search_quantity=f'data.synthesis_steps.material_deposited.chemical_formula#{dir_path["dir27"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements deposited',
@@ -313,7 +300,7 @@ menuadd_pecvd = Menu(
         MenuItemPeriodicTable(
             title='Elements of gases employed',
             type='periodic_table',
-            search_quantity=f'{flux}#{dir_path["dir27"]}',
+            search_quantity=f'data.synthesis_steps.fluximeters.elemental_composition.element#{dir_path["dir27"]}',
         ),
         MenuItemTerms(
             title='Gases formulas',
@@ -494,7 +481,7 @@ menuadd_lpcvd = Menu(
         MenuItemTerms(
             title='Formula of the material to be deposited',
             type='terms',
-            search_quantity=f'{alias}#{dir_path["dir28"]}',
+            search_quantity=f'data.synthesis_steps.material_deposited.chemical_formula#{dir_path["dir28"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements deposited',
@@ -504,7 +491,7 @@ menuadd_lpcvd = Menu(
         MenuItemPeriodicTable(
             title='Elements of gases employed',
             type='periodic_table',
-            search_quantity=f'{flux}#{dir_path["dir28"]}',
+            search_quantity=f'data.synthesis_steps.fluximeters.elemental_composition.element#{dir_path["dir28"]}',
         ),
         MenuItemTerms(
             title='Gases formulas',
@@ -600,7 +587,7 @@ menuadd_spincoat = Menu(
         MenuItemPeriodicTable(
             title='Elements of the resist deposited',
             type='periodic_table',
-            search_quantity=f'{rec}#{dir_path["dir2"]}',
+            search_quantity=f'data.coating_steps.resist_material.elemental_composition.element#{dir_path["dir2"]}',
         ),
         MenuItemHistogram(
             title='Desired thickness',
@@ -1236,12 +1223,12 @@ menuremove_icprie = Menu(
         MenuItemPeriodicTable(
             title='Elements etched',
             type='periodic_table',
-            search_quantity=f'data.etching_steps.{meec}#{dir_path["dir5"]}',
+            search_quantity=f'data.etching_steps.materials_etched.elemental_composition.element#{dir_path["dir5"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements of gases employed',
             type='periodic_table',
-            search_quantity=f'{fluxetch}#{dir_path["dir5"]}',
+            search_quantity=f'data.etching_steps.fluximeters.elemental_composition.element#{dir_path["dir5"]}',
         ),
         MenuItemTerms(
             title='Gases formulas',
@@ -1444,7 +1431,7 @@ menuremove_wetclean = Menu(
         MenuItemPeriodicTable(
             title='Elements of the material',
             type='periodic_table',
-            search_quantity=f'data.cleaning_steps.{meec}#{dir_path["dir6"]}',
+            search_quantity=f'data.cleaning_steps.materials_etched.elemental_composition.element#{dir_path["dir6"]}',
         ),
         MenuItemTerms(
             title='Cleaning reactives',
@@ -1593,7 +1580,7 @@ menutrans_annealing = Menu(
             x=Axis(
                 search_quantity=f'data.annealing_steps.ramp_up.rate#{dir_path["dir9"]}',
                 title='ramp up rate',
-                unit='celsius/minute',
+                unit='celsius/sec',
             ),
         ),
         MenuItemHistogram(
@@ -1603,7 +1590,7 @@ menutrans_annealing = Menu(
             x=Axis(
                 search_quantity=f'data.annealing_steps.ramp_down.rate#{dir_path["dir9"]}',
                 title='ramp down rate',
-                unit='celsius/minute',
+                unit='celsius/sec',
             ),
         ),
         MenuItemHistogram(
@@ -1962,67 +1949,72 @@ menutrans_dicing = Menu(
 #         ),
 #     ],
 # )
-# menutrans_labelingcleaning = Menu(
-#     title='Labeling & Cleaning',
-#     size='xl',
-#     items=[
-#         MenuItemTerms(
-#             title='Lab location',
-#             type='terms',
-#             search_quantity=f'data.location#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='ID item processed',
-#             type='terms',
-#             search_quantity=f'data.id_item_processed#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='Name of the recipe',
-#             type='terms',
-#             search_quantity=f'data.recipe_name#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='Wafer label position',
-#             type='terms',
-#             search_quantity=f'data.wafer_label_position#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='Wafer label name',
-#             type='terms',
-#             search_quantity=f'data.wafer_label_name#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='Cleaning with DI ultrasound?',
-#             type='terms',
-#             search_quantity=f'data.{wc}_DI_ultrasound_required#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='RCA cleaning?',
-#             type='terms',
-#             search_quantity=f'data.{wc}_rca_required#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='Piranha cleaning?',
-#             type='terms',
-#             search_quantity=f'data.{wc}_piranha_required#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='Dip HF cleaning?',
-#             type='terms',
-#             search_quantity=f'data.{wc}_dipHF_required#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='Name equipment used',
-#             type='terms',
-#             search_quantity=f'data.instruments.name#{dir_path["dir14"]}',
-#         ),
-#         MenuItemTerms(
-#             title='ID equipment used',
-#             type='terms',
-#             search_quantity=f'data.instruments.id#{dir_path["dir14"]}',
-#         ),
-#     ],
-# )
+menutrans_labelingcleaning = Menu(
+    title='Labeling & Cleaning',
+    size='xl',
+    items=[
+        MenuItemTerms(
+            title='Lab location',
+            type='terms',
+            search_quantity=f'data.location#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='ID item processed',
+            type='terms',
+            search_quantity=f'data.id_item_processed#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='Name of the recipe',
+            type='terms',
+            search_quantity=f'data.recipe_name#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='Wafer label position',
+            type='terms',
+            search_quantity=f'data.wafer_label_position#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='Wafer label name',
+            type='terms',
+            search_quantity=f'data.wafer_label_name#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='Cleaning with DI ultrasound?',
+            type='terms',
+            search_quantity=f'data.wafer_cleaning_DI_ultrasound_required#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='RCA cleaning?',
+            type='terms',
+            search_quantity=f'data.wafer_cleaning_rca_required#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='Piranha cleaning?',
+            type='terms',
+            search_quantity=f'data.wafer_cleaning_piranha_required#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='Dip HF cleaning?',
+            type='terms',
+            search_quantity=f'data.wafer_cleaning_dipHF_required#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='Rinser dryer?',
+            type='terms',
+            search_quantity=f'data.wafer_cleaning_rinse_spin_dryer_required#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir_path["dir14"]}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir_path["dir14"]}',
+        ),
+    ],
+)
 # menutrans_sod = Menu(
 #     title='SOD',
 #     size='xl',
@@ -2050,7 +2042,7 @@ menutrans_dicing = Menu(
 #         MenuItemPeriodicTable(
 #             title='Elements of the solution',
 #             type='periodic_table',
-#             search_quantity=f'{dmec}#{dir_path["dir15"]}',
+#             search_quantity=f'data.#Inserisci percorso# #{dir_path["dir15"]}',
 #         ),
 #         MenuItemHistogram(
 #             title='Volume dispensed',
@@ -2171,7 +2163,7 @@ menutrans_dicing = Menu(
 #         MenuItemPeriodicTable(
 #             title='Elements of the resist',
 #             type='periodic_table',
-#             search_quantity=f'{rec}#{dir_path["dir16"]}',
+#             search_quantity=f'data.##Inserisci percorso###.#{dir_path["dir16"]}',
 #         ),
 #         MenuItemHistogram(
 #             title='Resist thickness (target)',
@@ -2795,12 +2787,12 @@ menuremove_rie = Menu(
         MenuItemPeriodicTable(
             title='Elements etched',
             type='periodic_table',
-            search_quantity=f'data.etching_steps.{meec}#{dir_path["dir20"]}',
+            search_quantity=f'data.etching_steps.materials_etched.elemental_composition.element#{dir_path["dir20"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements of gases employed',
             type='periodic_table',
-            search_quantity=f'{fluxetch}#{dir_path["dir20"]}',
+            search_quantity=f'data.etching_steps.fluximeters.elemental_composition.element#{dir_path["dir20"]}',
         ),
         MenuItemTerms(
             title='Gases formulas',
@@ -3009,29 +3001,29 @@ menuremove_wetetching = Menu(
         MenuItemPeriodicTable(
             title='Elements of the material',
             type='periodic_table',
-            search_quantity=f'data.etching_steps.{meec}#{dir_path["dir21"]}',
+            search_quantity=f'data.etching_steps.materials_etched.elemental_composition.element#{dir_path["dir21"]}',
         ),
         MenuItemTerms(
             title='Etching reactives',
             type='terms',
-            search_quantity=f'{ru}.name#{dir_path["dir21"]}',
+            search_quantity=f'data.etching_steps.reactives_used_to_etch.name#{dir_path["dir21"]}',
         ),
         MenuItemTerms(
             title='Formula of the reactives used to etch',
             type='terms',
-            search_quantity=f'{ru}.chemical_formula#{dir_path["dir21"]}',
+            search_quantity=f'data.etching_steps.reactives_used_to_etch.chemical_formula#{dir_path["dir21"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements of the etching compounds',
             type='periodic_table',
-            search_quantity=f'{rute}#{dir_path["dir21"]}',
+            search_quantity=f'data.etching_steps.reactives_used_to_etch.elemental_composition.element#{dir_path["dir21"]}',
         ),
         MenuItemHistogram(
             title='Etching reactives final concentration',
             type='histogram',
             n_bins=10,
             x=Axis(
-                search_quantity=f'{ru}.solution_concentration#{dir_path["dir21"]}',
+                search_quantity=f'data.etching_steps.reactives_used_to_etch.solution_concentration#{dir_path["dir21"]}',
                 title='etching reactives concentration(%)',
             ),
         ),
@@ -3680,12 +3672,12 @@ menuremove_driebosch = Menu(
         MenuItemPeriodicTable(
             title='Elements etched',
             type='periodic_table',
-            search_quantity=f'data.etching_steps.{meec}#{dir_path["dir26"]}',
+            search_quantity=f'data.etching_steps.materials_etched.elemental_composition.element#{dir_path["dir26"]}',
         ),
         MenuItemPeriodicTable(
             title='Elements of gases employed',
             type='periodic_table',
-            search_quantity=f'{fluxetch}#{dir_path["dir26"]}',
+            search_quantity=f'data.etching_steps.fluximeters.elemental_composition.element#{dir_path["dir26"]}',
         ),
         MenuItemTerms(
             title='Gases formulas',
@@ -3882,6 +3874,98 @@ menuremove_driebosch = Menu(
             title='ID equipment used',
             type='terms',
             search_quantity=f'data.instruments.id#{dir_path["dir26"]}',
+        ),
+    ],
+)
+
+menuadd_coat = Menu(
+    title='Coating',
+    size='xl',
+    items=[
+        MenuItemTerms(
+            title='Lab location',
+            type='terms',
+            search_quantity=f'data.location#{dir_path["dir31"]}',
+        ),
+        MenuItemTerms(
+            title='ID item processed',
+            type='terms',
+            search_quantity=f'data.id_item_processed#{dir_path["dir31"]}',
+        ),
+        MenuItemTerms(
+            title='Name of the recipe',
+            type='terms',
+            search_quantity=f'data.recipe_name#{dir_path["dir31"]}',
+        ),
+        MenuItemTerms(
+            title='Resist to be deposited',
+            type='terms',
+            search_quantity=f'data.coating_steps.resist_material.name#{dir_path["dir31"]}',
+        ),
+        MenuItemTerms(
+            title='Formulas of the resist',
+            type='terms',
+            search_quantity=f'data.coating_steps.resist_material.chemical_formula#{dir_path["dir31"]}',
+        ),
+        MenuItemPeriodicTable(
+            title='Elements of the resist deposited',
+            type='periodic_table',
+            search_quantity=f'data.coating_steps.resist_material.elemental_composition.element#{dir_path["dir31"]}',
+        ),
+        MenuItemHistogram(
+            title='Desired thickness',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.thickness_target#{dir_path["dir31"]}',
+                title='thickness',
+                unit='nm',
+            ),
+        ),
+        MenuItemTerms(
+            title='Primer type',
+            type='terms',
+            search_quantity=f'data.coating_steps.priming.primer_name#{dir_path["dir31"]}',
+        ),
+        MenuItemTerms(
+            title='Primer physical phase',
+            type='terms',
+            search_quantity=f'data.coating_steps.priming.primer_physical_phase#{dir_path["dir31"]}',
+        ),
+        MenuItemHistogram(
+            title='Primer temperature',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.coating_steps.priming.primer_temperature#{dir_path["dir31"]}',
+                title='primer temperature',
+                unit='celsius',
+            ),
+        ),
+        MenuItemTerms(
+            title='Dispening mode',
+            type='histogram',
+            search_quantity=f'data.coating_steps.dispensing_mode#{dir_path["dir31"]}',
+        ),
+        MenuItemHistogram(
+            title='Dispensed volume',
+            type='histogram',
+            n_bins=10,
+            x=Axis(
+                search_quantity=f'data.coating_steps.dispensed_volume#{dir_path["dir31"]}',
+                title='dispensed volume',
+                unit='milliliter',
+            ),
+        ),
+        MenuItemTerms(
+            title='Name equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.name#{dir_path["dir31"]}',
+        ),
+        MenuItemTerms(
+            title='ID equipment used',
+            type='terms',
+            search_quantity=f'data.instruments.id#{dir_path["dir31"]}',
         ),
     ],
 )
