@@ -707,6 +707,11 @@ class FabricationProcess(EntryData, ArchiveSection):
         description='Unique identifier associated to the process',
         a_eln={'component': 'StringEditQuantity'},
     )
+    id_item_processed = Quantity(
+        type=str,
+        description='Unique identifier associated to the item undergoing the process',
+        a_eln={'component': 'StringEditQuantity'},
+    )
     project = Quantity(
         type=str,
         description='Fill this field if the process is performed in a project',
